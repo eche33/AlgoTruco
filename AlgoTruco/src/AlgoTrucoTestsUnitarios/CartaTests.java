@@ -1,29 +1,38 @@
 package AlgoTrucoTestsUnitarios;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import modelo.Carta;
+import modelo.Palos;
 
-import AlgoTrucoClases.Carta;
 
 public class CartaTests {
+
 
 	@Before
 	public void setUp() throws Exception {
 	}
 
 	@Test
-	public void testCreaUnaCartaYChequeaElPalo() {
-		Carta carta = new Carta(1,"Espada");
-		Boolean result = carta.EsPalo("Espada");
-	      
-		Assert.assertTrue(result);
+	public void testCreaUnaCartaYGuardaValorCorrecto() {
+		Assert.assertEquals((new Carta(6,Palos.COPA)).obtenerValor(),6);
+	}
+	
+	@Test
+	public void testCreaUnaCartaYGuardaPaloCorrecto() {
+		Assert.assertEquals((new Carta(6,Palos.COPA)).obtenerPalo(),"COPA");
+	}
+	
+	@Test
+	public void testChequeaElPaloDeUnaCarta() {
+		Assert.assertTrue((Carta(1,Palos.ESPADA))).EsPalo("ESPADA"));
 	}
 
 	public static void main(String[] args) {
 	
 	}
+
+}
 
 }
