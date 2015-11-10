@@ -36,19 +36,7 @@ public class Mano {
 		return tieneEnvido;
 		}
 
-	public int obtenerEnvido() {
-		int envido = 0;
 
-		Carta primerCarta = this.cartas.get(0);
-		Carta segundaCarta = this.cartas.get(1);
-		Carta tercerCarta = this.cartas.get(2);
-
-		if(this.sonTodasDeDistintoPalo()){
-			envido = this.obtenerValorCartaMasAlta();
-		}
-
-		return envido;
-	}
 
 	public boolean sonTodasDeDistintoPalo() {
 		boolean sonDeDistintoPalo = false;
@@ -84,6 +72,44 @@ public class Mano {
 		}
 
 		return cartaMasAlta;
+	}
+
+	public int calcularEnvidoEntre(int posicion1, int posicion2) {
+		int envido = 0;
+		posicion1 = posicion1 - 1;
+		posicion2 = posicion2 - 1;
+		Carta primerCarta = this.cartas.get(posicion1);
+		Carta segundaCarta = this.cartas.get(posicion2);
+
+		if(primerCarta.obtenerPalo()==segundaCarta.obtenerPalo()){
+			envido = 20;
+			if(!primerCarta.esUnaFigura()){
+				envido = envido + primerCarta.obtenerValor();
+			}
+			if(!segundaCarta.esUnaFigura()){
+				envido = envido + segundaCarta.obtenerValor();
+			}
+		}else{
+			envido = this.obtenerValorCartaMasAltaEntre(posicion1,posicion2);
+		}
+
+		return envido;
+		}
+
+	
+	private int obtenerValorCartaMasAltaEntre(int posicion1, int posicion2) {
+		int valor = 0;
+
+		Carta primerCarta = this.cartas.get(posicion1);
+		Carta segundaCarta = this.cartas.get(posicion2);
+
+		if(!primerCarta.esUnaFigura()){
+			valor = primerCarta.obtenerValor();
+		}
+		if((segundaCarta.obtenerValor()>valor)&&(!segundaCarta.esUnaFigura())){
+			valor = segundaCarta.obtenerValor();
+		}
+		return valor;
 	}
 	}
 
