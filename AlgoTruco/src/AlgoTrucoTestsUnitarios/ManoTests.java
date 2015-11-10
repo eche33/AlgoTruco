@@ -97,6 +97,32 @@ public class ManoTests {
 
 	}
 
+	@Test
+	public void testObtenerValorCartaMasAltaConUnaFiguraEnLaMano(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(1,Palos.COPA));
+		cartas.add( new Carta(10,Palos.ESPADA));
+		cartas.add(new Carta(7,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerValorCartaMasAlta(),7);
+
+	}
+
+	@Test
+	public void testObtenerValorCartaMasAltaConTodasFiguras(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(11,Palos.ESPADA));
+		cartas.add( new Carta(10,Palos.ESPADA));
+		cartas.add(new Carta(12,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerValorCartaMasAlta(),0);
+
+	}
+
 
 
 	@Test

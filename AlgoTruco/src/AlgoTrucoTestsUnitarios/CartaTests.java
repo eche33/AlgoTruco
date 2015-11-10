@@ -1,5 +1,7 @@
 package AlgoTrucoTestsUnitarios;
 
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +30,19 @@ public class CartaTests {
 	public void testChequeaElPaloDeUnaCarta() {
 		Assert.assertTrue((new Carta(1,Palos.ESPADA)).EsPalo("ESPADA"));
 	}
+
+	@Test
+	public void testUnaCartaEsUnaFigura(){
+		Carta carta = new Carta(10, Palos.BASTO);
+		assertTrue(carta.esUnaFigura());
+	}
+
+	@Test
+	public void testUnaCartaNoEsUnaFigura(){
+		Carta carta = new Carta(1, Palos.BASTO);
+		assertFalse(carta.esUnaFigura());
+	}
+
 
 	public static void main(String[] args) {
 

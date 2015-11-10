@@ -43,7 +43,11 @@ public class Mano {
 		Carta segundaCarta = this.cartas.get(1);
 		Carta tercerCarta = this.cartas.get(2);
 
-		return null;
+		if(this.sonTodasDeDistintoPalo()){
+			envido = this.obtenerValorCartaMasAlta();
+		}
+
+		return envido;
 	}
 
 	public boolean sonTodasDeDistintoPalo() {
@@ -69,11 +73,13 @@ public class Mano {
 		Carta segundaCarta = this.cartas.get(1);
 		Carta tercerCarta = this.cartas.get(2);
 
-		cartaMasAlta = primerCarta.obtenerValor();
-		if(segundaCarta.obtenerValor()>cartaMasAlta){
+		if(!primerCarta.esUnaFigura()){
+			cartaMasAlta = primerCarta.obtenerValor();
+		}
+		if((segundaCarta.obtenerValor()>cartaMasAlta)&&(!segundaCarta.esUnaFigura())){
 			cartaMasAlta = segundaCarta.obtenerValor();
 		}
-		if(tercerCarta.obtenerValor()>cartaMasAlta){
+		if((tercerCarta.obtenerValor()>cartaMasAlta)&&(!tercerCarta.esUnaFigura())){
 			cartaMasAlta = tercerCarta.obtenerValor();
 		}
 
