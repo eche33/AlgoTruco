@@ -59,4 +59,56 @@ public class ManoTests {
 		assertFalse(mano.tieneEnvido());
 	}
 
+	@Test
+	public void testSonTodasDeDistintoPalo(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(1,Palos.COPA));
+		cartas.add( new Carta(1,Palos.BASTO));
+		cartas.add(new Carta(7,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertTrue(mano.sonTodasDeDistintoPalo());
+	}
+
+
+	@Test
+	public void testNoSonTodasDeDistintoPalo(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(1,Palos.COPA));
+		cartas.add( new Carta(1,Palos.ESPADA));
+		cartas.add(new Carta(7,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertFalse(mano.sonTodasDeDistintoPalo());
+	}
+
+	@Test
+	public void testObtenerValorCartaMasAlta(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(1,Palos.COPA));
+		cartas.add( new Carta(1,Palos.ESPADA));
+		cartas.add(new Carta(7,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerValorCartaMasAlta(),7);
+
+	}
+
+
+
+	@Test
+	public void testObtenerEnvidoConCartasTodasDeDistintoPalo() {
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(1,Palos.ESPADA));
+		cartas.add( new Carta(1,Palos.BASTO));
+		cartas.add(new Carta(7,Palos.COPA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerEnvido(),7);
+	}
+
 }

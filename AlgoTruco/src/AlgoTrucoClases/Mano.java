@@ -35,6 +35,50 @@ public class Mano {
 
 		return tieneEnvido;
 		}
+
+	public int obtenerEnvido() {
+		int envido = 0;
+
+		Carta primerCarta = this.cartas.get(0);
+		Carta segundaCarta = this.cartas.get(1);
+		Carta tercerCarta = this.cartas.get(2);
+
+		return null;
+	}
+
+	public boolean sonTodasDeDistintoPalo() {
+		boolean sonDeDistintoPalo = false;
+
+		Carta primerCarta = this.cartas.get(0);
+		Carta segundaCarta = this.cartas.get(1);
+		Carta tercerCarta = this.cartas.get(2);
+
+		if((primerCarta.obtenerPalo()!=segundaCarta.obtenerPalo()) && (primerCarta.obtenerPalo()!=tercerCarta.obtenerPalo())){
+			if(segundaCarta.obtenerPalo()!=tercerCarta.obtenerPalo()){
+				sonDeDistintoPalo = true;
+			}
+		}
+
+		return sonDeDistintoPalo;
+	}
+
+	public int obtenerValorCartaMasAlta() {
+		int cartaMasAlta = 0;
+
+		Carta primerCarta = this.cartas.get(0);
+		Carta segundaCarta = this.cartas.get(1);
+		Carta tercerCarta = this.cartas.get(2);
+
+		cartaMasAlta = primerCarta.obtenerValor();
+		if(segundaCarta.obtenerValor()>cartaMasAlta){
+			cartaMasAlta = segundaCarta.obtenerValor();
+		}
+		if(tercerCarta.obtenerValor()>cartaMasAlta){
+			cartaMasAlta = tercerCarta.obtenerValor();
+		}
+
+		return cartaMasAlta;
+	}
 	}
 
 
