@@ -84,7 +84,7 @@ public class ManoTests {
 		assertFalse(mano.sonTodasDeDistintoPalo());
 	}
 
-	@Test
+	/*@Test
 	public void testObtenerValorCartaMasAlta(){
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 		cartas.add(new Carta(1,Palos.COPA));
@@ -95,9 +95,9 @@ public class ManoTests {
 
 		assertEquals(mano.obtenerValorCartaMasAlta(),7);
 
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void testObtenerValorCartaMasAltaConUnaFiguraEnLaMano(){
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 		cartas.add(new Carta(1,Palos.COPA));
@@ -108,9 +108,9 @@ public class ManoTests {
 
 		assertEquals(mano.obtenerValorCartaMasAlta(),7);
 
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void testObtenerValorCartaMasAltaConTodasFiguras(){
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 		cartas.add(new Carta(11,Palos.ESPADA));
@@ -121,7 +121,7 @@ public class ManoTests {
 
 		assertEquals(mano.obtenerValorCartaMasAlta(),0);
 
-	}
+	}*/
 
 	@Test
 	public void calcularEnvidoEntreDosCartas(){
@@ -162,16 +162,6 @@ public class ManoTests {
 
 
 
-	/*@Test
-	public void testObtenerEnvidoConCartasTodasDeDistintoPalo() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.COPA));
 
-		Mano mano = new Mano(cartas);
-
-		assertEquals(mano.obtenerEnvido(),7);
-	}*/
 
 }
