@@ -4,13 +4,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import modelo.Carta;
-import modelo.Mazo;
+import AlgoTrucoClases.Carta;
+import AlgoTrucoClases.Mazo;
 
-public class MazoTest {
+public class MazoTests {
 
 	private Mazo nuevoMazo;
-	
+
 	@Before
 	public void setup() {
 		nuevoMazo = new Mazo();
@@ -28,7 +28,7 @@ public class MazoTest {
 		Assert.assertTrue(nuevoMazo.existeCarta(2, "ORO"));
 		Assert.assertTrue(nuevoMazo.existeCarta(12, "COPA"));
 	}
-	
+
 	@Test
 	public void testNoEncuentraCartasNoExistentes(){
 		Assert.assertFalse(nuevoMazo.existeCarta(8, "ORO"));
@@ -36,7 +36,7 @@ public class MazoTest {
 		Assert.assertFalse(nuevoMazo.existeCarta(14, "COPA"));
 		Assert.assertFalse(nuevoMazo.existeCarta(2, "DIAMANTE"));
 	}
-	
+
 	@Test
 	public void testMezclaElMazo(){
 		Carta primerCarta = nuevoMazo.devolverMazo().get(0);
