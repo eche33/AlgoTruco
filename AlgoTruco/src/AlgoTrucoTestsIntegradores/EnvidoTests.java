@@ -2,8 +2,14 @@ package AlgoTrucoTestsIntegradores;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import AlgoTrucoClases.Carta;
+import AlgoTrucoClases.Mano;
+import AlgoTrucoClases.Palos;
 
 public class EnvidoTests {
 
@@ -11,9 +17,6 @@ public class EnvidoTests {
 	public void setUp() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+
 
 }
