@@ -149,6 +149,28 @@ public class Mano {
 
 		return tieneFlor;
 		}
+
+	public int obtenerFlor() {
+		int flor = 0;
+
+		if(this.tieneFlor()){
+			flor = 20;
+			Carta primerCarta = this.cartas.get(0);
+			Carta segundaCarta = this.cartas.get(1);
+			Carta tercerCarta = this.cartas.get(2);
+			if(!primerCarta.esUnaFigura()){
+				flor = flor + primerCarta.obtenerValor();
+			}
+			if(!segundaCarta.esUnaFigura()){
+				flor = flor + segundaCarta.obtenerValor();
+			}
+			if(!tercerCarta.esUnaFigura()){
+				flor = flor + tercerCarta.obtenerValor();
+			}
+		}
+
+		return flor;
+	}
 	}
 
 

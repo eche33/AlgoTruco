@@ -184,7 +184,42 @@ public class ManoTests {
 		assertFalse(mano.tieneFlor());
 	}
 
+	@Test
+	public void testCalcularFlorCorrectamente(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(6,Palos.ESPADA));
+		cartas.add( new Carta(7,Palos.ESPADA));
+		cartas.add(new Carta(12,Palos.ESPADA));
 
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerFlor(),33);
+	}
+
+
+	@Test
+	public void testCalcularFlorCorrectamenteConTodasFiguras(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(10,Palos.ESPADA));
+		cartas.add( new Carta(11,Palos.ESPADA));
+		cartas.add(new Carta(12,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerFlor(),20);
+	}
+
+	@Test
+	public void testCalcularFlorMasAltaCorrectamente(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(5,Palos.ESPADA));
+		cartas.add( new Carta(6,Palos.ESPADA));
+		cartas.add(new Carta(7,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerFlor(),38);
+	}
 	}
 
 
