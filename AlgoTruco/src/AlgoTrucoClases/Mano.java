@@ -135,6 +135,42 @@ public class Mano {
 
 		return envido;
 	}
+
+	public boolean tieneFlor() {
+		boolean tieneFlor = false;
+
+		Carta primerCarta = this.cartas.get(0);
+		Carta segundaCarta = this.cartas.get(1);
+		Carta tercerCarta = this.cartas.get(2);
+
+		if(primerCarta.obtenerPalo()==segundaCarta.obtenerPalo() && primerCarta.obtenerPalo()==tercerCarta.obtenerPalo() && segundaCarta.obtenerPalo()==tercerCarta.obtenerPalo()){
+			tieneFlor =true;
+		}
+
+		return tieneFlor;
+		}
+
+	public int obtenerFlor() {
+		int flor = 0;
+
+		if(this.tieneFlor()){
+			flor = 20;
+			Carta primerCarta = this.cartas.get(0);
+			Carta segundaCarta = this.cartas.get(1);
+			Carta tercerCarta = this.cartas.get(2);
+			if(!primerCarta.esUnaFigura()){
+				flor = flor + primerCarta.obtenerValor();
+			}
+			if(!segundaCarta.esUnaFigura()){
+				flor = flor + segundaCarta.obtenerValor();
+			}
+			if(!tercerCarta.esUnaFigura()){
+				flor = flor + tercerCarta.obtenerValor();
+			}
+		}
+
+		return flor;
+	}
 	}
 
 

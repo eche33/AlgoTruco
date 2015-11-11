@@ -6,12 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 
 
-import modelo.Carta;
-import modelo.Palos;
+import AlgoTrucoClases.Carta;
+import AlgoTrucoClases.Palos;
 
 public class Mazo {
 	private List<Carta> mazoDeCartas;
-	
+
 	public Mazo(){
 		this.mazoDeCartas = generarMazo();
 		asignarImportanciaDeCartas();
@@ -26,14 +26,14 @@ public class Mazo {
 		}
 		return false;
 	}
-	
+
 	public List<Carta> devolverMazo(){
 		return (this.mazoDeCartas);
 	}
-	
+
 	private List<Carta> generarMazo() {
 		ArrayList<Carta> nuevoMazo = new ArrayList<Carta>();
-		for (Palos paloActual : Palos.values()) {			
+		for (Palos paloActual : Palos.values()) {
 			for (int valor = 1; valor <= 12; valor++){
 				if (valor != 8 && valor != 9) {
 					Carta nuevaCarta = new Carta(valor, paloActual);
@@ -42,7 +42,7 @@ public class Mazo {
 			}
 		}
 		return nuevoMazo;
-	}	
+	}
 
 	private void asignarImportanciaDeCartas(){
 		buscarCarta(1,"ESPADA").asignarPrioridad(1);
@@ -69,13 +69,13 @@ public class Mazo {
 			buscarCarta(5,paloActual.name()).asignarPrioridad(13);
 		for (Palos paloActual : Palos.values())
 			buscarCarta(4,paloActual.name()).asignarPrioridad(14);
-		
-		
-		
+
+
+
 	}
 
 	private Carta buscarCarta(int numero, String palo) {
-		Carta cartaBuscada = new Carta();
+		Carta cartaBuscada = null;
 		boolean encontrada = false;
 		Iterator<Carta> recorrerMazo = this.mazoDeCartas.iterator();
 		while (recorrerMazo.hasNext() && !encontrada){
