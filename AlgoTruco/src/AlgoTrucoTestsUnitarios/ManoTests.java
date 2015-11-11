@@ -159,9 +159,37 @@ public class ManoTests {
 		assertEquals(mano.calcularEnvidoEntre(1,2),33);
 	}
 
+	@Test
+	public void testManoTieneFlor(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(6,Palos.ESPADA));
+		cartas.add( new Carta(7,Palos.ESPADA));
+		cartas.add(new Carta(12,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertTrue(mano.tieneFlor());
+	}
+
+
+	@Test
+	public void testManoNoTieneFlor(){
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(6,Palos.ESPADA));
+		cartas.add( new Carta(7,Palos.BASTO));
+		cartas.add(new Carta(12,Palos.ESPADA));
+
+		Mano mano = new Mano(cartas);
+
+		assertFalse(mano.tieneFlor());
+	}
+
+
+	}
 
 
 
 
 
-}
+
+
