@@ -54,7 +54,7 @@ public class Mano {
 		return sonDeDistintoPalo;
 	}
 
-	public int obtenerValorCartaMasAlta() {
+	/*public int obtenerValorCartaMasAlta() {
 		int cartaMasAlta = 0;
 
 		Carta primerCarta = this.cartas.get(0);
@@ -72,7 +72,7 @@ public class Mano {
 		}
 
 		return cartaMasAlta;
-	}
+	}*/
 
 	public int calcularEnvidoEntre(int posicion1, int posicion2) {
 		int envido = 0;
@@ -96,7 +96,7 @@ public class Mano {
 		return envido;
 		}
 
-	
+
 	private int obtenerValorCartaMasAltaEntre(int posicion1, int posicion2) {
 		int valor = 0;
 
@@ -110,6 +110,30 @@ public class Mano {
 			valor = segundaCarta.obtenerValor();
 		}
 		return valor;
+	}
+
+	public int obtenerEnvido() {
+		int envido = 0;
+
+		int envido12 = this.calcularEnvidoEntre(1, 2);
+		int envido13 = this.calcularEnvidoEntre(1, 3);
+		int envido23 = this.calcularEnvidoEntre(2, 3);
+
+		if(envido12>envido13){
+			if(envido12>envido23){
+				envido = envido12;
+			}else{
+				envido = envido23;
+			}
+		}else{
+			if(envido13>envido23){
+				envido = envido13;
+			}else{
+				envido = envido23;
+			}
+		}
+
+		return envido;
 	}
 	}
 
