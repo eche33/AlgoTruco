@@ -12,11 +12,11 @@ public abstract class Partida {
 	// Creador sincronizado que salvaguarda los posibles problemas debido al multi-thread.
 	private synchronized static void crearPartida(int modo, int vsCPU){
 		switch (modo){
-			case 1: partida = new Partida1vs1(vsCPU);
+			case 1: partida = Partida1vs1.crearPartida(vsCPU);
 			   		break;
-			case 2: partida = new Partida2vs2();
+			case 2: partida = Partida2vs2.crearPartida();
 			   		break;
-			case 3: partida = new Partida3vs3();
+			case 3: partida = Partida3vs3.crearPartida();
 			   		break;
 		}
 	}
