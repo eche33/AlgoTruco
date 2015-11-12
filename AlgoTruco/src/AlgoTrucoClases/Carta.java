@@ -11,7 +11,7 @@ public class Carta {
 		this.valor = valor;
 	}
 
-	public Boolean EsPalo(String palo) {
+	public boolean esPalo(String palo) {
 		return ( (this.palo).name() == palo);
 	}
 
