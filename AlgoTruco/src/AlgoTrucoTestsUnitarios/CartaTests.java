@@ -12,7 +12,7 @@ import AlgoTrucoClases.Palos;
 public class CartaTests {
 
 	private Carta carta1 = (new Carta(6,Palos.COPA));
-	
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -29,7 +29,7 @@ public class CartaTests {
 
 	@Test
 	public void testChequeaElPaloDeUnaCarta() {
-		Assert.assertTrue((new Carta(1,Palos.ESPADA)).EsPalo("ESPADA"));
+		Assert.assertTrue((new Carta(1,Palos.ESPADA)).esPalo("ESPADA"));
 	}
 
 	@Test
