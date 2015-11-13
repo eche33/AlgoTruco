@@ -41,24 +41,24 @@ public class MazoTests {
 	@Test
 	public void testMezclaElMazo(){
 		
-		Carta primerCarta = nuevoMazo.devolverMazo().get(0);
-		Carta primerCarta2 = nuevoMazo.devolverMazo().get(39);
+		Carta primerCarta = nuevoMazo.devolverMazo().get( 0 );
+		Carta primerCarta2 = nuevoMazo.devolverMazo().get( 39 );
 		
 		nuevoMazo.mezclarMazo();
 		
-		Carta segundaCarta = nuevoMazo.devolverMazo().get(0);
-		Carta segundaCarta2 = nuevoMazo.devolverMazo().get(39);
+		Carta segundaCarta = nuevoMazo.devolverMazo().get( 0 );
+		Carta segundaCarta2 = nuevoMazo.devolverMazo().get( 39 );
 		
-		Assert.assertNotEquals(primerCarta2, segundaCarta2);
-		Assert.assertNotEquals(primerCarta, segundaCarta);
+		Assert.assertNotEquals( primerCarta2, segundaCarta2 );
+		Assert.assertNotEquals( primerCarta, segundaCarta );
 
-		Carta primerCarta3 = nuevoMazo.devolverMazo().get(31);
+		Carta primerCarta3 = nuevoMazo.devolverMazo().get( 31 );
 		
 		nuevoMazo.mezclarMazo();
 		
-		Carta segundaCarta3 = nuevoMazo.devolverMazo().get(31);
+		Carta segundaCarta3 = nuevoMazo.devolverMazo().get( 31 );
 		
-		Assert.assertNotEquals(primerCarta3, segundaCarta3);
+		Assert.assertNotEquals( primerCarta3, segundaCarta3 );
 	}
 }
 
