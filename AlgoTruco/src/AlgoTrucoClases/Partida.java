@@ -21,6 +21,8 @@ public abstract class Partida {
 		}
 	}
 
+
+
 	// Las variables modo y vsCPU se van a usar en el creador para definir el modo y si se jueva vs CPU (qué loco, ¿no?).
 	public static Partida obtenerPartida(int modo, int vsCPU){
 		if (partida == null) crearPartida(modo, vsCPU);
