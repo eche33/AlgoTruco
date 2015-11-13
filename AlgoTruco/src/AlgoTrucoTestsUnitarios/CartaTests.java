@@ -24,7 +24,7 @@ public class CartaTests {
 
 	@Test
 	public void testCreaUnaCartaYGuardaPaloCorrecto() {
-		Assert.assertEquals((new Carta(6,Palos.COPA)).obtenerPalo(),"COPA");
+		Assert.assertEquals(( new Carta(6,Palos.COPA )).obtenerPalo(),"COPA");
 	}
 
 	@Test
