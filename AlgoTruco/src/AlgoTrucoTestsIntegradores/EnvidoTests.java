@@ -53,4 +53,28 @@ public class EnvidoTests {
 		assertEquals(mano.obtenerEnvido(),33);
 	}
 
+	@Test
+	public void testObtenerEnvidoConTodasFigurasDistintas() {
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(10,Palos.ESPADA));
+		cartas.add( new Carta(12,Palos.BASTO));
+		cartas.add(new Carta(12,Palos.COPA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerEnvido(),0);
+	}
+
+	@Test
+	public void testObtenerEnvidoConTodasFiguras() {
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		cartas.add(new Carta(10,Palos.ESPADA));
+		cartas.add( new Carta(12,Palos.ESPADA));
+		cartas.add(new Carta(12,Palos.COPA));
+
+		Mano mano = new Mano(cartas);
+
+		assertEquals(mano.obtenerEnvido(),20);
+	}
+
 }
