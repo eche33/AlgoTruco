@@ -89,6 +89,26 @@ public class Mazo {
 		Collections.shuffle(this.mazoDeCartas);
 	}
 		
+	
+	public ArrayList<ArrayList<Carta>> repartirXCantidadDeManos( int manosDeseadas ){
+		ArrayList<ArrayList<Carta>> manosPedidas = new ArrayList<ArrayList<Carta>>();
+		int indiceCartaActual = 0;
+		int manosRepartidas = 0;
+		while ( manosRepartidas < manosDeseadas){
+			ArrayList<Carta> manoActual = new ArrayList<Carta>();
+			for (int i = 1 ; i<=3 ; i++) {
+				manoActual.add( this.devolverMazo().get( indiceCartaActual ) );
+				indiceCartaActual++;
+			}
+			manosPedidas.add( manoActual );
+			manosRepartidas++;
+		}
+		return manosPedidas;	
+	}
+	
+	
+	
+	
 	public boolean existeCarta(int numero, String palo){
 		Iterator<Carta> recorrerMazo = this.mazoDeCartas.iterator();
 		while (recorrerMazo.hasNext()){
