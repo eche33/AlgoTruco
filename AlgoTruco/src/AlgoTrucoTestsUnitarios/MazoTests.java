@@ -19,23 +19,23 @@ public class MazoTests {
 	@Test
 	public void testSeCreaMazoDe40Cartas() {
 		
-		Assert.assertEquals(nuevoMazo.devolverMazo().size(),40);
+		Assert.assertEquals( nuevoMazo.devolverMazo().size() , 40 );
 	}
 
 	@Test
 	public void testEncuentraCartasExistentes(){
-		Assert.assertTrue(nuevoMazo.existeCarta( 1, "BASTO" ));
-		Assert.assertTrue(nuevoMazo.existeCarta( 1, "ESPADA" ));
-		Assert.assertTrue(nuevoMazo.existeCarta( 2, "ORO" ));
-		Assert.assertTrue(nuevoMazo.existeCarta( 12, "COPA" ));
+		Assert.assertTrue(nuevoMazo.existeCarta( 1 , "BASTO" ));
+		Assert.assertTrue(nuevoMazo.existeCarta( 1 , "ESPADA" ));
+		Assert.assertTrue(nuevoMazo.existeCarta( 2 , "ORO" ));
+		Assert.assertTrue(nuevoMazo.existeCarta( 12 , "COPA" ));
 	}
 
 	@Test
 	public void testNoEncuentraCartasNoExistentes(){
-		Assert.assertFalse(nuevoMazo.existeCarta( 8, "ORO" ));
-		Assert.assertFalse(nuevoMazo.existeCarta( 9, "BASTO" ));
-		Assert.assertFalse(nuevoMazo.existeCarta( 14, "COPA" ));
-		Assert.assertFalse(nuevoMazo.existeCarta( 2, "DIAMANTE" ));
+		Assert.assertFalse(nuevoMazo.existeCarta( 8 , "ORO" ));
+		Assert.assertFalse(nuevoMazo.existeCarta( 9 , "BASTO" ));
+		Assert.assertFalse(nuevoMazo.existeCarta( 14 , "COPA" ));
+		Assert.assertFalse(nuevoMazo.existeCarta( 2 , "DIAMANTE" ));
 	}
 
 	@Test
@@ -49,8 +49,8 @@ public class MazoTests {
 		Carta segundaCarta = nuevoMazo.devolverMazo().get( 0 );
 		Carta segundaCarta2 = nuevoMazo.devolverMazo().get( 39 );
 		
-		Assert.assertNotEquals( primerCarta2, segundaCarta2 );
-		Assert.assertNotEquals( primerCarta, segundaCarta );
+		Assert.assertNotEquals( primerCarta2 , segundaCarta2 );
+		Assert.assertNotEquals( primerCarta , segundaCarta );
 
 		Carta primerCarta3 = nuevoMazo.devolverMazo().get( 31 );
 		
@@ -58,7 +58,7 @@ public class MazoTests {
 		
 		Carta segundaCarta3 = nuevoMazo.devolverMazo().get( 31 );
 		
-		Assert.assertNotEquals( primerCarta3, segundaCarta3 );
+		Assert.assertNotEquals( primerCarta3 , segundaCarta3 );
 	}
 }
 
