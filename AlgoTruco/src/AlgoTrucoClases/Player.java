@@ -1,15 +1,42 @@
 package AlgoTrucoClases;
 
 public class Player {
-	
+
 	private String nombre;
 	private boolean esMano;
-	
-	public void Player(String nombreDeJugador){
-		
+	private Mano mano;
+
+	public Player(String nombreDeJugador){
+
 		this.nombre = nombreDeJugador;
 		this.esMano = false;
-		
+		this.mano = null;
+
+	}
+
+	public boolean esMano() {
+		return (this.esMano);
+	}
+
+	public String obtenerNombre(){
+		return (this.nombre);
+	}
+
+	public Mano obtenerMano() {
+		return (this.mano);
+	}
+
+	public void asignarMano(Mano mano) {
+		this.mano = mano;
+
+	}
+
+	public int obtenerEnvido() {
+		return (this.obtenerMano().obtenerEnvido());
+	}
+
+	public int obtenerFlor() {
+		return (this.obtenerMano().obtenerFlor());
 	}
 
 }
