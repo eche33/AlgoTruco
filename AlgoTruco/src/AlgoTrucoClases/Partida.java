@@ -1,35 +1,18 @@
 package AlgoTrucoClases;
 
-public abstract class Partida {
+public class Partida {
 
-	//private boolean enBuenas; va en RONDA
-	//private static Partida partida = null;
-
-	private Equipo equipo1;
-	private Equipo equipo2;
-	private Ronda rondaActual; //esta bien aca?
-	//private boolean hayGanador;
-
+	private boolean enBuenas;
+	private static Partida partida = null;
+	protected Equipo equipo1;
+	protected Equipo equipo2;
 
 	// Constructor privado del Singleton, que de todas formas no se usa.
 	// Lo pongo porque me dijeron que a Fontela le gusta que esté el constructor always o.o
-	private Partida(Equipo equipoUno, Equipo equipoDos){
-
-		this.equipo1 = equipoUno;
-		this.equipo2 = equipoDos;
-		//this.hayGanador() = false;
-	}
-
-	public boolean hayGanador(){
-		return false; //IMPLEMENTAR
-	}
-
-	public void iniciarPartida(){
-
-	}
+	private Partida(){};
 
 	// Creador sincronizado que salvaguarda los posibles problemas debido al multi-thread.
- 	private synchronized static void crearPartida(int modo, int vsCPU){
+	private synchronized static void crearPartida(int modo, int vsCPU){
 		switch (modo){
 			case 1: partida = Partida1vs1.crearPartida(vsCPU);
 			   		break;
@@ -46,6 +29,28 @@ public abstract class Partida {
 	public static Partida obtenerPartida(int modo, int vsCPU){
 		if (partida == null) crearPartida(modo, vsCPU);
 		return partida;
+	}
+
+	public void iniciarPartida(){
+
+		while(! this.hayGanador()){
+
+			Ronda rondaActual = new Ronda(equipo1,equipo2);
+
+			rondaActual.iniciar();
+
+		}
+	}
+
+
+
+
+
+
+
+	protected boolean hayGanador() {
+
+		return false;
 	}
 
 }
