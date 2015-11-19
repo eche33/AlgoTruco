@@ -10,15 +10,15 @@ import org.junit.Test;
 import AlgoTrucoClases.Carta;
 import AlgoTrucoClases.Mano;
 import AlgoTrucoClases.Palos;
-import AlgoTrucoClases.Player;
+import AlgoTrucoClases.Jugador;
 
-public class PlayerTests {
+public class JugadorTests {
 
-	private Player jugador;
+	private Jugador jugador;
 
 	@Before
 	public void setUp() throws Exception {
-		jugador = new Player("Rodrigo");
+		jugador = new Jugador("Rodrigo");
 	}
 
 	@Test

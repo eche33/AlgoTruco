@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import AlgoTrucoClases.Equipo;
-import AlgoTrucoClases.Player;
+import AlgoTrucoClases.Jugador;
 
 public class EquipoTests {
 
 	@Test
 	public void testEquipoSeCreaCorrectamente(){
-		Player jugador1 = new Player("Rodrigo");
-		Player jugador2 = new Player("Flor");
-		ArrayList<Player> lista = new ArrayList<Player>();
+		Jugador jugador1 = new Jugador("Rodrigo");
+		Jugador jugador2 = new Jugador("Flor");
+		ArrayList<Jugador> lista = new ArrayList<Jugador>();
 		lista.add(jugador1);
 		lista.add(jugador2);
 		Equipo equipo = new Equipo(lista);
