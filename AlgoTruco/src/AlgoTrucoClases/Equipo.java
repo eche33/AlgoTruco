@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Equipo{
 
-	private ArrayList<Player> jugadores;
+	private ArrayList<Jugador> jugadores;
 	public int puntajeDeEquipo;
 
-	public Equipo( ArrayList<Player> jugadoresDeEquipo ){
+	public Equipo( ArrayList<Jugador> jugadoresDeEquipo ){
 
 		this.jugadores = jugadoresDeEquipo;
 		this.puntajeDeEquipo = 0;

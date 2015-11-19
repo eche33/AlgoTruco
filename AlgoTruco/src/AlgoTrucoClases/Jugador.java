@@ -1,12 +1,12 @@
 package AlgoTrucoClases;
 
-public class Player {
+public class Jugador {
 
 	private String nombre;
 	private boolean esMano;
 	private Mano mano;
 
-	public Player(String nombreDeJugador){
+	public Jugador(String nombreDeJugador){
 
 		this.nombre = nombreDeJugador;
 		this.esMano = false;
