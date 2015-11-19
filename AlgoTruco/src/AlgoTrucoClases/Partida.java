@@ -13,10 +13,7 @@ public class Partida {
 
 
 
-	public static Partida obtenerPartida(int modo, int vsCPU){
-		if (partida == null) crearPartida(modo, vsCPU);
-		return partida;
-	}
+
 
 	public void iniciarPartida(){
 
