@@ -42,7 +42,7 @@ public class Partida {
 
 
 
- protected boolean hayGanador() {
+ public boolean hayGanador() {
 
   return((equipo1.gano())||(equipo2.gano()));
 

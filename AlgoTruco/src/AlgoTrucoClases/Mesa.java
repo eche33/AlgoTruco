@@ -12,7 +12,10 @@ public class Mesa {
 
 	public void tirarCarta(Carta carta) {
 		cartasTiradas.add(carta);
-
+	}
+	
+	public ArrayList<Carta> obtenerCartasEnMesa(){
+		return (this.cartasTiradas);
 	}
 
 }
