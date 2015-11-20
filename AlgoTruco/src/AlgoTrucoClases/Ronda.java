@@ -8,13 +8,15 @@ public class Ronda {
 	Equipo equipo1;
 	Equipo equipo2;
 	Mazo mazo;
+	private ArrayList<Jugador> jugadoresOrdenados;
 
-	public Ronda(Equipo equipo1, Equipo equipo2) {
+	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
 
 
 		this.numeroVuelta = 1;
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
+		this.jugadoresOrdenados = jugadoresOrdenados;
 		this.repartirCartas(equipo1, equipo2);
 
 	}
