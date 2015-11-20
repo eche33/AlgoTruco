@@ -24,9 +24,16 @@ public class Ronda {
 
 
 	private void repartirCartas(Equipo equipo12, Equipo equipo2) {
-		// TODO Auto-generated method stub
+		  Mazo mazo = new Mazo();
 
+		  ArrayList<Mano> manosARepartir = mazo.repartirXCantidadDeManos(jugadoresOrdenados.size());
+
+		  for(int i=0 ; i<jugadoresOrdenados.size(); i++){
+		   jugadoresOrdenados.get(i).asignarMano(manosARepartir.get(i));
+		  }
 	}
+
+
 
 	private void ordenarTurnos(Jugador jugadorQueTiroCartaMasAlta) {
 		  ArrayList<Jugador> nuevoOrden = new ArrayList<Jugador>();
