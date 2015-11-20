@@ -39,4 +39,10 @@ public class Jugador {
 		return (this.obtenerMano().obtenerFlor());
 	}
 
+	public boolean puedoCantarEnvido(int numeroDeVuelta){
+		return (numeroDeVuelta == 1);
+	}
+
+	public tirarCarta(Carta carta);
+
 }

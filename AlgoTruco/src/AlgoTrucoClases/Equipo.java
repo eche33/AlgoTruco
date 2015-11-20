@@ -21,4 +21,9 @@ public class Equipo{
 	public int obtenerPuntaje() {
 		return (this.puntajeDeEquipo);
 	}
+
+	public boolean gano() {
+		return (this.obtenerPuntaje() >= 30);
+
+	}
 }

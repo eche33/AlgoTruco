@@ -3,17 +3,16 @@ package AlgoTrucoClases;
 import java.util.ArrayList;
 
 public class Ronda {
-	private ArrayList<Jugador> jugadoresOrdenadosPorTurno;
-	private Boolean finalizada;
-	int vuelta; // por si alguno quiere cantar el envido debe estar en la primera vuelta
+
+	int numeroVuelta; // por si alguno quiere cantar el envido debe estar en la primera vuelta
 	Equipo equipo1;
 	Equipo equipo2;
 	Mazo mazo;
 
 	public Ronda(Equipo equipo1, Equipo equipo2) {
 
-		this.jugadoresOrdenadosPorTurno = this.ordenarTurnos(equipo1,equipo2);
-		this.vuelta = 1;
+
+		this.numeroVuelta = 1;
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
 		this.repartirCartas(equipo1, equipo2);
@@ -39,8 +38,9 @@ public class Ronda {
 		while(! this.rondaFinalizada()){
 
 			for(int i=0; i< jugadoresOrdenadosPorTurno.size(); i++){
-
+				this.jugadoresOrdenadosPorTurno = this.ordenarTurnos(equipo1,equipo2);
 				if(! this.rondaFinalizada()){ //puede terminarse en cualquier momento de una vuelta
+					Vuelta vuelta = new Vuelta(this.numeroVuelta,this.equipo1, this.equipo2);
 
 					jugadoresOrdenadosPorTurno.get(i).jugar(this);
 				}
