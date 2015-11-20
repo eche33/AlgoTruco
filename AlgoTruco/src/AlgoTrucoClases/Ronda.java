@@ -18,7 +18,7 @@ public class Ronda {
   this.equipo1 = equipo1;
   this.equipo2 = equipo2;
   this.jugadoresOrdenados = jugadoresOrdenados;
-  this.mesa = new Mesa(9);
+  this.mesa = new Mesa();
 
  }
 
@@ -104,6 +104,12 @@ public class Ronda {
 
 public ArrayList<Jugador> obtenerJugadoresOrdenados() {
 	return (this.jugadoresOrdenados);
+}
+
+
+
+public Mesa obtenerMesa() {
+	return (this.mesa);
 }
 
 }

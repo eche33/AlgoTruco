@@ -10,4 +10,9 @@ public class Mesa {
 		this.cartasTiradas = new ArrayList<Carta>();
 	}
 
+	public void tirarCarta(Carta carta) {
+		cartasTiradas.add(carta);
+
+	}
+
 }

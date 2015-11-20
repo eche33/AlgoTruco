@@ -47,7 +47,11 @@ public class Jugador {
 		vuelta.envidoCantado();
 	}
 
-	public tirarCarta(Carta carta);
+	public void tirarCarta(Carta carta, Vuelta vuelta){
+		vuelta.obtenerMesa().tirarCarta(carta);
+		this.mano.borrarCarta(carta);
+
+	}
 
 	public void jugar(Vuelta vuelta) {
 

@@ -37,4 +37,9 @@ public class Vuelta {
 		return (this.jugadorQueTiroLaCartaMasAlta);
 	}
 
+
+	public Mesa obtenerMesa() {
+		return (this.ronda.obtenerMesa());
+	}
+
 }
