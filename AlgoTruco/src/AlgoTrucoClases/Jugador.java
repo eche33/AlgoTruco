@@ -43,4 +43,6 @@ public class Jugador {
 		return (numeroDeVuelta == 1);
 	}
 
+	public tirarCarta(Carta carta);
+
 }

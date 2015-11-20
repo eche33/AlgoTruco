@@ -8,6 +8,7 @@ public class Vuelta {
 	int numeroVuelta; // por si alguno quiere cantar el envido debe estar en la primera vuelta
 	Equipo equipo1;
 	Equipo equipo2;
+	Jugador jugadorQueTiroLaCartaMasAlta;
 
 
 	public void iniciar(){
