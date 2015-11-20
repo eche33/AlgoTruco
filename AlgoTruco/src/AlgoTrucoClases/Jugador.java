@@ -43,6 +43,15 @@ public class Jugador {
 		return (numeroDeVuelta == 1);
 	}
 
+	public void cantarEnvido(Vuelta vuelta){
+		vuelta.envidoCantado();
+	}
+
 	public tirarCarta(Carta carta);
+
+	public void jugar(Vuelta vuelta) {
+
+
+	}
 
 }
