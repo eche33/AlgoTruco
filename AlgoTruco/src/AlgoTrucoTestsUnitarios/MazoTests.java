@@ -8,13 +8,14 @@ import org.junit.Test;
 
 import AlgoTrucoClases.Carta;
 import AlgoTrucoClases.Mazo;
+import AlgoTrucoClases.Mano;
 
 public class MazoTests {
 
 	private Mazo nuevoMazo;
-	private ArrayList<ArrayList<Carta>> mano1;
-	private ArrayList<ArrayList<Carta>> mano2;
-	private ArrayList<ArrayList<Carta>> mano3;
+	private ArrayList< Mano > mano1;
+	private ArrayList< Mano > mano2;
+	private ArrayList< Mano > mano3;
 
 	@Before
 	public void setup() {
@@ -81,21 +82,9 @@ public class MazoTests {
 	@Test
 	public void devuelveManosDeTresCartas(){
 		
-		Assert.assertTrue( mano1.get( 0 ).size() == 3 );
-		Assert.assertTrue( mano1.get( 1 ).size() == 3 );
+		Assert.assertTrue( mano1.get( 0 ).cantidadDeCartas() == 3 );
+		Assert.assertTrue( mano1.get( 1 ).cantidadDeCartas() == 3 );
 	}
-
-	@Test
-	public void devuelveManosDeTresCartasDistintas(){
-		
-		Assert.assertTrue( mano1.get( 0 ).get( 0 ) != mano1.get( 0 ).get( 1 ) );
-		Assert.assertTrue( mano1.get( 0 ).get( 1 ) != mano1.get( 0 ).get( 2 ) );
-		Assert.assertTrue( mano1.get( 0 ).get( 0 ) != mano1.get( 0 ).get( 2 ) );
-		
-		
-		Assert.assertTrue( mano1.get( 0 ).get( 0 ) != mano1.get( 1 ).get( 1 ) );
-		Assert.assertTrue( mano1.get( 1 ).get( 2 ) != mano1.get( 0 ).get( 2 ) );
-		Assert.assertTrue( mano1.get( 1 ).get( 0 ) != mano1.get( 0 ).get( 2 ) );
-	}
+	
 }
 
