@@ -3,14 +3,27 @@ package AlgoTrucoClases;
 import java.util.ArrayList;
 
 public class Equipo{
-	
-	private ArrayList<Player> jugadores;
-	int puntajeDeEquipo;
-	
-	public Equipo( ArrayList<Player> jugadoresDeEquipo ){
-		
+
+	private ArrayList<Jugador> jugadores;
+	public int puntajeDeEquipo;
+
+	public Equipo( ArrayList<Jugador> jugadoresDeEquipo ){
+
 		this.jugadores = jugadoresDeEquipo;
 		this.puntajeDeEquipo = 0;
-		
+
+	}
+
+	public int obtenerCantidadDeJugadores() {
+		return (this.jugadores.size());
+	}
+
+	public int obtenerPuntaje() {
+		return (this.puntajeDeEquipo);
+	}
+
+	public boolean gano() {
+		return (this.obtenerPuntaje() >= 30);
+
 	}
 }
