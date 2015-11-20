@@ -18,6 +18,7 @@ public class Ronda {
   this.equipo1 = equipo1;
   this.equipo2 = equipo2;
   this.jugadoresOrdenados = jugadoresOrdenados;
+  this.mesa = new Mesa(9);
 
  }
 
