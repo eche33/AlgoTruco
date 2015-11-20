@@ -17,13 +17,12 @@ public class Ronda {
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
 		this.jugadoresOrdenados = jugadoresOrdenados;
-		this.repartirCartas(equipo1, equipo2);
 
 	}
 
 
 
-	private void repartirCartas(Equipo equipo12, Equipo equipo2) {
+	private void repartirCartas() {
 		  Mazo mazo = new Mazo();
 
 		  ArrayList<Mano> manosARepartir = mazo.repartirXCantidadDeManos(jugadoresOrdenados.size());
@@ -64,13 +63,11 @@ public class Ronda {
 
 
 
-	private ArrayList<Jugador> ordenarTurnos(Equipo equipo1, Equipo equipo2) {
-		//mergear
-		return null;
-	}
 
 
 	public void iniciar() {
+
+		this.repartirCartas();
 
 		  for(int i = 0; i<3 ; i++){
 
