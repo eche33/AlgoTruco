@@ -8,7 +8,7 @@ public class Ronda {
 	Equipo equipo1;
 	Equipo equipo2;
 	Mazo mazo;
-	private ArrayList<Jugador> jugadoresOrdenados;
+	private ArrayList<Jugador> jugadoresOrdenados;//ordenados de acuerdo a quien comienza la vuelta 1
 
 	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
 
@@ -28,6 +28,33 @@ public class Ronda {
 
 	}
 
+	private void ordenarTurnos(Jugador jugadorQueTiroCartaMasAlta) {
+		  ArrayList<Jugador> nuevoOrden = new ArrayList<Jugador>();
+
+		  int posicion = 100;
+
+		  for(int i = 0; i< this.jugadoresOrdenados.size(); i++){
+		   Jugador jugadorActual = (this.jugadoresOrdenados.get(i));
+
+		   if (jugadorActual.obtenerNombre() == jugadorQueTiroCartaMasAlta.obtenerNombre()){
+		    nuevoOrden.add(jugadorActual);
+		    posicion = i;
+		   }
+
+		   if(posicion != 100){
+		    nuevoOrden.add(jugadorActual);
+		   }
+		  }
+
+		  for(int i=0 ; i<posicion ; i++){
+		   nuevoOrden.add(jugadoresOrdenados.get(i));
+		  }
+
+		  this.jugadoresOrdenados = nuevoOrden;
+
+
+		 }
+
 
 
 	private ArrayList<Jugador> ordenarTurnos(Equipo equipo1, Equipo equipo2) {
@@ -35,23 +62,18 @@ public class Ronda {
 		return null;
 	}
 
+
 	public void iniciar() {
 
-		while(! this.rondaFinalizada()){
+		  for(int i = 0; i<3 ; i++){
 
-			for(int i=0; i< jugadoresOrdenadosPorTurno.size(); i++){
-				this.jugadoresOrdenadosPorTurno = this.ordenarTurnos(equipo1,equipo2);
-				if(! this.rondaFinalizada()){ //puede terminarse en cualquier momento de una vuelta
-					Vuelta vuelta = new Vuelta(this.numeroVuelta,this.equipo1, this.equipo2);
+		   if(! this.rondaFinalizada()){ //puede terminarse en cualquier momento de una vuelta
 
-					jugadoresOrdenadosPorTurno.get(i).jugar(this);
-				}
+		     Vuelta vuelta = new Vuelta(this.numeroVuelta,this.equipo1, this.equipo2);
+		     this.numeroVuelta += 1;
+		    }
 
-			}
-			vuelta += 1;
-
-		}
-
+		   }
 
 	}
 

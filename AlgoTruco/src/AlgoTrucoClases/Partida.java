@@ -7,7 +7,7 @@ public class Partida {
 	private static Partida partida = null;
 	protected Equipo equipo1;
 	protected Equipo equipo2;
-	private ArrayList<Jugador> jugadoresOrdenados;
+	private ArrayList<Jugador> jugadoresOrdenados;//jugadores ordenados como estan sentados
 
 	public Partida(Equipo equipo1, Equipo equipo2){
 		this.equipo1 = equipo1;
