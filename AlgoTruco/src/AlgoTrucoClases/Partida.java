@@ -13,8 +13,6 @@ public class Partida {
 
 
 
-
-
 	public void iniciarPartida(){
 
 		while(! this.hayGanador()){
@@ -34,7 +32,8 @@ public class Partida {
 
 	protected boolean hayGanador() {
 
-		return false;
+		return((equipo1.gano())||(equipo2.gano()));
+
 	}
 
 }
