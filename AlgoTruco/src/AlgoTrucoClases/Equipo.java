@@ -26,4 +26,8 @@ public class Equipo{
 		return (this.obtenerPuntaje() >= 30);
 
 	}
+
+	public void sumarPuntos(int nuevosPuntos) {
+		(this.puntajeDeEquipo) += nuevosPuntos;
+	}
 }
