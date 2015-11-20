@@ -34,7 +34,7 @@ public class Ronda {
 
 
 
-	private void ordenarTurnos(Jugador jugadorQueTiroCartaMasAlta) {
+	private ArrayList<Jugador> ordenarTurnos(Jugador jugadorQueTiroCartaMasAlta) {
 		  ArrayList<Jugador> nuevoOrden = new ArrayList<Jugador>();
 
 		  int posicion = 100;
@@ -56,7 +56,7 @@ public class Ronda {
 		   nuevoOrden.add(jugadoresOrdenados.get(i));
 		  }
 
-		  this.jugadoresOrdenados = nuevoOrden;
+		  return nuevoOrden;
 
 
 		 }
