@@ -90,17 +90,17 @@ public class Mazo {
 	}
 		
 	
-	public ArrayList< ArrayList< Carta > > repartirXCantidadDeManos( int manosDeseadas ){
-		ArrayList< ArrayList< Carta > > manosPedidas = new ArrayList< ArrayList< Carta > >();
+	public ArrayList< Mano > repartirXCantidadDeManos( int manosDeseadas ){
+		ArrayList< Mano > manosPedidas = new ArrayList< Mano >();
 		int indiceCartaActual = 0;
 		int manosRepartidas = 0;
 		while ( manosRepartidas < manosDeseadas){
-			ArrayList< Carta > manoActual = new ArrayList< Carta >();
+			ArrayList< Carta > cartasDeMano = new ArrayList< Carta >();
 			for (int i = 1 ; i<=3 ; i++) {
-				manoActual.add( this.devolverMazo().get( indiceCartaActual ) );
+				cartasDeMano.add( this.devolverMazo().get( indiceCartaActual ) );
 				indiceCartaActual++;
 			}
-			manosPedidas.add( manoActual );
+			manosPedidas.add( new Mano( cartasDeMano ) );
 			manosRepartidas++;
 		}
 		return manosPedidas;	
