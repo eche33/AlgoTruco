@@ -9,6 +9,7 @@ public class Ronda {
  Equipo equipo2;
  Mazo mazo;
  private ArrayList<Jugador> jugadoresOrdenados;//ordenados de acuerdo a quien comienza la vuelta 1
+ private Mesa mesa;
 
  public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
 
@@ -73,7 +74,7 @@ public class Ronda {
 
      if(! this.rondaFinalizada()){ //puede terminarse en cualquier momento de una vuelta
 
-       Vuelta vuelta = new Vuelta(this.jugadoresOrdenados,this.numeroVuelta,this.equipo1, this.equipo2);
+       Vuelta vuelta = new Vuelta(this);
 
        this.numeroVuelta += 1;
 
@@ -97,5 +98,11 @@ public class Ronda {
 
   return false;
  }
+
+
+
+public ArrayList<Jugador> obtenerJugadoresOrdenados() {
+	return (this.jugadoresOrdenados);
+}
 
 }

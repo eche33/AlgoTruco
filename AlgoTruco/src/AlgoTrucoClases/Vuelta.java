@@ -4,19 +4,37 @@ import java.util.ArrayList;
 
 public class Vuelta {
 
-	private ArrayList<Jugador> jugadoresOrdenados;
-	int numeroVuelta; // por si alguno quiere cantar el envido debe estar en la primera vuelta
-	Equipo equipo1;
-	Equipo equipo2;
-	Jugador jugadorQueTiroLaCartaMasAlta;
+	private Jugador jugadorQueTiroLaCartaMasAlta;
+	private boolean vueltaEnCurso;
+	private Ronda ronda;
+
+
+	public Vuelta(Ronda ronda) {
+		this.ronda = ronda;
+		this.jugadorQueTiroLaCartaMasAlta = null;
+		this.vueltaEnCurso = true;
+	}
 
 
 	public void iniciar(){
 
-		this.ordenarJugadores();
-		for(int i = 1; i<this.jugadoresOrdenados.size(); i++){
-			jugadoresOrdenados.get(i).jugar(this);
+		for(int i = 1; i<this.ronda.obtenerJugadoresOrdenados().size(); i++){
+			if(vueltaEnCurso){
+				this.ronda.obtenerJugadoresOrdenados().get(i).jugar(this);
+			}
 		}
+	}
+
+
+	public void envidoCantado() {
+		this.cantoEnvidoPendiente = true;
+
+
+	}
+
+
+	public Jugador obtenerJugadorQueTiroCartaMasALta() {
+		return (this.jugadorQueTiroLaCartaMasAlta);
 	}
 
 }
