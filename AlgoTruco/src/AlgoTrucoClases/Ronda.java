@@ -106,4 +106,10 @@ public ArrayList<Jugador> obtenerJugadoresOrdenados() {
 	return (this.jugadoresOrdenados);
 }
 
+
+
+public Mesa obtenerMesa() {
+	return (this.mesa);
+}
+
 }
