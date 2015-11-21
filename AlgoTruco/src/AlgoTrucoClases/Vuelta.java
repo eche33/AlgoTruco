@@ -15,7 +15,6 @@ public class Vuelta {
 		this.vueltaEnCurso = true;
 	}
 
-
 	public void iniciar(){
 
 		for(int i = 1; i<this.ronda.obtenerJugadoresOrdenados().size(); i++){
@@ -25,18 +24,13 @@ public class Vuelta {
 		}
 	}
 
-
 	public void envidoCantado() {
 		this.cantoEnvidoPendiente = true;
-
-
 	}
-
 
 	public Jugador obtenerJugadorQueTiroCartaMasALta() {
 		return (this.jugadorQueTiroLaCartaMasAlta);
 	}
-
 
 	public Mesa obtenerMesa() {
 		return (this.ronda.obtenerMesa());
