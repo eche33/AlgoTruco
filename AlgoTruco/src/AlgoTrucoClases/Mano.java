@@ -171,6 +171,11 @@ public class Mano {
 
 		return flor;
 	}
+
+	public void borrarCarta(Carta unaCarta) {
+		cartas.remove(unaCarta);
+		
 	}
+}
 
 
