@@ -22,7 +22,7 @@ public class Equipo{
 		return (this.puntajeDeEquipo);
 	}
 
-	public boolean gano() {
+	public boolean ganoPartida() {
 		return (this.obtenerPuntaje() >= 30);
 
 	}

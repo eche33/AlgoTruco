@@ -5,6 +5,7 @@ public class Jugador {
 	private String nombre;
 	private boolean esMano;
 	private Mano mano;
+	private Equipo equipo;
 
 	public Jugador(String nombreDeJugador){
 
@@ -55,9 +56,9 @@ public class Jugador {
 
 	}
 
-	public void jugar(Vuelta vuelta) {
+	public void jugar(Vuelta vuelta) {}
 
-
+	public void irse(Ronda unaRonda){
+		unaRonda.irse(equipo);
 	}
-
 }
