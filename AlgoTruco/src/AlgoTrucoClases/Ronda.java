@@ -90,4 +90,12 @@ public class Ronda {
 
 	}
 
+	public Equipo obtenerEquipo1() {
+		return (this.equipo1);
+	}
+
+	public Equipo obtenerEquipo2() {
+		return (this.equipo2);
+	}
+
 }

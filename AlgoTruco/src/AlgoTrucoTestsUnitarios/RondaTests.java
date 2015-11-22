@@ -13,6 +13,33 @@ import AlgoTrucoClases.Ronda;
 public class RondaTests {
 
 	@Test
+	public void testRondaSeCreaCorrectamente(){
+		Jugador rodri = new Jugador("Rodri");
+		Jugador ailu = new Jugador("Ailu");
+		Jugador flor = new Jugador("Flor");
+		Jugador cris = new Jugador("Cris");
+		ArrayList<Jugador> lista1 = new ArrayList<Jugador>();
+		ArrayList<Jugador> lista2 = new ArrayList<Jugador>();
+		lista1.add(ailu);
+		lista1.add(rodri);
+		lista2.add(flor);
+		lista2.add(cris);
+		Equipo equipo1 = new Equipo(lista1);
+		Equipo equipo2 = new Equipo(lista2);
+		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
+		jugadoresOrdenados.add(ailu);
+		jugadoresOrdenados.add(flor);
+		jugadoresOrdenados.add(rodri);
+		jugadoresOrdenados.add(cris);
+		Ronda ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+
+		assertEquals(ronda.obtenerEquipo1().obtenerCantidadDeJugadores(),2);
+		assertEquals(ronda.obtenerEquipo2().obtenerCantidadDeJugadores(),2);
+		assertEquals(ronda.obtenerJugadoresOrdenados().size(),4);
+		assertEquals(ronda.obtenerMesa().obtenerCartasEnMesa().size(),0);
+	}
+
+	@Test
 	public void testRondaReordenaLosTurnosCorrectamente(){
 		Jugador rodri = new Jugador("Rodri");
 		Jugador ailu = new Jugador("Ailu");
