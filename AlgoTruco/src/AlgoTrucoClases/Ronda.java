@@ -10,8 +10,8 @@ public class Ronda {
 	private Mazo mazo;
 	private ArrayList<Jugador> jugadoresOrdenados;//ordenados de acuerdo a quien comienza la vuelta 1
 	private Mesa mesa;
-	private Cantos cantoActual;
-	private Tantos tantoActual;
+	//private Cantos cantoActual;
+	//private Tantos tantoActual;
 
 	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
 		this.numeroVuelta = 1;
@@ -29,7 +29,7 @@ public class Ronda {
 		}
 	}
 
-	private void ordenarTurnos(Jugador jugadorQueTiroCartaMasAlta) {
+	public void ordenarTurnos(Jugador jugadorQueTiroCartaMasAlta) {
 		ArrayList<Jugador> nuevoOrden = new ArrayList<Jugador>();
 		int posicion = 100;
 
@@ -40,7 +40,7 @@ public class Ronda {
 				nuevoOrden.add(jugadorActual);
 				posicion = i;
 			}
-			
+
 			else {										// SIN EL ELSE AGREGARÍA DOS VECES AL QUE GANÓ LA RONDA.
 				if(posicion != 100){
 					nuevoOrden.add(jugadorActual);
@@ -55,7 +55,7 @@ public class Ronda {
 
 	public void iniciar() {
 		this.repartirCartas();
-		
+
 		for(int i = 0; i<3 ; i++){
 			if(! this.rondaFinalizada()){ //puede terminarse en cualquier momento de una vuelta
 				Vuelta vuelta = new Vuelta(this);
@@ -66,7 +66,7 @@ public class Ronda {
 	}
 
 	private boolean rondaFinalizada() {
-		if (this.numeroVuelta > 3){ 		// ANTES ERA numeroVuelta == 3, POR LO QUE JUGARÍA 2 MANOS SOLAS.	
+		if (this.numeroVuelta > 3){ 		// ANTES ERA numeroVuelta == 3, POR LO QUE JUGARÍA 2 MANOS SOLAS.
 			return true;
 		}
 		if (( this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
@@ -87,7 +87,7 @@ public class Ronda {
 	public void irse(Equipo equipo) {
 		// DEBERÍA CORTAR LA PARTIDA (PODRÍA HABER UNA VARIABLE QUE rondaFinalizada CHEQUEE POR TRUE).
 		// TAMBIÉN PODRÍA LLAMAR A UN MÉTODO DE SUMAR PUNTOS POR EQUIPO, EN BASE AL ATRIBUTO cantoActual.
-		
+
 	}
 
 }

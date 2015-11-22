@@ -48,6 +48,8 @@ public class Jugador {
 		vuelta.envidoCantado();
 	}
 
+
+
 	public void tirarCarta(Carta carta, Vuelta vuelta){
 		vuelta.obtenerMesa().tirarCarta(carta);
 		this.mano.borrarCarta(carta);
