@@ -11,7 +11,7 @@ public class Ronda {
 	private ArrayList<Jugador> jugadoresOrdenados;//ordenados de acuerdo a quien comienza la vuelta 1
 	private Mesa mesa;
 	//private Cantos cantoActual;
-	//private Tantos tantoActual;
+	//private Tantos tantoActual; //yo lo pondria en vuelta, porque el envido se resuelve en una vuelta
 
 	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
 		this.numeroVuelta = 1;

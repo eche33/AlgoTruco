@@ -7,6 +7,7 @@ public class Vuelta {
 	private Jugador jugadorQueTiroLaCartaMasAlta;
 	private boolean vueltaEnCurso;
 	private Ronda ronda;
+	//private Tantos tantoActual;
 
 
 	public Vuelta(Ronda ronda) {
