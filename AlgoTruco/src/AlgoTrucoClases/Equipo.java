@@ -68,4 +68,8 @@ public class Equipo{
 		return (this.jugadores.get(0).responderValeCuatro(unaRonda));
 	}
 
+	public boolean responderEnvido(Ronda unaRonda){
+		return (this.jugadores.get(0).responderEnvido(unaRonda));
+	}
+
 }

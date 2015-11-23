@@ -10,8 +10,8 @@ public class Ronda {
 	private Mazo mazo;
 	private ArrayList<Jugador> jugadoresOrdenados;//ordenados de acuerdo a quien comienza la vuelta 1
 	private Mesa mesa;
-	//private Cantos cantoActual;
-	//private Tantos tantoActual;
+	private Cantos cantoActual;
+	private Tantos tantoActual;
 
 
 	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
@@ -22,8 +22,8 @@ public class Ronda {
 		this.equipo2.tieneQuiero();
 		this.jugadoresOrdenados = jugadoresOrdenados;
 		this.mesa = new Mesa();
-		this.Cantos = null;
-		this.Tantos = null;
+		this.cantoActual = null;
+		this.tantoActual = null;
 	}
 
 	private void repartirCartas() {
@@ -117,21 +117,35 @@ public class Ronda {
 	}
 
 	public void setearTruco() {
-		if (this.Cantos == null){
-			this.Cantos = TRUCO;
+		if (this.cantoActual == null){
+			this.cantoActual = Cantos.TRUCO;
 		}
 	}
 
 	public void setearRetruco() {
-		if (this.Cantos == TRUCO){
-			this.Cantos = RETRUCO;
+		if (this.cantoActual == Cantos.TRUCO){
+			this.cantoActual = Cantos.RETRUCO;
 		}
 	}
 
 	public void setearValeCuatro() {
-		if (this.Cantos == RETRUCO){
-			this.Cantos = VALECUATRO;
+		if (this.cantoActual == Cantos.RETRUCO){
+			this.cantoActual = Cantos.VALECUATRO;
 		}
+	}
+
+	public void setearEnvido() {
+		if (this.tantoActual == null){
+			this.tantoActual = Tantos.ENVIDO;
+		}
+
+	}
+
+	public boolean cantadoEnvidoEnvido() {
+		if (this.tantoActual == Tantos.ENVIDOENVIDO){
+			return true;
+		}
+		return false;
 	}
 
 }

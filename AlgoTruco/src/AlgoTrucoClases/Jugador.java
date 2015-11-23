@@ -84,6 +84,38 @@ public class Jugador {
 	}
 
 
+	private void cantarEnvido(Ronda unaRonda){
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderEnvido(unaRonda)){
+			unaRonda.setearEnvido();
+			unaRonda.jugarTantos();
+		}
+		else {
+			equipo.sumarPuntosTanto(unaRonda);
+		}
+	}
+
+	public boolean responderEnvido(Ronda unaRonda){
+		int eleccion=0;
+
+		if (!unaRonda.cantadoEnvidoEnvido()){/**DESACTIVAR BOTON ENVIDO**/}
+
+		switch (eleccion){
+		case 0: return true;
+		case 1: return false;
+		case 2: unaRonda.setearEnvido();
+				this.cantarEnvido(unaRonda);
+				return true;
+		case 3: unaRonda.setearEnvido();
+				this.cantarRealEnvido(unaRonda);
+				return true;
+		case 4: unaRonda.setearEnvido();
+				this.cantarFaltaEnvido(unaRonda);
+				return true;
+		}
+		return false;
+	}
+
 	private void cantarTruco(Ronda unaRonda){
 
 		if (unaRonda.obtenerEquipoRival(this.equipo).responderTruco(unaRonda)){
@@ -97,6 +129,7 @@ public class Jugador {
 
 	private void cantarRetruco(Ronda unaRonda){
 
+		// CHEQUEAR EL QUIERO, EL ESTADO DEL CANTO Y MANEJAR CON EXCEPCIONES.
 		if (unaRonda.obtenerEquipoRival(this.equipo).responderRetruco(unaRonda)){
 			this.equipo.noTieneQuiero();
 			unaRonda.setearRetruco();
@@ -108,6 +141,7 @@ public class Jugador {
 
 	private void cantarValeCuatro(Ronda unaRonda){
 
+		// CHEQUEAR EL QUIERO, EL ESTADO DEL CANTO Y MANEJAR CON EXCEPCIONES.
 		if (unaRonda.obtenerEquipoRival(this.equipo).responderValeCuatro(unaRonda)){
 			this.equipo.noTieneQuiero();
 			unaRonda.setearValeCuatro();
