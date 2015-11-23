@@ -6,12 +6,14 @@ public class Jugador {
 	private boolean esMano;
 	private Mano mano;
 	private Equipo equipo;
+	private boolean noTiroCarta;
 
 	public Jugador(String nombreDeJugador){
 
 		this.nombre = nombreDeJugador;
 		this.esMano = false;
 		this.mano = null;
+		this.noTiroCarta = true;
 
 	}
 
@@ -50,15 +52,132 @@ public class Jugador {
 
 
 
-	public void tirarCarta(Carta carta, Vuelta vuelta){
-		vuelta.obtenerMesa().tirarCarta(carta);
+	public void tirarCarta(Carta carta, Ronda ronda){
+		ronda.obtenerMesa().tirarCarta(carta);
 		this.mano.borrarCarta(carta);
+		this.noTiroCarta = false;
 
 	}
 
-	public void jugar(Vuelta vuelta) {}
+	public void jugar(Ronda ronda) {
+		int eleccion;
+
+		while (this.noTiroCarta){
+
+			switch(eleccion){
+			case 1: this.cantarEnvido(ronda);
+					break;
+			case 2: this.cantarTruco(ronda);
+					break;
+			case 3: this.irse(ronda);
+					break;
+			case 4: this.tirarCarta(mano.obtenerCarta(0), ronda);
+					break;
+			case 5: this.tirarCarta(mano.obtenerCarta(1), ronda);
+					break;
+			case 6: this.tirarCarta(mano.obtenerCarta(2), ronda);
+					break;
+			case 7: this.cantarFlor(ronda);
+					break;
+			}
+		}
+	}
+
+
+	private void cantarTruco(Ronda unaRonda){
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderTruco(unaRonda)){
+			this.equipo.noTieneQuiero();
+			unaRonda.setearTruco();
+		}
+		else {
+			unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+		}
+	}
+
+	private void cantarRetruco(Ronda unaRonda){
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderRetruco(unaRonda)){
+			this.equipo.noTieneQuiero();
+			unaRonda.setearRetruco();
+		}
+		else {
+			unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+		}
+	}
+
+	private void cantarValeCuatro(Ronda unaRonda){
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderValeCuatro(unaRonda)){
+			this.equipo.noTieneQuiero();
+			unaRonda.setearValeCuatro();
+		}
+		else {
+			unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+		}
+	}
+
+/**	private void cantarTruco(Ronda unaRonda){
+
+		switch (unaRonda.obtenerEquipoRival(this.equipo).responderTruco()){
+		case QUIERO: this.equipo.noTieneQuiero();
+					 unaRonda.setearTruco();
+			 		 break;
+		  case NOQUIERO: unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+			     	     break;
+		  case RETRUCO: equipo.responderRetruco();
+					  break;
+		}
+	}
+**/
+
+//	private void cantarFlor(Ronda ronda) {
+//		if (ronda.obtenerEquipoRival(this.equipo).aceptarFlor()){
+//
+//		}
+//	}
 
 	public void irse(Ronda unaRonda){
-		unaRonda.irse(equipo);
+		this.equipo.irse(unaRonda);
+	}
+
+	public void asignarEquipo (Equipo equipo){
+		this.equipo = equipo;
+	}
+
+	public boolean responderTruco(Ronda unaRonda) {
+		int eleccion=0;
+
+		switch (eleccion){
+		case 0: return true;
+		case 1: return false;
+		case 2: unaRonda.setearTruco();
+				this.cantarRetruco(unaRonda);
+				return true;
+		}
+		return false;
+	}
+
+	public boolean responderRetruco(Ronda unaRonda) {
+		int eleccion=0;
+
+		switch (eleccion){
+		case 0: return true;
+		case 1: return false;
+		case 2: unaRonda.setearRetruco();
+				this.cantarValeCuatro(unaRonda);
+				return true;
+		}
+		return false;
+	}
+
+	public boolean responderValeCuatro(Ronda unaRonda) {
+		int eleccion=0;
+
+		switch (eleccion){
+		case 0: return true;
+		case 1: return false;
+		}
+		return false;
 	}
 }
