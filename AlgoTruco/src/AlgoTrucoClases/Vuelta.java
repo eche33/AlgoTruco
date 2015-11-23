@@ -25,9 +25,7 @@ public class Vuelta {
 		}
 	}
 
-	public void envidoCantado() {
-		this.cantoEnvidoPendiente = true;
-	}
+
 
 	public Jugador obtenerJugadorQueTiroCartaMasALta() {
 		return (this.jugadorQueTiroLaCartaMasAlta);
@@ -35,6 +33,10 @@ public class Vuelta {
 
 	public Mesa obtenerMesa() {
 		return (this.ronda.obtenerMesa());
+	}
+
+	public boolean estaEnCurso() {
+		return (this.vueltaEnCurso);
 	}
 
 }

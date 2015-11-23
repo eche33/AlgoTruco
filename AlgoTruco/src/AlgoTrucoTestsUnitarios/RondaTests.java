@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import AlgoTrucoClases.Equipo;
@@ -12,8 +13,10 @@ import AlgoTrucoClases.Ronda;
 
 public class RondaTests {
 
-	@Test
-	public void testRondaSeCreaCorrectamente(){
+	private Ronda ronda;
+
+	@Before
+	public void setUp() throws Exception {
 		Jugador rodri = new Jugador("Rodri");
 		Jugador ailu = new Jugador("Ailu");
 		Jugador flor = new Jugador("Flor");
@@ -31,7 +34,12 @@ public class RondaTests {
 		jugadoresOrdenados.add(flor);
 		jugadoresOrdenados.add(rodri);
 		jugadoresOrdenados.add(cris);
-		Ronda ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+		this.ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+
+	}
+
+	@Test
+	public void testRondaSeCreaCorrectamente(){
 
 		assertEquals(ronda.obtenerEquipo1().obtenerCantidadDeJugadores(),2);
 		assertEquals(ronda.obtenerEquipo2().obtenerCantidadDeJugadores(),2);
@@ -73,5 +81,7 @@ public class RondaTests {
 		assertEquals(ronda.obtenerJugadoresOrdenados().get(3).obtenerNombre(),"Flor");
 
 	}
+
+
 
 }
