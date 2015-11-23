@@ -10,8 +10,8 @@ public class Ronda {
 	private Mazo mazo;
 	private ArrayList<Jugador> jugadoresOrdenados;//ordenados de acuerdo a quien comienza la vuelta 1
 	private Mesa mesa;
-	//private Cantos cantoActual;
-	//private Tantos tantoActual;
+	private Cantos cantoActual;
+	private Tantos tantoActual;
 
 
 	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
