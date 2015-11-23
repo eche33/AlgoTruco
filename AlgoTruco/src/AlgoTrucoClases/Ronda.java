@@ -13,12 +13,17 @@ public class Ronda {
 	//private Cantos cantoActual;
 	//private Tantos tantoActual;
 
+
 	public Ronda(Equipo equipo1, Equipo equipo2, ArrayList<Jugador> jugadoresOrdenados) {
 		this.numeroVuelta = 1;
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
+		this.equipo1.tieneQuiero();
+		this.equipo2.tieneQuiero();
 		this.jugadoresOrdenados = jugadoresOrdenados;
 		this.mesa = new Mesa();
+		this.Cantos = null;
+		this.Tantos = null;
 	}
 
 	private void repartirCartas() {
@@ -59,10 +64,13 @@ public class Ronda {
 		for(int i = 0; i<3 ; i++){
 			if(! this.rondaFinalizada()){ //puede terminarse en cualquier momento de una vuelta
 				Vuelta vuelta = new Vuelta(this);
+				vuelta.jugar();
 				this.numeroVuelta += 1;
 				this.ordenarTurnos(vuelta.obtenerJugadorQueTiroCartaMasALta());
 			}
 		}
+		this.equipo1.actualizarPuntos();
+		this.equipo2.actualizarPuntos();
 	}
 
 	private boolean rondaFinalizada() {
@@ -73,6 +81,9 @@ public class Ronda {
 			return true;
 		}
 		//contemplar que se ganó antes de la 3era vuelta o alguno se fue al mazo.
+		if (this.equipo1==null || this.equipo2==null){
+			return true;
+		}
 		return false;
 	}
 
@@ -88,6 +99,39 @@ public class Ronda {
 		// DEBERÍA CORTAR LA PARTIDA (PODRÍA HABER UNA VARIABLE QUE rondaFinalizada CHEQUEE POR TRUE).
 		// TAMBIÉN PODRÍA LLAMAR A UN MÉTODO DE SUMAR PUNTOS POR EQUIPO, EN BASE AL ATRIBUTO cantoActual.
 
+	}
+
+	public Equipo obtenerEquipo1() {
+		return (this.equipo1);
+	}
+
+	public Equipo obtenerEquipo2() {
+		return (this.equipo2);
+	}
+
+	public Equipo obtenerEquipoRival(Equipo equipo) {
+		if (equipo.equals(equipo1)){
+			return equipo2;
+		}
+		return equipo1;
+	}
+
+	public void setearTruco() {
+		if (this.Cantos == null){
+			this.Cantos = TRUCO;
+		}
+	}
+
+	public void setearRetruco() {
+		if (this.Cantos == TRUCO){
+			this.Cantos = RETRUCO;
+		}
+	}
+
+	public void setearValeCuatro() {
+		if (this.Cantos == RETRUCO){
+			this.Cantos = VALECUATRO;
+		}
 	}
 
 }
