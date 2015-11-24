@@ -1,12 +1,14 @@
 package AlgoTrucoClases;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Vuelta {
 
 	private Jugador jugadorQueTiroLaCartaMasAlta;
 	private boolean vueltaEnCurso;
 	private Ronda ronda;
+	//private Tantos tantoActual;
 
 
 	public Vuelta(Ronda ronda) {
@@ -24,9 +26,7 @@ public class Vuelta {
 		}
 	}
 
-	public void envidoCantado() {
-		this.cantoEnvidoPendiente = true;
-	}
+
 
 	public Jugador obtenerJugadorQueTiroCartaMasALta() {
 		return (this.jugadorQueTiroLaCartaMasAlta);
@@ -36,4 +36,18 @@ public class Vuelta {
 		return (this.ronda.obtenerMesa());
 	}
 
-}
+	public boolean estaEnCurso() {//chequear que no se haya ganado la ronda
+		return (this.vueltaEnCurso);
+	}
+
+	public void jugar() {
+
+		Iterator<Jugador> iteradorDeJugadores = this.ronda.obtenerJugadoresOrdenados().iterator();
+		while ((iteradorDeJugadores.hasNext())&&(this.estaEnCurso())){
+			iteradorDeJugadores.next().jugar(this.ronda);
+			}
+		}
+
+	}
+
+

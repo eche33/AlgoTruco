@@ -174,7 +174,11 @@ public class Mano {
 
 	public void borrarCarta(Carta unaCarta) {
 		cartas.remove(unaCarta);
-		
+
+	}
+
+	public Carta obtenerCarta(int i) {
+		return this.cartas.get(i);
 	}
 }
 
