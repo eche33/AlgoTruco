@@ -148,4 +148,22 @@ public class Ronda {
 		return false;
 	}
 
+	public Tantos obtenerTantoActual() {
+		return (this.tantoActual);
+	}
+
+	public void setearRealEnvido() {
+		if (!(this.tantoActual == Tantos.ENVIDOENVIDOREALENVIDO) && !(this.tantoActual== Tantos.FALTAENVIDO) && !(this.tantoActual== Tantos.REALENVIDO)){
+			this.tantoActual = Tantos.REALENVIDO;
+		}
+
+	}
+
+	public void setearFaltaEnvido() {
+		if (!(this.tantoActual == Tantos.FALTAENVIDO)){
+			this.tantoActual = Tantos.FALTAENVIDO;
+		}
+
+	}
+
 }

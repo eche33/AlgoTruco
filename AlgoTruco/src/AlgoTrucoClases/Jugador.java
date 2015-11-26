@@ -46,9 +46,7 @@ public class Jugador {
 		return (numeroDeVuelta == 1);
 	}
 
-	public void cantarEnvido(Vuelta vuelta){
-		vuelta.envidoCantado();
-	}
+
 
 
 
