@@ -70,4 +70,32 @@ public class SumaPuntosTests {
 		assertEquals(this.equipo1.puntajeDeEquipo, 15);
 	}
 
+	@Test
+	public void testSumarEnvidoEnvido() {
+		this.ronda.setearEnvido();
+		this.ronda.setearEnvido();
+		this.equipo1.sumarPuntosTanto(this.ronda);
+
+		assertEquals(this.equipo1.puntajeDeEquipo, 4);
+	}
+
+	@Test
+	public void testSumarEnvidoRealEnvido() {
+		this.ronda.setearEnvido();
+		this.ronda.setearRealEnvido();
+		this.equipo1.sumarPuntosTanto(this.ronda);
+
+		assertEquals(this.equipo1.puntajeDeEquipo, 5);
+	}
+
+	@Test
+	public void testSumarEnvidoEnvidoRealEnvido() {
+		this.ronda.setearEnvido();
+		this.ronda.setearEnvido();
+		this.ronda.setearRealEnvido();
+		this.equipo1.sumarPuntosTanto(this.ronda);
+
+		assertEquals(this.equipo1.puntajeDeEquipo, 7);
+	}
+
 }

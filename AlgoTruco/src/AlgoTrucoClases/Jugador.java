@@ -82,7 +82,11 @@ public class Jugador {
 	}
 
 
-	private void cantarEnvido(Ronda unaRonda){
+	private void cantarEnvido(Ronda unaRonda) throws NoSePuedeCantarEnvidoError{
+
+		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+			throw new NoSePuedeCantarEnvidoError();
+		}
 
 		if (unaRonda.obtenerEquipoRival(this.equipo).responderEnvido(unaRonda)){
 			unaRonda.setearEnvido();
@@ -211,5 +215,14 @@ public class Jugador {
 		case 1: return false;
 		}
 		return false;
+	}
+
+	public Equipo obtenerEquipo() {
+		return (this.equipo);
+	}
+
+	public void setearEsMano() {
+		this.esMano = true;
+
 	}
 }

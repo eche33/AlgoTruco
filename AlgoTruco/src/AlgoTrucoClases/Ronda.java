@@ -137,6 +137,10 @@ public class Ronda {
 	public void setearEnvido() {
 		if (this.tantoActual == null){
 			this.tantoActual = Tantos.ENVIDO;
+		}else{
+			if(this.tantoActual == Tantos.ENVIDO){
+				this.tantoActual = Tantos.ENVIDOENVIDO;
+			}
 		}
 
 	}
@@ -153,8 +157,16 @@ public class Ronda {
 	}
 
 	public void setearRealEnvido() {
-		if (!(this.tantoActual == Tantos.ENVIDOENVIDOREALENVIDO) && !(this.tantoActual== Tantos.FALTAENVIDO) && !(this.tantoActual== Tantos.REALENVIDO)){
+		if (this.tantoActual==null){
 			this.tantoActual = Tantos.REALENVIDO;
+		}else{
+			if(this.tantoActual==Tantos.ENVIDO){
+				this.tantoActual = Tantos.ENVIDOREALENVIDO;
+			}else{
+				if(this.tantoActual==Tantos.ENVIDOENVIDO){
+					this.tantoActual = Tantos.ENVIDOENVIDOREALENVIDO;
+				}
+			}
 		}
 
 	}
@@ -164,6 +176,38 @@ public class Ronda {
 			this.tantoActual = Tantos.FALTAENVIDO;
 		}
 
+	}
+
+	public int obtenerNumeroDeVuelta() {
+		return (this.numeroVuelta);
+	}
+
+	public void jugarTantos() {
+		int envidoGanador = 0;
+		Equipo equipoGanador = null;
+		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
+			Jugador jugadorActual = this.jugadoresOrdenados.get(i);
+			if(jugadorActual.obtenerEnvido()>envidoGanador){
+				envidoGanador = jugadorActual.obtenerEnvido();
+				equipoGanador = jugadorActual.obtenerEquipo();
+			}else{
+				if(jugadorActual.obtenerEnvido()==envidoGanador){
+					equipoGanador = this.obtenerEquipoMano();
+				}
+			}
+		}
+		equipoGanador.sumarPuntosTanto(this);
+	}
+
+	private Equipo obtenerEquipoMano() {
+		Equipo equipoMano = null;
+		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
+			Jugador jugadorActual = this.jugadoresOrdenados.get(i);
+			if(jugadorActual.esMano()){
+				return jugadorActual.obtenerEquipo();
+			}
+		}
+		return equipoMano;
 	}
 
 }
