@@ -17,6 +17,8 @@ import AlgoTrucoClases.Jugador;
 public class JugadorTests {
 
 	private Jugador jugador;
+	private ArrayList<Carta> cartas;
+	private Mano mano;
 	private Ronda ronda;
 
 	@Before
@@ -41,6 +43,14 @@ public class JugadorTests {
 		jugadoresOrdenados.add(rodri);
 		jugadoresOrdenados.add(cris);
 		this.ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+	
+		this.cartas = new ArrayList<Carta>();
+		this.cartas.add(new Carta(1,Palos.ESPADA));
+		this.cartas.add( new Carta(1,Palos.BASTO));
+		this.cartas.add(new Carta(7,Palos.ESPADA));
+	
+		this.mano = new Mano(this.cartas);
+		
 	}
 
 	@Test
@@ -52,44 +62,20 @@ public class JugadorTests {
 
 	@Test
 	public void testAsignarManoAPlayer(){
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
-
-		Mano mano = new Mano(cartas);
-
-		this.jugador.asignarMano(mano);
-
+		this.jugador.asignarMano(this.mano);
 		assertEquals(this.jugador.obtenerMano().cantidadDeCartas(),3);
 	}
 
 	@Test
 	public void testObtenerEnvidoCorrectoDeJugador(){
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
-
-		Mano mano = new Mano(cartas);
-
-		this.jugador.asignarMano(mano);
-
+		this.jugador.asignarMano(this.mano);
 		assertEquals(this.jugador.obtenerEnvido(),28);
 	}
 
 
 	@Test
 	public void testObtenerFlorCorrectaDeJugador(){
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
-
-		Mano mano = new Mano(cartas);
-
-		this.jugador.asignarMano(mano);
-
+		this.jugador.asignarMano(this.mano);
 		assertEquals(this.jugador.obtenerFlor(),0);
 	}
 

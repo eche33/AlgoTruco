@@ -72,7 +72,7 @@ public class MazoTests {
 	}
 
 	@Test
-	public void devuelveXManos(){
+	public void testDevuelveXManos(){
 
 		Assert.assertTrue( mano1.size() == 2 );
 		Assert.assertTrue( mano2.size() == 3 );
@@ -80,7 +80,7 @@ public class MazoTests {
 	}
 	
 	@Test
-	public void devuelveManosDeTresCartas(){
+	public void testDevuelveManosDeTresCartas(){
 		
 		Assert.assertTrue( mano1.get( 0 ).cantidadDeCartas() == 3 );
 		Assert.assertTrue( mano1.get( 1 ).cantidadDeCartas() == 3 );

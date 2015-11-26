@@ -14,74 +14,64 @@ import AlgoTrucoClases.Palos;
 
 public class ManoTests {
 
+	private Mano manoDePrueba;
+	private Mano manoDePrueba2;
+	private Mano manoDePrueba3;
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	@Test
-	public void testCreaUnaManoYChequeaCuantasCartasTiene() {
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
 		cartas.add(new Carta(1,Palos.ESPADA));
 		cartas.add( new Carta(1,Palos.BASTO));
 		cartas.add(new Carta(7,Palos.ESPADA));
 
-		Mano mano = new Mano(cartas);
+		this.manoDePrueba = new Mano(cartas);
+		
+		ArrayList<Carta> cartas2 = new ArrayList<Carta>();
+		cartas2.add(new Carta(1,Palos.COPA));
+		cartas2.add( new Carta(1,Palos.BASTO));
+		cartas2.add(new Carta(7,Palos.ESPADA));
 
-		Boolean result = (mano.cantidadDeCartas() == 3);
+		this.manoDePrueba2 = new Mano(cartas2);
+		
+		ArrayList<Carta> cartas3 = new ArrayList<Carta>();
+		cartas3.add(new Carta(1,Palos.COPA));
+		cartas3.add( new Carta(1,Palos.ESPADA));
+		cartas3.add(new Carta(7,Palos.ESPADA));
 
-		Assert.assertTrue(result);
+		this.manoDePrueba3 = new Mano(cartas3);
+	}
+
+	@Test
+	public void testCreaUnaManoYChequeaCuantasCartasTiene() {
+
+		Assert.assertEquals(this.manoDePrueba.cantidadDeCartas(),3);
 
 	}
 
 
 	@Test
 	public void testManoTieneEnvido() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
-
-		Mano mano = new Mano(cartas);
-
-		assertTrue(mano.tieneEnvido());
+		Assert.assertTrue(this.manoDePrueba.tieneEnvido());
 	}
 
 
 	@Test
 	public void testManoNoTieneEnvido() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.COPA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
 
-		Mano mano = new Mano(cartas);
-
-		assertFalse(mano.tieneEnvido());
+		Assert.assertFalse(this.manoDePrueba2.tieneEnvido());
 	}
 
 	@Test
 	public void testSonTodasDeDistintoPalo(){
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.COPA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
 
-		Mano mano = new Mano(cartas);
-
-		assertTrue(mano.sonTodasDeDistintoPalo());
+		Assert.assertTrue(this.manoDePrueba2.sonTodasDeDistintoPalo());
 	}
 
 
 	@Test
 	public void testNoSonTodasDeDistintoPalo(){
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.COPA));
-		cartas.add( new Carta(1,Palos.ESPADA));
-		cartas.add(new Carta(7,Palos.ESPADA));
 
-		Mano mano = new Mano(cartas);
-
-		assertFalse(mano.sonTodasDeDistintoPalo());
+		assertFalse(this.manoDePrueba3.sonTodasDeDistintoPalo());
 	}
 
 	/*@Test
