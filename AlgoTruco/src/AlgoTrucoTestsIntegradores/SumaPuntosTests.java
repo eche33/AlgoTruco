@@ -1,9 +1,6 @@
 package AlgoTrucoTestsIntegradores;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,55 +16,36 @@ public class SumaPuntosTests {
 
 	@Before
 	public void setUp() throws Exception {
-		Jugador rodri = new Jugador("Rodri");
-		Jugador ailu = new Jugador("Ailu");
-		Jugador flor = new Jugador("Flor");
-		Jugador cris = new Jugador("Cris");
-		ArrayList<Jugador> lista1 = new ArrayList<Jugador>();
-		ArrayList<Jugador> lista2 = new ArrayList<Jugador>();
-		lista1.add(ailu);
-		lista1.add(rodri);
-		lista2.add(flor);
-		lista2.add(cris);
-		this.equipo1 = new Equipo(lista1);
-		this.equipo2 = new Equipo(lista2);
-		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
-		jugadoresOrdenados.add(ailu);
-		jugadoresOrdenados.add(flor);
-		jugadoresOrdenados.add(rodri);
-		jugadoresOrdenados.add(cris);
-		this.ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+		this.equipo1 = new Equipo(new Jugador("Ailu"), new Jugador("Rodri"));
+		this.equipo2 = new Equipo(new Jugador("Flor"), new Jugador("Cris"));
+		this.ronda = new Ronda(equipo1, equipo2);
 	}
 
 	@Test
 	public void testSumarEnvidoNoQuerido() {
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 1);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 1);
 	}
 
 	@Test
 	public void testSumarEnvido() {
 		this.ronda.setearEnvido();
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 2);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 2);
 	}
 
 	@Test
 	public void testSumarRealEnvido() {
 		this.ronda.setearRealEnvido();
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 3);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 3);
 	}
 
 	@Test
 	public void testSumarFaltaEnvido() {
 		this.ronda.setearFaltaEnvido();
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 15);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 15);
 	}
 
 	@Test
@@ -75,8 +53,7 @@ public class SumaPuntosTests {
 		this.ronda.setearEnvido();
 		this.ronda.setearEnvido();
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 4);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 4);
 	}
 
 	@Test
@@ -84,8 +61,7 @@ public class SumaPuntosTests {
 		this.ronda.setearEnvido();
 		this.ronda.setearRealEnvido();
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 5);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 5);
 	}
 
 	@Test
@@ -94,8 +70,7 @@ public class SumaPuntosTests {
 		this.ronda.setearEnvido();
 		this.ronda.setearRealEnvido();
 		this.equipo1.sumarPuntosTanto(this.ronda);
-
-		assertEquals(this.equipo1.puntajeDeEquipo, 7);
+		Assert.assertEquals(this.equipo1.puntajeDeEquipo, 7);
 	}
 
 }

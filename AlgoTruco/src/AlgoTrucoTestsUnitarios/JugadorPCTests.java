@@ -11,13 +11,4 @@ public class JugadorPCTests {
 	public void setUp() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-	public static void main(String[] args) {
-	
-	}
-
 }

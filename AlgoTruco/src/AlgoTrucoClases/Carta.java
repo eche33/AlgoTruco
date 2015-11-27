@@ -1,44 +1,50 @@
 package AlgoTrucoClases;
 
-public class Carta {
+public abstract class Carta{
 
-	private Palos palo;
-	private int valor;
-	private int prioridad; //Falta la asignaciÃ³n y los test
+	protected Palos palo;
+	protected int numero;
+	protected int prioridad;
+	
 
-	public Carta(int valor, Palos paloActual) {
-		this.palo = paloActual;
-		this.valor = valor;
+	public String obtenerPalo(){
+		return (this.palo.name());
 	}
 
-	public boolean esPalo(String palo) {
-		return ( this.obtenerPalo() == palo);
+	public int obtenerNumero(){
+		return (this.numero);
 	}
 
-	public String obtenerPalo() {
-		return ( (this.palo).name() );
+	public boolean esUnaFigura(){
+		boolean esFigura = false;
+		if((this.obtenerNumero() == 10) || (this.obtenerNumero() == 11) || (this.obtenerNumero() == 12)){
+			esFigura = true;
+		}
+		return esFigura;
 	}
-
-	public int obtenerValor() {
-		return (this.valor);
-	}
-
+	
 	public int obtenerPrioridad(){
 		return (this.prioridad);
 	}
-
-	public void asignarPrioridad(int importancia){
-		this.prioridad = importancia;
-	}
-
-	public boolean esUnaFigura() {
-		boolean esFigura = false;
-
-		if((this.obtenerValor()==10)||(this.obtenerValor()==11)||(this.obtenerValor()==12)){
-			esFigura = true;
+	
+	public int jugarContra(Carta unaCarta){
+	// Método para jugar contra otras cartas. Devuelve 1 si gana, -1 si pierde y 0 si parda.
+	// ACLARACIÓN: La mejor prioridad es  (ancho de espada), la peor es 14 (todos los cuatro).
+		if (this.prioridad < unaCarta.obtenerPrioridad()){
+			return 1;
 		}
-
-		return esFigura;
+		else if (this.prioridad > unaCarta.obtenerPrioridad()){
+			return -1;
+		}
+		else return 0;
 	}
 
+/** ESTE MÉTODO NO SE USA EN NINGÚN LADO, POR ESO LO APARTE.
+ * 
+ * 	public boolean esPalo(String palo){
+		return (this.obtenerPalo() == palo);
+	}
+ *	
+ */
+	
 }

@@ -12,12 +12,6 @@ public class TrucoTests {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-	public static void main(String[] args) {
-	
-	}
+	public void test() {}
 
 }
