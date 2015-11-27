@@ -7,7 +7,7 @@ public class Truco {
     public Truco(){}
     
     public void crearPartida(){
-        //HAY QUE DEFINIR PARTIDA SI ES SINGLETON, POR SU INVOCACIÃ“N.
+        // Hay que definir partida si es Singleton, por su invocación.
     }
 
 }

@@ -8,16 +8,16 @@ public class Jugador {
 	private Equipo equipo;
 	private boolean noTiroCarta;
 
+	
 	public Jugador(String nombreDeJugador){
-
 		this.nombre = nombreDeJugador;
 		this.esMano = false;
 		this.mano = null;
 		this.noTiroCarta = true;
-
 	}
 
-	public boolean esMano() {
+	
+	public boolean esMano(){
 		return (this.esMano);
 	}
 
@@ -25,20 +25,19 @@ public class Jugador {
 		return (this.nombre);
 	}
 
-	public Mano obtenerMano() {
+	public Mano obtenerMano(){
 		return (this.mano);
 	}
 
-	public void asignarMano(Mano mano) {
+	public void asignarMano(Mano mano){
 		this.mano = mano;
-
 	}
 
-	public int obtenerEnvido() {
+	public int obtenerEnvido(){
 		return (this.obtenerMano().obtenerEnvido());
 	}
 
-	public int obtenerFlor() {
+	public int obtenerFlor(){
 		return (this.obtenerMano().obtenerFlor());
 	}
 
@@ -46,19 +45,14 @@ public class Jugador {
 		return (numeroDeVuelta == 1);
 	}
 
-
-
-
-
 	public void tirarCarta(Carta carta, Ronda ronda){
 		ronda.obtenerMesa().tirarCarta(carta);
 		this.mano.borrarCarta(carta);
 		this.noTiroCarta = false;
-
 	}
 
-	public void jugar(Ronda ronda) {
-		int eleccion;
+	public void jugar(Ronda ronda){
+		int eleccion=0;
 
 		while (this.noTiroCarta){
 
@@ -69,11 +63,11 @@ public class Jugador {
 					break;
 			case 3: this.irse(ronda);
 					break;
-			case 4: this.tirarCarta(mano.obtenerCarta(0), ronda);
+			case 4: this.tirarCarta(this.mano.obtenerCarta(0), ronda);
 					break;
-			case 5: this.tirarCarta(mano.obtenerCarta(1), ronda);
+			case 5: this.tirarCarta(this.mano.obtenerCarta(1), ronda);
 					break;
-			case 6: this.tirarCarta(mano.obtenerCarta(2), ronda);
+			case 6: this.tirarCarta(this.mano.obtenerCarta(2), ronda);
 					break;
 			case 7: this.cantarFlor(ronda);
 					break;
@@ -81,6 +75,7 @@ public class Jugador {
 		}
 	}
 
+	private void cantarFlor(Ronda ronda){}
 
 	private void cantarEnvido(Ronda unaRonda) throws NoSePuedeCantarEnvidoError{
 
@@ -93,9 +88,13 @@ public class Jugador {
 			unaRonda.jugarTantos();
 		}
 		else {
-			equipo.sumarPuntosTanto(unaRonda);
+			this.equipo.sumarPuntosTanto(unaRonda);
 		}
 	}
+	
+	private void cantarFaltaEnvido(Ronda unaRonda){}
+
+	private void cantarRealEnvido(Ronda unaRonda){}
 
 	public boolean responderEnvido(Ronda unaRonda){
 		int eleccion=0;
@@ -130,8 +129,7 @@ public class Jugador {
 	}
 
 	private void cantarRetruco(Ronda unaRonda){
-
-		// CHEQUEAR EL QUIERO, EL ESTADO DEL CANTO Y MANEJAR CON EXCEPCIONES.
+		// Chequear el quiero, el estado del canto y manejar con excepciones.
 		if (unaRonda.obtenerEquipoRival(this.equipo).responderRetruco(unaRonda)){
 			this.equipo.noTieneQuiero();
 			unaRonda.setearRetruco();
@@ -143,7 +141,7 @@ public class Jugador {
 
 	private void cantarValeCuatro(Ronda unaRonda){
 
-		// CHEQUEAR EL QUIERO, EL ESTADO DEL CANTO Y MANEJAR CON EXCEPCIONES.
+		// Chequear el quiero, el estado del canto y manejar con excepciones.
 		if (unaRonda.obtenerEquipoRival(this.equipo).responderValeCuatro(unaRonda)){
 			this.equipo.noTieneQuiero();
 			unaRonda.setearValeCuatro();
@@ -153,26 +151,6 @@ public class Jugador {
 		}
 	}
 
-/**	private void cantarTruco(Ronda unaRonda){
-
-		switch (unaRonda.obtenerEquipoRival(this.equipo).responderTruco()){
-		case QUIERO: this.equipo.noTieneQuiero();
-					 unaRonda.setearTruco();
-			 		 break;
-		  case NOQUIERO: unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
-			     	     break;
-		  case RETRUCO: equipo.responderRetruco();
-					  break;
-		}
-	}
-**/
-
-//	private void cantarFlor(Ronda ronda) {
-//		if (ronda.obtenerEquipoRival(this.equipo).aceptarFlor()){
-//
-//		}
-//	}
-
 	public void irse(Ronda unaRonda){
 		this.equipo.irse(unaRonda);
 	}
@@ -181,7 +159,7 @@ public class Jugador {
 		this.equipo = equipo;
 	}
 
-	public boolean responderTruco(Ronda unaRonda) {
+	public boolean responderTruco(Ronda unaRonda){
 		int eleccion=0;
 
 		switch (eleccion){
@@ -194,7 +172,7 @@ public class Jugador {
 		return false;
 	}
 
-	public boolean responderRetruco(Ronda unaRonda) {
+	public boolean responderRetruco(Ronda unaRonda){
 		int eleccion=0;
 
 		switch (eleccion){
@@ -207,7 +185,7 @@ public class Jugador {
 		return false;
 	}
 
-	public boolean responderValeCuatro(Ronda unaRonda) {
+	public boolean responderValeCuatro(Ronda unaRonda){
 		int eleccion=0;
 
 		switch (eleccion){
@@ -217,12 +195,16 @@ public class Jugador {
 		return false;
 	}
 
-	public Equipo obtenerEquipo() {
+	public Equipo obtenerEquipo(){
 		return (this.equipo);
 	}
 
-	public void setearEsMano() {
+	public void setearEsMano(){
 		this.esMano = true;
-
 	}
+	
+	public void setearNoEsMano(){
+		this.esMano = false;
+	}
+	
 }
