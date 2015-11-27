@@ -1,13 +1,15 @@
 package AlgoTrucoTestsIntegradores;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import AlgoTrucoClases.Carta;
+import AlgoTrucoCartas.AnchoEspada;
+import AlgoTrucoCartas.Rey;
+import AlgoTrucoCartas.Seis;
+import AlgoTrucoCartas.SieteEspada;
+import AlgoTrucoCartas.SieteFalso;
+import AlgoTrucoCartas.Sota;
 import AlgoTrucoClases.Equipo;
 import AlgoTrucoClases.Jugador;
 import AlgoTrucoClases.Mano;
@@ -16,151 +18,79 @@ import AlgoTrucoClases.Ronda;
 
 public class EnvidoTests {
 
+	private Equipo equipo1;
+	private Equipo equipo2;
+	private Jugador ailu;
+	private Jugador rodri;
+	private Ronda ronda;
+	
+	
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws Exception{
+		this.equipo1 = new Equipo(ailu = new Jugador("Ailu"));
+		this.equipo2 = new Equipo(rodri = new Jugador("Rodri"));
+		this.ronda = new Ronda(equipo1, equipo2);
 	}
 
+	
 	@Test
 	public void testObtenerEnvidoConCartasTodasDeDistintoPalo() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.COPA));
-
-		Mano mano = new Mano(cartas);
-
-		assertEquals(mano.obtenerEnvido(),7);
+		Mano mano = new Mano(new AnchoEspada(), new Rey(Palos.BASTO), new SieteFalso(Palos.COPA));
+		Assert.assertEquals(mano.obtenerEnvido(),7);
 	}
 
 	@Test
 	public void testObtenerEnvidoConDosCartasDelMismoPalo() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.ESPADA));
-		cartas.add(new Carta(7,Palos.COPA));
-
-		Mano mano = new Mano(cartas);
-
-		assertEquals(mano.obtenerEnvido(),21);
+		Mano mano = new Mano(new AnchoEspada(), new Rey(Palos.ESPADA), new SieteFalso(Palos.COPA));
+		Assert.assertEquals(mano.obtenerEnvido(),21);
 	}
 
 	@Test
 	public void testObtenerEnvidoConTodasDelMismoPalo() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(6,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.ESPADA));
-		cartas.add(new Carta(7,Palos.ESPADA));
-
-		Mano mano = new Mano(cartas);
-
-		assertEquals(mano.obtenerEnvido(),33);
+		Mano mano = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
+		Assert.assertEquals(mano.obtenerEnvido(),33);
 	}
 
 	@Test
 	public void testObtenerEnvidoConTodasFigurasDistintas() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(10,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.BASTO));
-		cartas.add(new Carta(12,Palos.COPA));
-
-		Mano mano = new Mano(cartas);
-
-		assertEquals(mano.obtenerEnvido(),0);
+		Mano mano = new Mano(new Sota(Palos.ESPADA), new Rey(Palos.BASTO), new Rey(Palos.COPA));
+		Assert.assertEquals(mano.obtenerEnvido(),0);
 	}
 
 	@Test
 	public void testObtenerEnvidoConTodasFiguras() {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(10,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.ESPADA));
-		cartas.add(new Carta(12,Palos.COPA));
-
-		Mano mano = new Mano(cartas);
-
-		assertEquals(mano.obtenerEnvido(),20);
+		Mano mano = new Mano(new Sota(Palos.ESPADA), new Rey(Palos.ESPADA), new Rey(Palos.COPA));
+		Assert.assertEquals(mano.obtenerEnvido(),20);
 	}
 
 	@Test
 	public void testJugarTantos(){
-		Jugador rodri = new Jugador("Rodri");
-		Jugador ailu = new Jugador("Ailu");
-		ArrayList<Jugador> lista1 = new ArrayList<Jugador>();
-		ArrayList<Jugador> lista2 = new ArrayList<Jugador>();
-		lista1.add(ailu);
-		lista2.add(rodri);
-		Equipo equipo1 = new Equipo(lista1);
-		Equipo equipo2 = new Equipo(lista2);
-		ailu.asignarEquipo(equipo1);
-		rodri.asignarEquipo(equipo2);
-		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
-		jugadoresOrdenados.add(ailu);
-		jugadoresOrdenados.add(rodri);
-		Ronda ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
+		this.rodri.asignarMano(manoRodri);
 
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(6,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.ESPADA));
-		cartas.add(new Carta(7,Palos.ESPADA));
+		Mano manoAilu = new Mano(new Sota(Palos.ESPADA), new Rey(Palos.ESPADA), new Rey(Palos.COPA));
+		this.ailu.asignarMano(manoAilu);
 
-		Mano mano1 = new Mano(cartas);
-		rodri.asignarMano(mano1);
+		this.ronda.setearEnvido();
+		this.ronda.jugarTantos();
 
-		ArrayList<Carta> cartas2 = new ArrayList<Carta>();
-		cartas2.add(new Carta(10,Palos.ESPADA));
-		cartas2.add( new Carta(12,Palos.ESPADA));
-		cartas2.add(new Carta(12,Palos.COPA));
-
-		Mano mano2 = new Mano(cartas2);
-		ailu.asignarMano(mano2);
-
-		ronda.setearEnvido();
-		ronda.jugarTantos();
-
-		assertEquals(equipo1.puntajeDeEquipo,0);
-		assertEquals(equipo2.puntajeDeEquipo,2);
-
-
+		Assert.assertEquals(0,equipo1.puntajeDeEquipo);
+		Assert.assertEquals(2,equipo2.puntajeDeEquipo);
 	}
 
 	@Test
 	public void testJugarTantosConEnvidosIguales(){
-		Jugador rodri = new Jugador("Rodri");
-		Jugador ailu = new Jugador("Ailu");
-		ArrayList<Jugador> lista1 = new ArrayList<Jugador>();
-		ArrayList<Jugador> lista2 = new ArrayList<Jugador>();
-		lista1.add(ailu);
-		lista2.add(rodri);
-		Equipo equipo1 = new Equipo(lista1);
-		Equipo equipo2 = new Equipo(lista2);
-		ailu.asignarEquipo(equipo1);
-		rodri.asignarEquipo(equipo2);
-		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
-		jugadoresOrdenados.add(ailu);
-		jugadoresOrdenados.add(rodri);
-		Ronda ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
+		this.rodri.asignarMano(manoRodri);
 
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(6,Palos.ESPADA));
-		cartas.add( new Carta(12,Palos.ESPADA));
-		cartas.add(new Carta(7,Palos.ESPADA));
+		Mano manoAilu = new Mano(new Seis(Palos.COPA), new Rey(Palos.ESPADA), new SieteFalso(Palos.COPA));
+		this.ailu.asignarMano(manoAilu);
 
-		Mano mano1 = new Mano(cartas);
-		rodri.asignarMano(mano1);
+		this.ronda.setearEnvido();
+		this.ronda.jugarTantos();
 
-		ArrayList<Carta> cartas2 = new ArrayList<Carta>();
-		cartas2.add(new Carta(6,Palos.COPA));
-		cartas2.add( new Carta(12,Palos.ESPADA));
-		cartas2.add(new Carta(7,Palos.COPA));
-
-		Mano mano2 = new Mano(cartas2);
-		ailu.asignarMano(mano2);
-
-		ailu.setearEsMano();
-		ronda.setearEnvido();
-		ronda.jugarTantos();
-
-		assertEquals(equipo1.puntajeDeEquipo,2);
-		assertEquals(equipo2.puntajeDeEquipo,0);
+		Assert.assertEquals(2,equipo1.puntajeDeEquipo);
+		Assert.assertEquals(0,equipo2.puntajeDeEquipo);
 
 
 	}

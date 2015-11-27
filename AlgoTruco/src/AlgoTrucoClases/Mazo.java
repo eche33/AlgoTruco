@@ -2,114 +2,92 @@ package AlgoTrucoClases;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-
+import AlgoTrucoCartas.AnchoBasto;
+import AlgoTrucoCartas.AnchoEspada;
+import AlgoTrucoCartas.AnchoFalso;
+import AlgoTrucoCartas.Caballo;
+import AlgoTrucoCartas.Cinco;
+import AlgoTrucoCartas.Cuatro;
+import AlgoTrucoCartas.Dos;
+import AlgoTrucoCartas.Rey;
+import AlgoTrucoCartas.Seis;
+import AlgoTrucoCartas.SieteEspada;
+import AlgoTrucoCartas.SieteFalso;
+import AlgoTrucoCartas.SieteOro;
+import AlgoTrucoCartas.Sota;
+import AlgoTrucoCartas.Tres;
 import AlgoTrucoClases.Carta;
 import AlgoTrucoClases.Palos;
 
 public class Mazo {
-	private List<Carta> mazoDeCartas;
+	private List<Carta> mazo;
 
 	public Mazo(){
-		
-		this.mazoDeCartas = generarMazo();
-		asignarImportanciaDeCartas();
+		this.mazo = generarMazo();
 	}
 
-	private List<Carta> generarMazo() {
+	private List<Carta> generarMazo(){
 		ArrayList<Carta> nuevoMazo = new ArrayList<Carta>();
-		for (Palos paloActual : Palos.values()) {
-			for (int valor = 1; valor <= 12; valor++){
-				if (valor != 8 && valor != 9)
-					nuevoMazo.add( new Carta(valor, paloActual) );
-			}
+		nuevoMazo.add(new AnchoEspada());
+		nuevoMazo.add(new AnchoBasto());
+		nuevoMazo.add(new SieteEspada());
+		nuevoMazo.add(new SieteOro());
+		nuevoMazo.add(new AnchoFalso(Palos.COPA));
+		nuevoMazo.add(new AnchoFalso(Palos.ORO));
+		nuevoMazo.add(new SieteFalso(Palos.BASTO));
+		nuevoMazo.add(new SieteFalso(Palos.COPA));
+		
+		for (Palos palo : Palos.values()){
+			nuevoMazo.add(new Tres(palo));
+			nuevoMazo.add(new Dos(palo));
+			nuevoMazo.add(new Rey(palo));
+			nuevoMazo.add(new Caballo(palo));
+			nuevoMazo.add(new Sota(palo));
+			nuevoMazo.add(new Seis(palo));
+			nuevoMazo.add(new Cinco(palo));
+			nuevoMazo.add(new Cuatro(palo));
 		}
 		return nuevoMazo;
 	}
 
-	private void asignarImportanciaDeCartas(){
-		
-		buscarCarta(1,"ESPADA").asignarPrioridad(1);
-		buscarCarta(1,"BASTO").asignarPrioridad(2);
-		buscarCarta(7,"ESPADA").asignarPrioridad(3);
-		buscarCarta(7,"ORO").asignarPrioridad(4);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(3,paloActual.name()).asignarPrioridad(5);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(2,paloActual.name()).asignarPrioridad(6);
-		
-		buscarCarta(1,"ORO").asignarPrioridad(7);
-		buscarCarta(1,"COPA").asignarPrioridad(7);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(12,paloActual.name()).asignarPrioridad(8);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(11,paloActual.name()).asignarPrioridad(9);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(10,paloActual.name()).asignarPrioridad(10);
-		
-		buscarCarta(7,"BASTO").asignarPrioridad(11);
-		buscarCarta(7,"COPA").asignarPrioridad(11);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(6,paloActual.name()).asignarPrioridad(12);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(5,paloActual.name()).asignarPrioridad(13);
-		
-		for (Palos paloActual : Palos.values())
-			buscarCarta(4,paloActual.name()).asignarPrioridad(14);
-
-
-
+	public void mezclarMazo(){
+		Collections.shuffle(this.mazo);
 	}
-
-	private Carta buscarCarta(int numero, String palo) {
+		
+	public ArrayList<Mano> repartirVariasManos(int manosDeseadas){
+		ArrayList<Mano> manosPedidas = new ArrayList<Mano>();
+		int indice = 0;
+		int manosRepartidas = 0;
+		
+		while (manosRepartidas < manosDeseadas){
+			manosPedidas.add(new Mano(this.mazo.get(indice),this.mazo.get(indice+1),this.mazo.get(indice+2)));
+			indice += 3;
+			manosRepartidas++;
+		}
+		return manosPedidas;	
+	}
+		
+/** Perdón gente, me tomé el atrevimiento de comentar estos métodos porque no se usaban en ningún lado y no sé para que
+ *  sirven, así de paso para cuando llegue la hora de la entrega si no los usamos es más fácil limpiarlos.
+ * 
+ * 	private Carta buscarCarta(int numero, String palo){
 		Carta cartaBuscada = null;
 		boolean encontrada = false;
 		Iterator<Carta> recorrerMazo = this.mazoDeCartas.iterator();
 		while ( recorrerMazo.hasNext() && !encontrada ){
 			Carta cartaActual = recorrerMazo.next();
-			if (cartaActual.obtenerPalo() == palo && cartaActual.obtenerValor()== numero ){
+			if (cartaActual.obtenerPalo() == palo && cartaActual.obtenerNumero()== numero ){
 				cartaBuscada = cartaActual;
 				encontrada = true;
 			}
 		}
 		return cartaBuscada;
 	}
-
-	public void mezclarMazo(){
-		
-		Collections.shuffle(this.mazoDeCartas);
-	}
-		
-	
-	public ArrayList< Mano > repartirXCantidadDeManos( int manosDeseadas ){
-		ArrayList< Mano > manosPedidas = new ArrayList< Mano >();
-		int indiceCartaActual = 0;
-		int manosRepartidas = 0;
-		while ( manosRepartidas < manosDeseadas){
-			ArrayList< Carta > cartasDeMano = new ArrayList< Carta >();
-			for (int i = 1 ; i<=3 ; i++) {
-				cartasDeMano.add( this.devolverMazo().get( indiceCartaActual ) );
-				indiceCartaActual++;
-			}
-			manosPedidas.add( new Mano( cartasDeMano ) );
-			manosRepartidas++;
-		}
-		return manosPedidas;	
-	}
-	
-	
-	
-	
-	public boolean existeCarta(int numero, String palo){
+ * 	
+ * 
+ * 	public boolean existeCarta(int numero, String palo){
 		Iterator<Carta> recorrerMazo = this.mazoDeCartas.iterator();
 		while (recorrerMazo.hasNext()){
 			Carta cartaActual = recorrerMazo.next();
@@ -118,9 +96,6 @@ public class Mazo {
 		}
 		return false;
 	}
-
-	public List<Carta> devolverMazo(){
-		return ( this.mazoDeCartas );
-	}
-	
+ * 
+**/
 }

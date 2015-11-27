@@ -6,12 +6,14 @@ public class Mesa {
 
 	private ArrayList<Carta> cartasTiradas;
 
-	public Mesa() {
+	
+	public Mesa(){
 		this.cartasTiradas = new ArrayList<Carta>();
 	}
 
-	public void tirarCarta(Carta carta) {
-		cartasTiradas.add(carta);
+	
+	public void tirarCarta(Carta carta){
+		this.cartasTiradas.add(carta);
 	}
 	
 	public ArrayList<Carta> obtenerCartasEnMesa(){
