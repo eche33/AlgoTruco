@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Equipo{
 
 	private ArrayList<Jugador> jugadores;
-	private int puntosDeRonda;
 	public int puntajeDeEquipo;
 	public boolean quiero;
 
@@ -15,7 +14,6 @@ public class Equipo{
 		this.jugadores = new ArrayList<Jugador>();
 		this.jugadores.add(jugador1);
 		this.puntajeDeEquipo = 0;
-		this.puntosDeRonda = 0;
 		this.quiero = true;
 	}
 	
@@ -27,7 +25,6 @@ public class Equipo{
 		this.jugadores.add(jugador1);
 		this.jugadores.add(jugador2);
 		this.puntajeDeEquipo = 0;
-		this.puntosDeRonda = 0;
 		this.quiero = true;
 	}
 	
@@ -41,7 +38,6 @@ public class Equipo{
 		this.jugadores.add(jugador2);
 		this.jugadores.add(jugador3);
 		this.puntajeDeEquipo = 0;
-		this.puntosDeRonda = 0;
 		this.quiero = true;
 	}
 

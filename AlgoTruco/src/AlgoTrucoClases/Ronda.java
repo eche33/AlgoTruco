@@ -38,7 +38,7 @@ public class Ronda {
 	}
 	
 	private void repartirCartas(){
-		ArrayList<Mano> manosARepartir = mazo.repartirVariasManos(jugadoresOrdenados.size());
+		ArrayList<Mano> manosARepartir = this.mazo.repartirVariasManos(jugadoresOrdenados.size());
 
 		for(int i=0 ; i<jugadoresOrdenados.size(); i++){
 			jugadoresOrdenados.get(i).asignarMano(manosARepartir.get(i));

@@ -68,34 +68,4 @@ public class Mazo {
 		}
 		return manosPedidas;	
 	}
-		
-/** Perdón gente, me tomé el atrevimiento de comentar estos métodos porque no se usaban en ningún lado y no sé para que
- *  sirven, así de paso para cuando llegue la hora de la entrega si no los usamos es más fácil limpiarlos.
- * 
- * 	private Carta buscarCarta(int numero, String palo){
-		Carta cartaBuscada = null;
-		boolean encontrada = false;
-		Iterator<Carta> recorrerMazo = this.mazoDeCartas.iterator();
-		while ( recorrerMazo.hasNext() && !encontrada ){
-			Carta cartaActual = recorrerMazo.next();
-			if (cartaActual.obtenerPalo() == palo && cartaActual.obtenerNumero()== numero ){
-				cartaBuscada = cartaActual;
-				encontrada = true;
-			}
-		}
-		return cartaBuscada;
-	}
- * 	
- * 
- * 	public boolean existeCarta(int numero, String palo){
-		Iterator<Carta> recorrerMazo = this.mazoDeCartas.iterator();
-		while (recorrerMazo.hasNext()){
-			Carta cartaActual = recorrerMazo.next();
-			if (cartaActual.obtenerPalo() == palo && cartaActual.obtenerValor()== numero )
-				return true;
-		}
-		return false;
-	}
- * 
-**/
 }
