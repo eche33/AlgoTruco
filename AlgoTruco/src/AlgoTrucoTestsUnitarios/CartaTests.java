@@ -23,6 +23,7 @@ public class CartaTests {
 		 carta2 = new Carta( 1 , Palos.ESPADA );
 		 carta3 = new Carta( 10 , Palos.BASTO ); 
 		 carta4 = new Carta( 1 , Palos.BASTO );
+		 carta2.asignarPrioridad(1);
 	}
 
 	@Test
@@ -38,6 +39,11 @@ public class CartaTests {
 	@Test
 	public void testChequeaElPaloDeUnaCarta() {
 		Assert.assertTrue( carta2.esPalo( "ESPADA" ) );
+	}
+	
+	@Test
+	public void testAsingaPrioridadDeUnaCarta() {
+		Assert.assertEquals( carta2.obtenerPrioridad() , 1 );
 	}
 
 	@Test

@@ -21,7 +21,7 @@ public class Vuelta {
 
 		for(int i = 1; i<this.ronda.obtenerJugadoresOrdenados().size(); i++){
 			if(vueltaEnCurso){
-				this.ronda.obtenerJugadoresOrdenados().get(i).jugar(this);
+				this.ronda.obtenerJugadoresOrdenados().get(i).jugar(this.ronda);
 			}
 		}
 	}

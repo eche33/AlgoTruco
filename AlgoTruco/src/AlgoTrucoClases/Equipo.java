@@ -72,4 +72,47 @@ public class Equipo{
 		return (this.jugadores.get(0).responderEnvido(unaRonda));
 	}
 
+	public void sumarPuntosTanto(Ronda ronda) {
+		int puntajeSumar = 0;
+		if(ronda.obtenerTantoActual()==null){
+			puntajeSumar = 1;
+		}else{
+			switch(ronda.obtenerTantoActual()){
+			case ENVIDO: puntajeSumar = 2;
+						break;
+			case ENVIDOENVIDO: puntajeSumar = 4;
+						break;
+			case REALENVIDO: puntajeSumar = 3;
+						break;
+			case FALTAENVIDO: puntajeSumar = this.calculoFaltaenvido(ronda.obtenerEquipoRival(this));
+						break;
+			case ENVIDOENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaenvido(ronda.obtenerEquipoRival(this));
+						break;
+			case ENVIDOENVIDOREALENVIDO: puntajeSumar = 7;
+						break;
+			case ENVIDOENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaenvido(ronda.obtenerEquipoRival(this));
+						break;
+			case ENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaenvido(ronda.obtenerEquipoRival(this));
+						break;
+			case ENVIDOREALENVIDO: puntajeSumar = 5;
+						break;
+			case ENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaenvido(ronda.obtenerEquipoRival(this));
+						break;
+			case REALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaenvido(ronda.obtenerEquipoRival(this));
+						break;
+			}
+		}
+		this.sumarPuntos(puntajeSumar);
+	}
+
+	private int calculoFaltaenvido(Equipo equipoRival) {
+		int faltaEnvido = 0;
+		if(equipoRival.obtenerPuntaje()<15){//ESTA EN LAS MALAS
+			faltaEnvido = 15 - equipoRival.obtenerPuntaje();
+		}else{
+			faltaEnvido = 30 - equipoRival.obtenerPuntaje();
+		}
+		return faltaEnvido;
+	}
+
 }
