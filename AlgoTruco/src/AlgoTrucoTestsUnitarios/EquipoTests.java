@@ -1,68 +1,62 @@
 package AlgoTrucoTestsUnitarios;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import AlgoTrucoClases.Carta;
 import AlgoTrucoClases.Equipo;
 import AlgoTrucoClases.Jugador;
-import AlgoTrucoClases.Palos;
 
 public class EquipoTests {
 	
-	private ArrayList<Jugador> lista;
 	private Equipo equipo;
+	
+	
 	@Before
 	public void setUp() throws Exception {
-		Jugador jugador1 = new Jugador("Rodrigo");
-		Jugador jugador2 = new Jugador("Flor");
-		lista = new ArrayList<Jugador>();
-		lista.add(jugador1);
-		lista.add(jugador2);
-		equipo = new Equipo(lista);
+		this.equipo = new Equipo(new Jugador("Rodri"), new Jugador("Flor"));
 	}
 
-
+	
 	@Test
 	public void testEquipoSeCreaConPuntajeNulo(){
-
-		Assert.assertEquals(equipo.obtenerPuntaje(),0);
-
+		Assert.assertEquals(0, this.equipo.obtenerPuntaje());
 	}
 	
 	@Test
-	public void testEquipoSeCreaConQuiero(){
-
-		Assert.assertTrue( equipo.devolverQuiero() );
-
+	public void testEquipoSeCreaConElQuiero(){
+		Assert.assertTrue(this.equipo.devolverQuiero());
 	}
 	
 	@Test
 	public void testEquipoModificaQuiero(){
-		equipo.tieneQuiero();
-		Assert.assertTrue( equipo.devolverQuiero() );		
-		equipo.noTieneQuiero();
-		Assert.assertFalse( equipo.devolverQuiero() );
+		this.equipo.tieneQuiero();
+		Assert.assertTrue(this.equipo.devolverQuiero());
 		
-
+		this.equipo.noTieneQuiero();
+		Assert.assertFalse(this.equipo.devolverQuiero());
 	}
-	@Test
 	
-	public void testEquipoSeCreaConCantidadCorrectaDeJugadores(){
-		
-		assertEquals(equipo.obtenerCantidadDeJugadores(),2);
-	}
-
 	@Test
 	public void testEquipoSumaPuntosCorrectamente(){
-	equipo.sumarPuntos(10);
-	assertEquals(equipo.obtenerPuntaje(),10);
-}
-
-
+		this.equipo.sumarPuntos(10);
+		Assert.assertEquals(this.equipo.obtenerPuntaje(),10);
+	}
+	
+	@Test
+	public void testEquipoGanaCon30Puntos(){
+		this.equipo.sumarPuntos(30);
+		Assert.assertTrue(this.equipo.ganoPartida());
+	}
+	
+	
+/** Prueba comentada porque el método esta comentado.
+ * 
+ * @Test
+	public void testEquipoSeCreaConCantidadCorrectaDeJugadores(){
+		Assert.assertEquals(this.equipo.obtenerCantidadDeJugadores(),2);
+	}
+ *	
+ */
+	
 }

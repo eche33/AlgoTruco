@@ -7,28 +7,44 @@ public class Partida {
 	private static Partida partida = null;
 	protected Equipo equipo1;
 	protected Equipo equipo2;
-	private ArrayList<Jugador> jugadoresOrdenados; //jugadores ordenados como estan sentados
 
+	
 	public Partida(Equipo equipo1, Equipo equipo2){
 		this.equipo1 = equipo1;
 		this.equipo2 = equipo2;
 	}
 
+	
 	public void iniciarPartida(){
-		while(! this.hayGanador()){
-
-			Ronda rondaActual = new Ronda(equipo1,equipo2,this.jugadoresOrdenados);
+		while( ! this.hayGanador()){
+			Ronda rondaActual = new Ronda(this.equipo1,this.equipo2);
 			rondaActual.iniciar();
 			this.cambiarMano();
 		}
 	}
 
-	private void cambiarMano() {
-		//busca la mano y reordena el ciclo de jugadores.
- }
+	private void cambiarMano(){
+	// Quizás convenga pasar como parámetro la lista de turnos, para facilitar el cambio de turnos. El problema es que eso
+	// tornaría horrible los códigos de las pruebas por no usar la partida y tener que hacer las listas de turnos. De esta
+	// manera, si arma los turnos Ronda, con pasarle sólo los 2 equipos ya está.
+	/* EL CÓDIGO ACÁ ABAJO FUNCIONA, PERO PUEDEN DARSE CUENTA DE QUE ES HORRIBLE. */
+		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
+		for (int i = 0; i < this.equipo1.obtenerCantidadDeJugadores(); i++){
+			jugadoresOrdenados.add(this.equipo1.obtenerJugador(i));
+			jugadoresOrdenados.add(this.equipo2.obtenerJugador(i));
+		}
+		for (int i = 0; i < (this.equipo1.obtenerCantidadDeJugadores()*2); i++){
+			if (jugadoresOrdenados.get(i).esMano()){
+				jugadoresOrdenados.get(i).setearNoEsMano();
+				if (i == 5){
+					jugadoresOrdenados.get(0).setearEsMano();
+				} else jugadoresOrdenados.get(i + 1).setearEsMano();
+			}
+		}
+	}
 
-	public boolean hayGanador() {
-		return((equipo1.ganoPartida())||(equipo2.ganoPartida()));
+	public boolean hayGanador(){
+		return((this.equipo1.ganoPartida())||(this.equipo2.ganoPartida()));
 	}
 
 }
