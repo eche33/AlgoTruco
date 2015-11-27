@@ -12,7 +12,7 @@ public class Carta {
 	}
 
 	public boolean esPalo(String palo) {
-		return ( (this.palo).name() == palo);
+		return ( this.obtenerPalo() == palo);
 	}
 
 	public String obtenerPalo() {
