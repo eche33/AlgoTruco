@@ -57,8 +57,11 @@ public class Jugador {
 		while (this.noTiroCarta){
 
 			switch(eleccion){
-			case 1: this.cantarEnvido(ronda);
-					break;
+			case 1: try{ //Hay que agregarle el funcionamiento del catch
+						this.cantarEnvido(ronda);
+						break;
+					} catch(NoSePuedeCantarEnvidoError error){};
+			
 			case 2: this.cantarTruco(ronda);
 					break;
 			case 3: this.irse(ronda);
@@ -104,9 +107,11 @@ public class Jugador {
 		switch (eleccion){
 		case 0: return true;
 		case 1: return false;
-		case 2: unaRonda.setearEnvido();
-				this.cantarEnvido(unaRonda);
-				return true;
+		case 2: try{ //Codear el catch
+					unaRonda.setearEnvido();
+					this.cantarEnvido(unaRonda);
+					return true;
+				} catch (NoSePuedeCantarEnvidoError error){}
 		case 3: unaRonda.setearEnvido();
 				this.cantarRealEnvido(unaRonda);
 				return true;

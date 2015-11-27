@@ -16,7 +16,7 @@ public class Partida {
 
 	
 	public void iniciarPartida(){
-		while(! this.hayGanador()){
+		while( ! this.hayGanador()){
 			Ronda rondaActual = new Ronda(this.equipo1,this.equipo2);
 			rondaActual.iniciar();
 			this.cambiarMano();
