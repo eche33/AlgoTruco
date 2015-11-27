@@ -19,12 +19,10 @@ public class ManoTests {
 	private Mano manoDePrueba3;
 	@Before
 	public void setUp() throws Exception {
-		ArrayList<Carta> cartas = new ArrayList<Carta>();
-		cartas.add(new Carta(1,Palos.ESPADA));
-		cartas.add( new Carta(1,Palos.BASTO));
-		cartas.add(new Carta(7,Palos.ESPADA));
-
-		this.manoDePrueba = new Mano(cartas);
+		this.manoDePrueba = new Mano(
+				new Carta(1,Palos.ESPADA), 
+				new Carta(1,Palos.BASTO),
+				new Carta(7,Palos.ESPADA));
 		
 		ArrayList<Carta> cartas2 = new ArrayList<Carta>();
 		cartas2.add(new Carta(1,Palos.COPA));

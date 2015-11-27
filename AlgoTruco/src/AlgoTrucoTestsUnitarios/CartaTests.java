@@ -17,8 +17,7 @@ public class CartaTests {
 	private Carta carta4;
 
 	@Before
-	public void setUp() throws Exception {
-		
+	public void setUp() throws Exception {		
 		 carta1 = new Carta( 6 , Palos.COPA );
 		 carta2 = new Carta( 1 , Palos.ESPADA );
 		 carta3 = new Carta( 10 , Palos.BASTO ); 
@@ -26,6 +25,18 @@ public class CartaTests {
 		 carta2.asignarPrioridad(1);
 	}
 
+	@Test
+	public void testAnchoDeEspadasMayorSeisCopa(){
+		AnchoEspada uno = new AnchoEspada();
+		Assert.assertTrue(uno.esMayorQue(carta1));
+	}
+		
+	@Test
+	public void testAnchoDeEspadasMayorSeisCopa(){
+		AnchoEspada uno = new AnchoEspada();
+		Assert.assertTrue(uno.esMayorQue(carta1));
+	}
+		
 	@Test
 	public void testCreaUnaCartaYGuardaValorCorrecto() {
 		Assert.assertEquals( carta1.obtenerValor() , 6 );

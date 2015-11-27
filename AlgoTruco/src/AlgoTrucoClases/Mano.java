@@ -10,6 +10,13 @@ public class Mano {
 		this.cartas = cartas;
 	}
 
+	public Mano(Carta carta, Carta carta2, Carta carta3) {
+		cartas = new ArrayList<Carta>();
+		cartas.add(carta);
+		cartas.add(carta2);
+		cartas.add(carta3);
+	}
+
 	public int cantidadDeCartas() {
 		return (this.cartas.size());
 	}
