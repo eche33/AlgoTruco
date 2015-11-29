@@ -74,9 +74,17 @@ public class Jugador {
 					break;
 			case 7: this.cantarFlor(ronda);
 					break;
+			case 8: try{
+						this.cantarRealEnvido(ronda);
+						break;
+					}catch(NoSePuedeCantarRealEnvidoError error){}
+			case 9:try{
+						this.cantarFaltaEnvido(ronda);
+						break;
+					}catch(NoSePuedeCantarFaltaEnvidoError error){}
+			}
 			}
 		}
-	}
 
 	private void cantarFlor(Ronda ronda){}
 
