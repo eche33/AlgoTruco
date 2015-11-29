@@ -16,7 +16,7 @@ public class Equipo{
 		this.puntajeDeEquipo = 0;
 		this.quiero = true;
 	}
-	
+
 	public Equipo(Jugador jugador1, Jugador jugador2){
 	// Constructor de equipo de dos jugadores.
 		jugador1.asignarEquipo(this);
@@ -27,7 +27,7 @@ public class Equipo{
 		this.puntajeDeEquipo = 0;
 		this.quiero = true;
 	}
-	
+
 	public Equipo(Jugador jugador1, Jugador jugador2, Jugador jugador3){
 	// Constructor de equipo de tres jugadores.
 		jugador1.asignarEquipo(this);
@@ -45,7 +45,7 @@ public class Equipo{
 	public int obtenerPuntaje(){
 		return (this.puntajeDeEquipo);
 	}
-	
+
 	public Jugador obtenerJugador(int indice){
 		return (this.jugadores.get(indice));
 	}
@@ -77,7 +77,7 @@ public class Equipo{
 	public boolean responderTruco(Ronda unaRonda){
 		return (this.jugadores.get(0).responderTruco(unaRonda));
 	}
-	
+
 	public boolean responderRetruco(Ronda unaRonda){
 		return (this.jugadores.get(0).responderRetruco(unaRonda));
 	}
@@ -92,7 +92,7 @@ public class Equipo{
 
 	public void sumarPuntosTanto(Ronda ronda){
 		int puntajeSumar = 0;
-		
+
 		if (ronda.obtenerTantoActual() == null){
 			puntajeSumar = 1;
 		}
@@ -106,20 +106,20 @@ public class Equipo{
 								 break;
 				case FALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
 								  break;
-				case ENVIDOENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-											  break;
+				/*case ENVIDOENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+											  break;*/
 				case ENVIDOENVIDOREALENVIDO: puntajeSumar = 7;
 											 break;
-				case ENVIDOENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-														break;
-				case ENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-										break;
+				/*case ENVIDOENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+														break;*/
+				/*case ENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+										break;*/
 				case ENVIDOREALENVIDO: puntajeSumar = 5;
 									   break;
-				case ENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-												  break;
-				case REALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-											break;
+				/*case ENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+												  break;*/
+				/*case REALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+											break;*/
 			}
 		}
 		this.sumarPuntos(puntajeSumar);
@@ -140,10 +140,14 @@ public class Equipo{
 		return (this.jugadores.size());
 	}
 
-	
+	public boolean responderRealEnvido(Ronda unaRonda) {
+		return (this.jugadores.get(0).responderRealEnvido(unaRonda));
+	}
+
+
 /** Igual que en otras clases, hay un método que sólo hicimos para probarse, como que no se usa en ninguna parte del
  *  código. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.
- *  
+ *
  *  public int obtenerCantidadDeJugadores(){
 		return (this.jugadores.size());
 	}
@@ -152,12 +156,12 @@ public class Equipo{
  *  Este otro método de acá abajo habíamos hablado de usarlo pero pensado en un principio para sumar todos los puntos al
  *  final de la ronda. Como ahora sumamos los puntos del envido ni bien lo jugamos y quedan sólo los del truco para
  *  después, creo que queda al pedo. Por las dudas lo dejo acá:
- *  
+ *
  *  public void actualizarPuntos(){
 		this.puntajeDeEquipo += this.puntosDeRonda;
 		this.puntosDeRonda = 0;
 	}
- *  
+ *
  */
-	
+
 }

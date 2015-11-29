@@ -8,7 +8,7 @@ public class Jugador {
 	private Equipo equipo;
 	private boolean noTiroCarta;
 
-	
+
 	public Jugador(String nombreDeJugador){
 		this.nombre = nombreDeJugador;
 		this.esMano = false;
@@ -16,7 +16,7 @@ public class Jugador {
 		this.noTiroCarta = true;
 	}
 
-	
+
 	public boolean esMano(){
 		return (this.esMano);
 	}
@@ -61,7 +61,7 @@ public class Jugador {
 						this.cantarEnvido(ronda);
 						break;
 					} catch(NoSePuedeCantarEnvidoError error){};
-			
+
 			case 2: this.cantarTruco(ronda);
 					break;
 			case 3: this.irse(ronda);
@@ -94,10 +94,23 @@ public class Jugador {
 			this.equipo.sumarPuntosTanto(unaRonda);
 		}
 	}
-	
+
 	private void cantarFaltaEnvido(Ronda unaRonda){}
 
-	private void cantarRealEnvido(Ronda unaRonda){}
+	private void cantarRealEnvido(Ronda unaRonda) throws NoSePuedeCantarRealEnvidoError{
+		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+			throw new NoSePuedeCantarRealEnvidoError();
+		}
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderRealEnvido(unaRonda)){
+			unaRonda.setearRealEnvido();
+			unaRonda.jugarTantos();
+		}
+		else {
+			this.equipo.sumarPuntosTanto(unaRonda);
+		}
+	}
+
 
 	public boolean responderEnvido(Ronda unaRonda){
 		int eleccion=0;
@@ -112,9 +125,11 @@ public class Jugador {
 					this.cantarEnvido(unaRonda);
 					return true;
 				} catch (NoSePuedeCantarEnvidoError error){}
-		case 3: unaRonda.setearEnvido();
-				this.cantarRealEnvido(unaRonda);
-				return true;
+		case 3: try{
+					unaRonda.setearEnvido();
+					this.cantarRealEnvido(unaRonda);
+					return true;
+				}catch (NoSePuedeCantarRealEnvidoError error){}
 		case 4: unaRonda.setearEnvido();
 				this.cantarFaltaEnvido(unaRonda);
 				return true;
@@ -207,9 +222,24 @@ public class Jugador {
 	public void setearEsMano(){
 		this.esMano = true;
 	}
-	
+
 	public void setearNoEsMano(){
 		this.esMano = false;
 	}
-	
-}
+
+
+	public boolean responderRealEnvido(Ronda unaRonda) {
+		int eleccion=0;
+
+		switch (eleccion){
+		case 0: return true;//Quiero
+		case 1: return false;//No quiero
+		case 4: unaRonda.setearRealEnvido();//Falta envido
+				this.cantarFaltaEnvido(unaRonda);
+				return true;
+		}
+		return false;
+	}
+	}
+
+
