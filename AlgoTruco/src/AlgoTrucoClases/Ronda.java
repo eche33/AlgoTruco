@@ -26,9 +26,9 @@ public class Ronda {
 		this.tantoActual = null;
 	}
 
-	
+
 	private void ordenarPrimeraRonda(Equipo equipo1, Equipo equipo2){
-	// Con este método no hay que pasarle los jugadores ordenados, los ordena solos.	
+	// Con este método no hay que pasarle los jugadores ordenados, los ordena solos.
 		jugadoresOrdenados = new ArrayList<Jugador>();
 		for (int i = 0; i < equipo1.obtenerCantidadDeJugadores(); i++){
 			this.jugadoresOrdenados.add(equipo1.obtenerJugador(i));
@@ -36,7 +36,7 @@ public class Ronda {
 		}
 		this.jugadoresOrdenados.get(0).setearEsMano();
 	}
-	
+
 	private void repartirCartas(){
 		ArrayList<Mano> manosARepartir = this.mazo.repartirVariasManos(jugadoresOrdenados.size());
 
@@ -84,15 +84,15 @@ public class Ronda {
 //		this.equipo2.actualizarPuntos();
 	}
 
-	private boolean rondaFinalizada(){
-		if (this.numeroVuelta > 3){ 		
+	public boolean rondaFinalizada(){
+		if (this.numeroVuelta > 3){
 			return true;
 		}
 		if ((this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
 			return true;
 		}
 		// Contemplar que se ganó antes de la tercera vuelta o alguno se fue al mazo.
-		if (this.equipo1==null || this.equipo2==null){
+		if ((this.equipo1==null) || (this.equipo2==null)){
 			return true;
 		}
 		return false;
@@ -107,8 +107,12 @@ public class Ronda {
 	}
 
 	public void irse(Equipo equipo){
-		// Debería cortar la partida (podría haber una variable rondaFinalizada que chequee por TRUE).
-		// También podría llamar a un método de sumar puntos por equipo, en base al atributo cantoActual.
+		if(equipo.equals(this.equipo1)){
+			this.equipo1 = null;
+		}
+		else{
+			this.equipo2 = null;
+		}
 	}
 
 	public Equipo obtenerEquipo1(){

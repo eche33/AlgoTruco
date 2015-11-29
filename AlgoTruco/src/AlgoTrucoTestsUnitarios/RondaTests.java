@@ -92,4 +92,11 @@ public class RondaTests {
 		assertEquals(this.ronda.obtenerTantoActual(),Tantos.FALTAENVIDO);
 	}
 
+	@Test
+	public void equipoSeVaAlMazoEntoncesRondaFinaliza(){
+		this.ronda.irse(equipo1);
+		//assertEquals(this.ronda.obtenerEquipo1(),null);
+		assertTrue(this.ronda.rondaFinalizada());
+	}
+
 }

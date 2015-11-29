@@ -82,6 +82,7 @@ public class Jugador {
 						this.cantarFaltaEnvido(ronda);
 						break;
 					}catch(NoSePuedeCantarFaltaEnvidoError error){}
+			case 10: this.equipo.irse(ronda);
 			}
 			}
 		}
