@@ -95,7 +95,19 @@ public class Jugador {
 		}
 	}
 
-	private void cantarFaltaEnvido(Ronda unaRonda){}
+	private void cantarFaltaEnvido(Ronda unaRonda) throws NoSePuedeCantarFaltaEnvidoError{
+		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+			throw new NoSePuedeCantarFaltaEnvidoError();
+		}
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderFaltaEnvido(unaRonda)){
+			unaRonda.setearFaltaEnvido();
+			unaRonda.jugarTantos();
+		}
+		else {
+			this.equipo.sumarPuntosTanto(unaRonda);
+		}
+	}
 
 	private void cantarRealEnvido(Ronda unaRonda) throws NoSePuedeCantarRealEnvidoError{
 		if(unaRonda.obtenerNumeroDeVuelta()!=1){
@@ -130,9 +142,11 @@ public class Jugador {
 					this.cantarRealEnvido(unaRonda);
 					return true;
 				}catch (NoSePuedeCantarRealEnvidoError error){}
-		case 4: unaRonda.setearEnvido();
+		case 4: try{
+				unaRonda.setearEnvido();
 				this.cantarFaltaEnvido(unaRonda);
 				return true;
+				}catch (NoSePuedeCantarFaltaEnvidoError error){}
 		}
 		return false;
 	}
@@ -234,9 +248,22 @@ public class Jugador {
 		switch (eleccion){
 		case 0: return true;//Quiero
 		case 1: return false;//No quiero
-		case 4: unaRonda.setearRealEnvido();//Falta envido
+		case 2: try{				//Falta envido
+				unaRonda.setearRealEnvido();
 				this.cantarFaltaEnvido(unaRonda);
 				return true;
+				}catch (NoSePuedeCantarFaltaEnvidoError error){}
+		}
+		return false;
+	}
+
+
+	public boolean responderFaltaEnvido(Ronda unaRonda) {
+		int eleccion=0;
+
+		switch (eleccion){
+		case 0: return true;//Quiero
+		case 1: return false;//No quiero
 		}
 		return false;
 	}
