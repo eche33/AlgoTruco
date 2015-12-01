@@ -87,7 +87,20 @@ public class Jugador {
 			}
 		}
 
-	private void cantarFlor(Ronda ronda){}
+	private void cantarFlor(Ronda unaRonda){
+
+		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+			throw new NoSePuedeCantarFlorError();
+		}
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderFlor(unaRonda)){
+			unaRonda.setearFlor();
+			unaRonda.jugarFlor();
+		}
+		else {
+			this.equipo.sumarPuntos(3);
+		}
+	}
 
 	private void cantarEnvido(Ronda unaRonda) throws NoSePuedeCantarEnvidoError{
 
@@ -273,6 +286,18 @@ public class Jugador {
 		switch (eleccion){
 		case 0: return true;//Quiero
 		case 1: return false;//No quiero
+		}
+		return false;
+	}
+
+
+	public boolean responderFlor(Ronda unaRonda) {
+		int eleccion = 0;
+
+		switch(eleccion){
+		case 0: return false;//No tiene flor
+		case 1: return true;//Tiene Flor
+		case 2:
 		}
 		return false;
 	}

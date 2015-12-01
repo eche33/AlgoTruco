@@ -148,6 +148,10 @@ public class Equipo{
 		return (this.jugadores.get(0).responderFaltaEnvido(unaRonda));
 	}
 
+	public boolean responderFlor(Ronda unaRonda) {
+		return (this.jugadores.get(0).responderFlor(unaRonda));
+	}
+
 
 /** Igual que en otras clases, hay un método que sólo hicimos para probarse, como que no se usa en ninguna parte del
  *  código. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.
