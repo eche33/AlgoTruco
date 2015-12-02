@@ -82,11 +82,31 @@ public class Jugador {
 						this.cantarFaltaEnvido(ronda);
 						break;
 					}catch(NoSePuedeCantarFaltaEnvidoError error){}
+			case 10: this.equipo.irse(ronda);
 			}
 			}
 		}
 
-	private void cantarFlor(Ronda ronda){}
+	private void cantarFlor(Ronda unaRonda){
+
+		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+			throw new NoSePuedeCantarFlorError();
+		}
+
+		if (unaRonda.obtenerEquipoRival(this.equipo).decidirFlor(unaRonda)){
+			unaRonda.setearFlor();
+			if(this.equipo.responderFlor(unaRonda)){
+				unaRonda.setearContraFlor();
+				unaRonda.jugarFlor();
+			}else{
+				this.equipo.sumarPuntosFlor(unaRonda);
+
+			}
+		}
+		else {
+			this.equipo.sumarPuntos(3);
+		}
+	}
 
 	private void cantarEnvido(Ronda unaRonda) throws NoSePuedeCantarEnvidoError{
 
@@ -272,6 +292,32 @@ public class Jugador {
 		switch (eleccion){
 		case 0: return true;//Quiero
 		case 1: return false;//No quiero
+		}
+		return false;
+	}
+
+
+	public boolean decidirFlor(Ronda unaRonda) {
+		int eleccion = 0;
+
+		switch(eleccion){
+		case 0: return false;//No tiene flor
+		case 1: return true;//Tiene Flor
+		case 2: this.cantarContraFlorAlResto();
+				return true;
+		}
+		return false;
+	}
+
+
+	public boolean responderFlor() {
+		int eleccion = 0;
+
+		switch(eleccion){
+		case 0: return true; //Quiero
+		case 1: return false; //No quiero
+		case 2: this.cantarContraFlorAlResto();
+				return true;
 		}
 		return false;
 	}
