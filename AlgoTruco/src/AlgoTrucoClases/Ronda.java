@@ -12,6 +12,7 @@ public class Ronda {
 	private Mesa mesa;
 	private Cantos cantoActual;
 	private Tantos tantoActual;
+	private Flor florActual;
 
 
 	public Ronda(Equipo equipo1, Equipo equipo2){
@@ -24,6 +25,7 @@ public class Ronda {
 		this.mesa = new Mesa();
 		this.cantoActual = null;
 		this.tantoActual = null;
+		this.florActual = null;
 	}
 
 
@@ -218,6 +220,22 @@ public class Ronda {
 			}
 		}
 		return equipoMano;
+	}
+
+
+	public void setearFlor() {
+		if (this.florActual == null){
+			florActual = Flor.FLOR;
+		}
+
+	}
+
+
+	public void setearContraFlor() {
+		if(this.florActual == Flor.FLOR){
+			florActual = Flor.CONTRAFLOR;
+		}
+
 	}
 
 }

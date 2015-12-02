@@ -148,8 +148,12 @@ public class Equipo{
 		return (this.jugadores.get(0).responderFaltaEnvido(unaRonda));
 	}
 
+	public boolean decidirFlor(Ronda unaRonda) {
+		return (this.jugadores.get(0).decidirFlor(unaRonda));
+	}
+
 	public boolean responderFlor(Ronda unaRonda) {
-		return (this.jugadores.get(0).responderFlor(unaRonda));
+		return (this.jugadores.get(0).responderFlor());
 	}
 
 

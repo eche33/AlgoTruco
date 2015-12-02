@@ -93,9 +93,15 @@ public class Jugador {
 			throw new NoSePuedeCantarFlorError();
 		}
 
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderFlor(unaRonda)){
+		if (unaRonda.obtenerEquipoRival(this.equipo).decidirFlor(unaRonda)){
 			unaRonda.setearFlor();
-			unaRonda.jugarFlor();
+			if(this.equipo.responderFlor(unaRonda)){
+				unaRonda.setearContraFlor();
+				unaRonda.jugarFlor();
+			}else{
+				this.equipo.sumarPuntosFlor(unaRonda);
+
+			}
 		}
 		else {
 			this.equipo.sumarPuntos(3);
@@ -291,13 +297,27 @@ public class Jugador {
 	}
 
 
-	public boolean responderFlor(Ronda unaRonda) {
+	public boolean decidirFlor(Ronda unaRonda) {
 		int eleccion = 0;
 
 		switch(eleccion){
 		case 0: return false;//No tiene flor
 		case 1: return true;//Tiene Flor
-		case 2:
+		case 2: this.cantarContraFlorAlResto();
+				return true;
+		}
+		return false;
+	}
+
+
+	public boolean responderFlor() {
+		int eleccion = 0;
+
+		switch(eleccion){
+		case 0: return true; //Quiero
+		case 1: return false; //No quiero
+		case 2: this.cantarContraFlorAlResto();
+				return true;
 		}
 		return false;
 	}
