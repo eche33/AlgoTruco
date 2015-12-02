@@ -156,6 +156,25 @@ public class Equipo{
 		return (this.jugadores.get(0).responderFlor());
 	}
 
+	public void sumarPuntosFlor(Ronda unaRonda) {
+		int puntajeSumar = 0;
+
+		if (unaRonda.obtenerFlorActual() == null){
+			puntajeSumar = 3;
+		}
+		else {
+			switch(unaRonda.obtenerFlorActual()){
+			case FLOR: puntajeSumar = 4;
+					break;
+			case CONTRAFLOR: puntajeSumar = 6;
+					break;
+			case CONTRAFLORALRESTO: puntajeSumar = this.calculoFaltaEnvido(unaRonda.obtenerEquipoRival(this));
+					break;
+			}
+		}
+
+	}
+
 
 /** Igual que en otras clases, hay un método que sólo hicimos para probarse, como que no se usa en ninguna parte del
  *  código. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.

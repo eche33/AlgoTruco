@@ -87,7 +87,7 @@ public class Jugador {
 			}
 		}
 
-	private void cantarFlor(Ronda unaRonda){
+	private void cantarFlor(Ronda unaRonda) throws NoSePuedeCantarFlorError{
 
 		if(unaRonda.obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarFlorError();
@@ -104,7 +104,7 @@ public class Jugador {
 			}
 		}
 		else {
-			this.equipo.sumarPuntos(3);
+			this.equipo.sumarPuntosFlor(unaRonda);
 		}
 	}
 
@@ -302,8 +302,8 @@ public class Jugador {
 
 		switch(eleccion){
 		case 0: return false;//No tiene flor
-		case 1: return true;//Tiene Flor
-		case 2: this.cantarContraFlorAlResto();
+		case 1: unaRonda.setearFlor();
+				this.cantarContraFlorAlResto();
 				return true;
 		}
 		return false;

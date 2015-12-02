@@ -238,4 +238,28 @@ public class Ronda {
 
 	}
 
+
+	public void jugarFlor() {
+		int florGanadora = 0;
+		Equipo equipoGanador = null;
+		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
+			Jugador jugadorActual = this.jugadoresOrdenados.get(i);
+			if(jugadorActual.obtenerFlor()>florGanadora){
+				florGanadora = jugadorActual.obtenerEnvido();
+				equipoGanador = jugadorActual.obtenerEquipo();
+			}else{
+				if(jugadorActual.obtenerFlor()==florGanadora){
+					equipoGanador = this.obtenerEquipoMano();
+				}
+			}
+		}
+		equipoGanador.sumarPuntosFlor(this);
+
+	}
+
+
+	public Flor obtenerFlorActual() {
+		return (this.florActual);
+	}
+
 }
