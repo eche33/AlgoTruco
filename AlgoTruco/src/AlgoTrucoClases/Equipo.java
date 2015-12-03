@@ -74,20 +74,20 @@ public class Equipo{
 		unaRonda.irse(this);
 	}
 
-	public boolean responderTruco(Ronda unaRonda){
-		return (this.jugadores.get(0).responderTruco(unaRonda));
+	public boolean responderTruco(Vuelta vuelta){
+		return (this.jugadores.get(0).responderTruco(vuelta));
 	}
 
-	public boolean responderRetruco(Ronda unaRonda){
-		return (this.jugadores.get(0).responderRetruco(unaRonda));
+	public boolean responderRetruco(Vuelta vuelta){
+		return (this.jugadores.get(0).responderRetruco(vuelta));
 	}
 
-	public boolean responderValeCuatro(Ronda unaRonda){
-		return (this.jugadores.get(0).responderValeCuatro(unaRonda));
+	public boolean responderValeCuatro(Vuelta vuelta){
+		return (this.jugadores.get(0).responderValeCuatro(vuelta));
 	}
 
-	public boolean responderEnvido(Ronda unaRonda){
-		return (this.jugadores.get(0).responderEnvido(unaRonda));
+	public boolean responderEnvido(Vuelta vuelta){
+		return (this.jugadores.get(0).responderEnvido(vuelta));
 	}
 
 	public void sumarPuntosTanto(Ronda ronda){
@@ -140,20 +140,20 @@ public class Equipo{
 		return (this.jugadores.size());
 	}
 
-	public boolean responderRealEnvido(Ronda unaRonda) {
-		return (this.jugadores.get(0).responderRealEnvido(unaRonda));
+	public boolean responderRealEnvido(Vuelta vuelta) {
+		return (this.jugadores.get(0).responderRealEnvido(vuelta));
 	}
 
-	public boolean responderFaltaEnvido(Ronda unaRonda) {
-		return (this.jugadores.get(0).responderFaltaEnvido(unaRonda));
+	public boolean responderFaltaEnvido(Vuelta vuelta) {
+		return (this.jugadores.get(0).responderFaltaEnvido(vuelta));
 	}
 
-	public boolean decidirFlor(Ronda unaRonda) {
-		return (this.jugadores.get(0).decidirFlor(unaRonda));
+	public boolean decidirFlor(Vuelta vuelta) {
+		return (this.jugadores.get(0).decidirFlor(vuelta));
 	}
 
-	public boolean responderFlor(Ronda unaRonda) {
-		return (this.jugadores.get(0).responderFlor(unaRonda));
+	public boolean responderFlor(Vuelta vuelta) {
+		return (this.jugadores.get(0).responderFlor(vuelta));
 	}
 
 	public void sumarPuntosFlor(Ronda unaRonda) {
@@ -176,8 +176,8 @@ public class Equipo{
 
 	}
 
-	public boolean responderContraFlorAlResto(Ronda unaRonda) {
-		return(this.jugadores.get(0).responderContraFlorAlResto(unaRonda));
+	public boolean responderContraFlorAlResto(Vuelta vuelta) {
+		return(this.jugadores.get(0).responderContraFlorAlResto(vuelta));
 	}
 
 
