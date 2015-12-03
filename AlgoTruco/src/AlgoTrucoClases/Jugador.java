@@ -72,8 +72,10 @@ public class Jugador {
 					break;
 			case 6: this.tirarCarta(this.mano.obtenerCarta(2), ronda);
 					break;
-			case 7: this.cantarFlor(ronda);
-					break;
+			case 7: try{
+						this.cantarFlor(ronda);
+						break;
+					}catch(NoSePuedeCantarFlorError error){};
 			case 8: try{
 						this.cantarRealEnvido(ronda);
 						break;
@@ -87,7 +89,7 @@ public class Jugador {
 			}
 		}
 
-	private void cantarFlor(Ronda unaRonda){
+	private void cantarFlor(Ronda unaRonda) throws NoSePuedeCantarFlorError{
 
 		if(unaRonda.obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarFlorError();
@@ -96,7 +98,6 @@ public class Jugador {
 		if (unaRonda.obtenerEquipoRival(this.equipo).decidirFlor(unaRonda)){
 			unaRonda.setearFlor();
 			if(this.equipo.responderFlor(unaRonda)){
-				unaRonda.setearContraFlor();
 				unaRonda.jugarFlor();
 			}else{
 				this.equipo.sumarPuntosFlor(unaRonda);
@@ -104,7 +105,7 @@ public class Jugador {
 			}
 		}
 		else {
-			this.equipo.sumarPuntos(3);
+			this.equipo.sumarPuntosFlor(unaRonda);
 		}
 	}
 
@@ -302,22 +303,42 @@ public class Jugador {
 
 		switch(eleccion){
 		case 0: return false;//No tiene flor
-		case 1: return true;//Tiene Flor
-		case 2: this.cantarContraFlorAlResto();
+		case 1: return true;//ContraFlor
+		case 2: this.cantarContraFlorAlResto(unaRonda);
 				return true;
 		}
 		return false;
 	}
 
 
-	public boolean responderFlor() {
+	private void cantarContraFlorAlResto(Ronda unaRonda) {
+		if (unaRonda.obtenerEquipoRival(this.equipo).responderContraFlorAlResto(unaRonda)){
+			unaRonda.setearContraFlorAlResto();
+		}
+
+	}
+
+
+	public boolean responderFlor(Ronda unaRonda) {
 		int eleccion = 0;
 
 		switch(eleccion){
-		case 0: return true; //Quiero
+		case 0: unaRonda.setearContraFlor();
+				return true; //Quiero
 		case 1: return false; //No quiero
-		case 2: this.cantarContraFlorAlResto();
+		case 2: this.cantarContraFlorAlResto(unaRonda);
 				return true;
+		}
+		return false;
+	}
+
+
+	public boolean responderContraFlorAlResto(Ronda unaRonda) {
+		int eleccion = 0;
+
+		switch(eleccion){
+		case 1: return true;//Quiero
+		case 2: return false;//No quiero
 		}
 		return false;
 	}
