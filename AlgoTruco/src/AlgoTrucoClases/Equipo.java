@@ -172,6 +172,7 @@ public class Equipo{
 					break;
 			}
 		}
+		this.sumarPuntos(puntajeSumar);
 
 	}
 

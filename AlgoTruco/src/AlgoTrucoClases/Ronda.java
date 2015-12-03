@@ -264,8 +264,9 @@ public class Ronda {
 
 
 	public void setearContraFlorAlResto() {
-		this.florActual = Flor.CONTRAFLORALRESTO;
-
+		if(this.florActual == Flor.FLOR || this.florActual == Flor.CONTRAFLOR){
+			this.florActual = Flor.CONTRAFLORALRESTO;
+		}
 	}
 
 }
