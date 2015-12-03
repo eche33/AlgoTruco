@@ -13,6 +13,7 @@ public class Ronda {
 	private Cantos cantoActual;
 	private Tantos tantoActual;
 	private Flor florActual;
+	private int ganadores;
 
 
 	public Ronda(Equipo equipo1, Equipo equipo2){
@@ -26,6 +27,7 @@ public class Ronda {
 		this.cantoActual = null;
 		this.tantoActual = null;
 		this.florActual = null;
+		this.ganadores = 0;
 	}
 
 
@@ -77,7 +79,7 @@ public class Ronda {
 		for(int i = 0; i<3 ; i++){
 			if(! this.rondaFinalizada()){ // Puede terminarse en cualquier momento de una vuelta.
 				Vuelta vuelta = new Vuelta(this);
-				vuelta.jugar();
+				ganadores += vuelta.jugar();
 				this.numeroVuelta += 1;
 				this.ordenarTurnos(vuelta.obtenerJugadorQueTiroCartaMasALta());
 			}
@@ -93,7 +95,9 @@ public class Ronda {
 		if ((this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
 			return true;
 		}
-		// Contemplar que se ganó antes de la tercera vuelta o alguno se fue al mazo.
+		if (numeroVuelta > 2 && ganadores != 0){
+			return true;
+		}
 		if ((this.equipo1==null) || (this.equipo2==null)){
 			return true;
 		}
