@@ -9,7 +9,6 @@ public class Ronda {
 	private Equipo equipo2;
 	private Mazo mazo;
 	private ArrayList<Jugador> jugadoresOrdenados; // Ordenados de acuerdo a quien comienza la primera vuelta.
-	private Mesa mesa;
 	private Cantos cantoActual;
 	private Tantos tantoActual;
 	private Flor florActual;
@@ -23,7 +22,6 @@ public class Ronda {
 		this.equipo1.tieneQuiero();
 		this.equipo2.tieneQuiero();
 		this.ordenarPrimeraRonda(equipo1, equipo2);
-		this.mesa = new Mesa();
 		this.cantoActual = null;
 		this.tantoActual = null;
 		this.florActual = null;
@@ -106,10 +104,6 @@ public class Ronda {
 
 	public ArrayList<Jugador> obtenerJugadoresOrdenados(){
 		return (this.jugadoresOrdenados);
-	}
-
-	public Mesa obtenerMesa(){
-		return (this.mesa);
 	}
 
 	public void irse(Equipo equipo){
