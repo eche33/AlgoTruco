@@ -153,7 +153,7 @@ public class Equipo{
 	}
 
 	public boolean responderFlor(Ronda unaRonda) {
-		return (this.jugadores.get(0).responderFlor());
+		return (this.jugadores.get(0).responderFlor(unaRonda));
 	}
 
 	public void sumarPuntosFlor(Ronda unaRonda) {
@@ -173,6 +173,10 @@ public class Equipo{
 			}
 		}
 
+	}
+
+	public boolean responderContraFlorAlResto(Ronda unaRonda) {
+		return(this.jugadores.get(0).responderContraFlorAlResto(unaRonda));
 	}
 
 

@@ -262,4 +262,10 @@ public class Ronda {
 		return (this.florActual);
 	}
 
+
+	public void setearContraFlorAlResto() {
+		this.florActual = Flor.CONTRAFLORALRESTO;
+
+	}
+
 }
