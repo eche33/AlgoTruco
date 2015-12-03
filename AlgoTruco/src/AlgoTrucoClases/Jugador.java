@@ -46,7 +46,7 @@ public class Jugador {
 	}
 
 	public void tirarCarta(Carta carta, Vuelta vuelta){
-		vuelta.obtenerRonda().obtenerMesa().tirarCarta(carta);
+		vuelta.obtenerMesa().tirarCarta(carta, this);
 		this.mano.borrarCarta(carta);
 		this.noTiroCarta = false;
 	}

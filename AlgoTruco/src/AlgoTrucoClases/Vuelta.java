@@ -4,15 +4,19 @@ import java.util.Iterator;
 
 public class Vuelta {
 
-	private Jugador jugadorQueTiroLaCartaMasAlta;
 	private boolean vueltaEnCurso;
 	private Ronda ronda;
-
+	private Mesa mesa;
 
 	public Vuelta(Ronda ronda){
 		this.ronda = ronda;
-		this.jugadorQueTiroLaCartaMasAlta = null;
 		this.vueltaEnCurso = true;
+		this.mesa = new Mesa();
+	}
+
+
+	public Mesa obtenerMesa(){
+		return (this.mesa);
 	}
 
 	public void iniciar(){
@@ -25,11 +29,7 @@ public class Vuelta {
 	}
 
 	public Jugador obtenerJugadorQueTiroCartaMasALta(){
-		return (this.jugadorQueTiroLaCartaMasAlta);
-	}
-
-	public Mesa obtenerMesa(){
-		return (this.ronda.obtenerMesa());
+		return (this.mesa.obtenerJugadorQueTiroCartaMasAlta());
 	}
 
 	public boolean estaEnCurso(){ //Chequear que no se haya ganado la ronda.
@@ -55,7 +55,4 @@ public class Vuelta {
 		return this.ronda;
 	}
 
-
 }
-
-
