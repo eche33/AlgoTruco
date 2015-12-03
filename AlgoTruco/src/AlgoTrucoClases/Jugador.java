@@ -84,7 +84,6 @@ public class Jugador {
 						this.cantarFaltaEnvido(ronda);
 						break;
 					}catch(NoSePuedeCantarFaltaEnvidoError error){}
-			case 10: this.equipo.irse(ronda);
 			}
 			}
 		}
@@ -96,15 +95,18 @@ public class Jugador {
 		}
 
 		if (unaRonda.obtenerEquipoRival(this.equipo).decidirFlor(unaRonda)){
-			unaRonda.setearFlor();
-			if(this.equipo.responderFlor(unaRonda)){
+			if(unaRonda.obtenerFlorActual()==Flor.CONTRAFLORALRESTO){
 				unaRonda.jugarFlor();
 			}else{
-				this.equipo.sumarPuntosFlor(unaRonda);
+				unaRonda.setearFlor();
+				if(this.equipo.responderFlor(unaRonda)){
+				unaRonda.jugarFlor();
+				}else{
+					this.equipo.sumarPuntosFlor(unaRonda);
 
+				}
 			}
-		}
-		else {
+		}else {
 			this.equipo.sumarPuntosFlor(unaRonda);
 		}
 	}
