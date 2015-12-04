@@ -22,16 +22,23 @@ public class Mesa {
 
 	public Jugador obtenerJugadorQueTiroCartaMasAlta(){
 		int indicefinal;
+		boolean parda = true;
+		Carta cartaAlta = cartasTiradas.get(0);
 
 		for (Carta carta1 : cartasTiradas){
-			for (Carta carta2 : cartasTiradas){
-				if (carta1.jugarContra(carta2) > 0){
-					indicefinal = cartasTiradas.indexOf(carta1);
-				}
-				else indicefinal
+			if (carta1.jugarContra(cartaAlta) > 0){
+				cartaAlta = carta1;
+				parda = false;
+			}
+			if (carta1.jugarContra(cartaAlta) == 0){
+				parda = true;
 			}
 		}
+		if (parda){
+			return null;
+		}
 
+		indicefinal = cartasTiradas.indexOf(carta1);
 		return jugadores.get(indicefinal);
 	}
 
