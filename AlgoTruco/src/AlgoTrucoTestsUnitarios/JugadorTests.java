@@ -19,18 +19,18 @@ public class JugadorTests {
 	private Mano mano;
 	private Ronda ronda;
 
-	
+
 	@Before
 	public void setUp() throws Exception {
 		jugador = new Jugador("Rodrigo");
 		this.mano = new Mano(new AnchoEspada(), new AnchoBasto(), new SieteEspada());
-		
+
 		Equipo equipo1 = new Equipo(new Jugador("Ailu"), new Jugador("Rodri"));
 		Equipo equipo2 = new Equipo(new Jugador("Flor"), new Jugador("Cris"));
 		this.ronda = new Ronda(equipo1, equipo2);
 	}
 
-	
+
 	@Test
 	public void testJugadorSeCreaCorrectamente() {
 		assertFalse(jugador.esMano());
@@ -58,7 +58,7 @@ public class JugadorTests {
 	}
 
 	@Test
-	public void testJugar(){
+	public void tirarPrimerCarta(){
 
 	}
 

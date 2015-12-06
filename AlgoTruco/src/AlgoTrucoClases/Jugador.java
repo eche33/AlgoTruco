@@ -45,7 +45,7 @@ public class Jugador {
 		return (numeroDeVuelta == 1);
 	}
 
-	public void tirarCarta(Carta carta, Vuelta vuelta){
+	private void tirarCarta(Carta carta, Vuelta vuelta){
 		vuelta.obtenerMesa().tirarCarta(carta, this);
 		this.mano.borrarCarta(carta);
 		this.noTiroCarta = false;
@@ -66,11 +66,11 @@ public class Jugador {
 					break;
 			case 3: this.irse(vuelta);
 					break;
-			case 4: this.tirarCarta(this.mano.obtenerCarta(0), vuelta);
+			case 4: this.tirarPrimerCarta(vuelta);
 					break;
-			case 5: this.tirarCarta(this.mano.obtenerCarta(1), vuelta);
+			case 5: this.tirarSegundaCarta(vuelta);
 					break;
-			case 6: this.tirarCarta(this.mano.obtenerCarta(2), vuelta);
+			case 6: this.tirarTercerCarta(vuelta);
 					break;
 			case 7: try{
 						this.cantarFlor(vuelta);
@@ -87,6 +87,24 @@ public class Jugador {
 			}
 			}
 		}
+
+	public void tirarTercerCarta(Vuelta vuelta) {
+		this.tirarCarta(this.mano.obtenerCarta(2), vuelta);
+
+	}
+
+
+	public void tirarSegundaCarta(Vuelta vuelta) {
+		this.tirarCarta(this.mano.obtenerCarta(1), vuelta);
+
+	}
+
+
+	public void tirarPrimerCarta(Vuelta vuelta) {
+		this.tirarCarta(this.mano.obtenerCarta(0), vuelta);
+
+	}
+
 
 	private void cantarFlor(Vuelta vuelta) throws NoSePuedeCantarFlorError{
 

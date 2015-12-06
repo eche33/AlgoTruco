@@ -34,7 +34,6 @@ public class RondaTests {
 	public void testRondaSeCreaCorrectamente(){
 		Assert.assertTrue(this.ailu.esMano());
 		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().size(),4);
-		Assert.assertEquals(this.ronda.obtenerMesa().obtenerCartasEnMesa().size(),0);
 	}
 
 	@Test
