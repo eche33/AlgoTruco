@@ -76,7 +76,7 @@ public class Ronda {
 
 		for(int i = 0; i<3 ; i++){
 			if(! this.rondaFinalizada()){ // Puede terminarse en cualquier momento de una vuelta.
-				Vuelta vuelta = new Vuelta(this);
+				Vuelta vuelta = this.crearNuevaVuelta(this);
 				ganadores += vuelta.jugar();
 				this.numeroVuelta += 1;
 				this.ordenarTurnos(vuelta.obtenerJugadorQueTiroCartaMasALta());
@@ -85,6 +85,12 @@ public class Ronda {
 //		this.equipo1.actualizarPuntos();				Esto métodos no serían necesarios.
 //		this.equipo2.actualizarPuntos();
 	}
+
+	public Vuelta crearNuevaVuelta(Ronda ronda) {
+		Vuelta nueva = new Vuelta(ronda);
+		return nueva;
+	}
+
 
 	public boolean rondaFinalizada(){
 		if (this.numeroVuelta > 3){
