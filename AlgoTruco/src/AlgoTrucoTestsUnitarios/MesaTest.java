@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import AlgoTrucoCartas.AnchoBasto;
 import AlgoTrucoCartas.AnchoEspada;
+import AlgoTrucoCartas.Cinco;
 import AlgoTrucoCartas.Cuatro;
 import AlgoTrucoCartas.Rey;
 import AlgoTrucoCartas.Seis;
@@ -124,6 +125,29 @@ public class MesaTest {
 
 
 		assertEquals(mesa.obtenerJugadorQueTiroCartaMasAlta().obtenerNombre(),"Ailu");
+	}
+
+	@Test
+	public void obtenerJugadorQueTiroLaCartaMasAltaDevuelveNullPorPardas(){
+		Jugador rodri = new Jugador("Rodri");
+		Jugador ailu= new Jugador("Ailu");
+		Jugador cris= new Jugador("Cris");
+		Jugador flor= new Jugador("Flor");
+
+		Mesa mesa = new Mesa();
+
+		Carta seis= new Seis(Palos.ESPADA);
+		Carta cinco = new Cinco(Palos.ESPADA);
+		Carta cuatro = new Cuatro(Palos.BASTO);
+		Carta seis2 = new Seis(Palos.BASTO);
+
+		mesa.tirarCarta(cuatro, flor);
+		mesa.tirarCarta(seis2, ailu);
+		mesa.tirarCarta(cinco, cris);
+		mesa.tirarCarta(seis, rodri);
+
+
+		assertEquals(mesa.obtenerJugadorQueTiroCartaMasAlta(),null);
 	}
 
 

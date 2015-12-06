@@ -22,22 +22,9 @@ public class Mesa {
 	}
 
 	public Jugador obtenerJugadorQueTiroCartaMasAlta(){
-		int indicefinal;
 		boolean parda = true;
 		Carta cartaAlta = cartasTiradas.get(0);
-
-		/*for (Carta carta1 : cartasTiradas){
-		if (carta1.jugarContra(cartaAlta) > 0){
-			cartaAlta = carta1;
-			parda = false;
-		}
-		if (carta1.jugarContra(cartaAlta) == 0){
-			parda = true;
-		}
-	}
-	if (parda){
-		return null;
-	}*/
+		Jugador jugador = null;
 		int posicion = 0;
 		for (int i=0; i<this.cartasTiradas.size(); i++){
 			Carta cartaActual = cartasTiradas.get(i);
@@ -51,8 +38,12 @@ public class Mesa {
 				}
 			}
 		}
+		jugador = jugadores.get(posicion);
+		if (parda){
+			jugador = null;
+		}
 
-		return jugadores.get(posicion);
+		return jugador;
 	}
 
 
