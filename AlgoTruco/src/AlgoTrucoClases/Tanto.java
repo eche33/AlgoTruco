@@ -1,14 +1,10 @@
-package AlgoTrucoTantos;
+package AlgoTrucoClases;
 
 import java.util.ArrayList;
 
-import AlgoTrucoClases.Equipo;
-import AlgoTrucoClases.Jugador;
-import AlgoTrucoClases.Ronda;
+public abstract class Tanto {
 
-public class Tanto {
-
-	private int puntosQueOtorga;
+	protected int puntosQueOtorga;
 
 public Tanto(){
 }
@@ -28,6 +24,10 @@ public Tanto(){
 			}
 		}
 		return (equipoGanador);
+	}
+
+	public int obtenerPuntos(){
+		return (this.puntosQueOtorga);
 	}
 }
 
