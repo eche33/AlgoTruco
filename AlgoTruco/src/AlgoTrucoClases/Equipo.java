@@ -90,7 +90,7 @@ public class Equipo{
 		return (this.jugadores.get(0).responderEnvido(vuelta));
 	}
 
-	public void sumarPuntosTanto(Ronda ronda){
+	/*public void sumarPuntosTanto(Ronda ronda){
 		int puntajeSumar = 0;
 
 		if (ronda.obtenerTantoActual() == null){
@@ -106,24 +106,24 @@ public class Equipo{
 								 break;
 				case FALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
 								  break;
-				/*case ENVIDOENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-											  break;*/
+				case ENVIDOENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+											  break;
 				case ENVIDOENVIDOREALENVIDO: puntajeSumar = 7;
 											 break;
-				/*case ENVIDOENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-														break;*/
-				/*case ENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-										break;*/
+				case ENVIDOENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+														break;
+				case ENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+										break;
 				case ENVIDOREALENVIDO: puntajeSumar = 5;
 									   break;
-				/*case ENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-												  break;*/
-				/*case REALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
-											break;*/
+				case ENVIDOREALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+												  break;
+				case REALENVIDOFALTAENVIDO: puntajeSumar = this.calculoFaltaEnvido(ronda.obtenerEquipoRival(this));
+											break;
 			}
 		}
 		this.sumarPuntos(puntajeSumar);
-	}
+	}*/
 
 
 	public int obtenerCantidadDeJugadores(){
@@ -146,7 +146,7 @@ public class Equipo{
 		return (this.jugadores.get(0).responderFlor(vuelta));
 	}
 
-	public void sumarPuntosFlor(Ronda unaRonda) {
+	/*public void sumarPuntosFlor(Ronda unaRonda) {
 		int puntajeSumar = 0;
 
 		if (unaRonda.obtenerFlorActual() == null){
@@ -164,7 +164,7 @@ public class Equipo{
 		}
 		this.sumarPuntos(puntajeSumar);
 
-	}
+	}*/
 
 	public boolean responderContraFlorAlResto(Vuelta vuelta) {
 		return(this.jugadores.get(0).responderContraFlorAlResto(vuelta));

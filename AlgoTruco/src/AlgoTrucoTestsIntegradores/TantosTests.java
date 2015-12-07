@@ -79,6 +79,16 @@ public class TantosTests {
 
 	}
 
+	@Test
+	public void sumarPuntosDeEquipoSumaCorrectamente(){
+		this.rondaEquiposDeADos.setearEnvido();
+		this.rondaEquiposDeADos.sumarPuntos(this.equipoAiluRodri);
+		this.rondaEquiposDeADos.sumarPuntos(this.equipoFlorCris);
+
+		assertEquals(this.equipoAiluRodri.obtenerPuntaje(),2);
+		assertEquals(this.equipoFlorCris.obtenerPuntaje(),0);
+	}
+
 
 
 

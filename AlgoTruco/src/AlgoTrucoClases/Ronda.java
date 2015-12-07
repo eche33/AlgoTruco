@@ -89,8 +89,8 @@ public class Ronda {
 				this.ordenarTurnos(vuelta.obtenerJugadorQueTiroCartaMasALta());
 			}
 		}
-//		this.equipo1.actualizarPuntos();				Esto métodos no serían necesarios.
-//		this.equipo2.actualizarPuntos();
+		this.sumarPuntos(equipo1);
+		this.sumarPuntos(equipo2);
 	}
 
 	public Vuelta crearNuevaVuelta(Ronda ronda) {
@@ -304,5 +304,16 @@ public class Ronda {
 	public void setearEnvidoEnvidoRealEnvido() {
 		this.tantoActual = new EnvidoEnvidoRealEnvido();
 
+	}
+
+
+	public void sumarPuntos(Equipo equipoAiluRodri) {
+		if(this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri)){
+			equipoAiluRodri.sumarPuntos(this.tantoActual.obtenerPuntos());
+		}
+		//Hay que hacer lo mismo con el envido y la flor
+		/*La idea seria que este metodo sume al final de la ronda todo lo que se gano el equipo que
+		 * le llega como parametro
+		 */
 	}
 }
