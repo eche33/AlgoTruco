@@ -89,6 +89,15 @@ public class TantosTests {
 		assertEquals(this.equipoFlorCris.obtenerPuntaje(),0);
 	}
 
+	@Test
+	public void sumarPuntosDeEquipoSumaCorrectamenteSinHaberCantadoNada(){
+		this.rondaEquiposDeADos.sumarPuntos(this.equipoAiluRodri);
+		this.rondaEquiposDeADos.sumarPuntos(this.equipoFlorCris);
+
+		assertEquals(this.equipoAiluRodri.obtenerPuntaje(),0);
+		assertEquals(this.equipoFlorCris.obtenerPuntaje(),0);
+	}
+
 
 
 

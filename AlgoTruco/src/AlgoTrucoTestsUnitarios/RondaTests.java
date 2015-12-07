@@ -53,7 +53,7 @@ public class RondaTests {
 	@Test
 	public void setearEnvidoFuncionaCorrectamente(){
 		this.ronda.setearEnvido();
-		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),2);
+		assertEquals(this.ronda.obtenerTantoActual().getClass().getSimpleName(),"Envido");
 	}
 
 	@Test

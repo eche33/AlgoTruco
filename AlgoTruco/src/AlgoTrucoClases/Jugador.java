@@ -137,10 +137,8 @@ public class Jugador {
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderEnvido(vuelta)){
 			vuelta.obtenerRonda().setearEnvido();
-			vuelta.obtenerRonda().jugarTantos();
-		}
-		else {
-			this.equipo.sumarPuntosTanto(vuelta.obtenerRonda());
+		}else{
+			this.obtenerEquipo().sumarPuntos(1);
 		}
 	}
 
@@ -151,10 +149,6 @@ public class Jugador {
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderFaltaEnvido(vuelta)){
 			vuelta.obtenerRonda().setearFaltaEnvido();
-			vuelta.obtenerRonda().jugarTantos();
-		}
-		else {
-			this.equipo.sumarPuntosTanto(vuelta.obtenerRonda());
 		}
 	}
 
@@ -165,10 +159,6 @@ public class Jugador {
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderRealEnvido(vuelta)){
 			vuelta.obtenerRonda().setearRealEnvido();
-			vuelta.obtenerRonda().jugarTantos();
-		}
-		else {
-			this.equipo.sumarPuntosTanto(vuelta.obtenerRonda());
 		}
 	}
 
