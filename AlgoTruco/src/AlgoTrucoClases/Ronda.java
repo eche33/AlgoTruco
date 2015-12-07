@@ -215,7 +215,7 @@ public class Ronda {
 		equipoGanador.sumarPuntosTanto(this);
 	}
 
-	private Equipo obtenerEquipoMano(){
+	public Equipo obtenerEquipoMano(){
 		Equipo equipoMano = null;
 		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
 			Jugador jugadorActual = this.jugadoresOrdenados.get(i);
