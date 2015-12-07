@@ -125,16 +125,6 @@ public class Equipo{
 		this.sumarPuntos(puntajeSumar);
 	}
 
-	private int calculoFaltaEnvido(Equipo equipoRival){
-		int faltaEnvido = 0;
-		if (equipoRival.obtenerPuntaje()<15){ // Esta en las malas.
-			faltaEnvido = 15 - equipoRival.obtenerPuntaje();
-		}
-		else {
-			faltaEnvido = 30 - equipoRival.obtenerPuntaje();
-		}
-		return faltaEnvido;
-	}
 
 	public int obtenerCantidadDeJugadores(){
 		return (this.jugadores.size());

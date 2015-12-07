@@ -1,6 +1,9 @@
 package AlgoTrucoTestsIntegradores;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
+import org.junit.Test;
 
 import AlgoTrucoCartas.AnchoBasto;
 import AlgoTrucoCartas.Cuatro;
@@ -15,6 +18,12 @@ import AlgoTrucoClases.Jugador;
 import AlgoTrucoClases.Mano;
 import AlgoTrucoClases.Palos;
 import AlgoTrucoClases.Ronda;
+import AlgoTrucoTantos.Envido;
+import AlgoTrucoTantos.EnvidoEnvido;
+import AlgoTrucoTantos.EnvidoEnvidoRealEnvido;
+import AlgoTrucoTantos.EnvidoRealEnvido;
+import AlgoTrucoTantos.FaltaEnvido;
+import AlgoTrucoTantos.RealEnvido;
 
 public class TantosTests {
 	private Equipo equipoAilu;
@@ -50,6 +59,24 @@ public class TantosTests {
 
 		Mano manoCris = new Mano(new AnchoBasto(), new SieteOro(), new SieteFalso(Palos.BASTO));
 		this.cris.asignarMano(manoCris);
+	}
+
+	@Test
+	public void tantosDevuelveElJugadorGanadorCorrecto(){
+		Envido envido = new Envido();
+		RealEnvido realEnvido = new RealEnvido();
+		EnvidoEnvido Envidoenvido = new EnvidoEnvido();
+		EnvidoRealEnvido envidoRealEnvido = new EnvidoRealEnvido();
+		EnvidoEnvidoRealEnvido envidoEnvidoRealEnvido = new EnvidoEnvidoRealEnvido();
+		FaltaEnvido faltaEnvido = new FaltaEnvido(this.rondaEquiposDeADos.obtenerFaltaEnvido());
+
+		assertEquals(envido.obtenerEquipoGanador(rondaEquiposDeADos),equipoAiluRodri);
+		assertEquals(realEnvido.obtenerEquipoGanador(rondaEquiposDeADos),equipoAiluRodri);
+		assertEquals(Envidoenvido.obtenerEquipoGanador(rondaEquiposDeADos),equipoAiluRodri);
+		assertEquals(envidoRealEnvido.obtenerEquipoGanador(rondaEquiposDeADos),equipoAiluRodri);
+		assertEquals(envidoEnvidoRealEnvido.obtenerEquipoGanador(rondaEquiposDeADos),equipoAiluRodri);
+		assertEquals(faltaEnvido.obtenerEquipoGanador(rondaEquiposDeADos),equipoAiluRodri);
+
 	}
 
 
