@@ -2,8 +2,7 @@ package AlgoTrucoTestsUnitarios;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,72 +13,96 @@ import AlgoTrucoClases.Ronda;
 public class RondaTests {
 
 	private Ronda ronda;
+	private Equipo equipo1;
+	private Equipo equipo2;
+	private Jugador ailu;
+	private Jugador rodri;
+	private Jugador flor;
+	private Jugador cris;
+
 
 	@Before
 	public void setUp() throws Exception {
-		Jugador rodri = new Jugador("Rodri");
-		Jugador ailu = new Jugador("Ailu");
-		Jugador flor = new Jugador("Flor");
-		Jugador cris = new Jugador("Cris");
-		ArrayList<Jugador> lista1 = new ArrayList<Jugador>();
-		ArrayList<Jugador> lista2 = new ArrayList<Jugador>();
-		lista1.add(ailu);
-		lista1.add(rodri);
-		lista2.add(flor);
-		lista2.add(cris);
-		Equipo equipo1 = new Equipo(lista1);
-		Equipo equipo2 = new Equipo(lista2);
-		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
-		jugadoresOrdenados.add(ailu);
-		jugadoresOrdenados.add(flor);
-		jugadoresOrdenados.add(rodri);
-		jugadoresOrdenados.add(cris);
-		this.ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
-
+		this.equipo1 = new Equipo (this.ailu = new Jugador("Ailu"), this.rodri = new Jugador("Rodri"));
+		this.equipo2 = new Equipo (this.flor = new Jugador("Flor"), this.cris = new Jugador("Cris"));
+		this.ronda = new Ronda(this.equipo1, this.equipo2);
 	}
+
 
 	@Test
 	public void testRondaSeCreaCorrectamente(){
-
-		assertEquals(ronda.obtenerEquipo1().obtenerCantidadDeJugadores(),2);
-		assertEquals(ronda.obtenerEquipo2().obtenerCantidadDeJugadores(),2);
-		assertEquals(ronda.obtenerJugadoresOrdenados().size(),4);
-		assertEquals(ronda.obtenerMesa().obtenerCartasEnMesa().size(),0);
+		Assert.assertTrue(this.ailu.esMano());
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().size(),4);
 	}
 
 	@Test
 	public void testRondaReordenaLosTurnosCorrectamente(){
-		Jugador rodri = new Jugador("Rodri");
-		Jugador ailu = new Jugador("Ailu");
-		Jugador flor = new Jugador("Flor");
-		Jugador cris = new Jugador("Cris");
-		ArrayList<Jugador> lista1 = new ArrayList<Jugador>();
-		ArrayList<Jugador> lista2 = new ArrayList<Jugador>();
-		lista1.add(ailu);
-		lista1.add(rodri);
-		lista2.add(flor);
-		lista2.add(cris);
-		Equipo equipo1 = new Equipo(lista1);
-		Equipo equipo2 = new Equipo(lista2);
-		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
-		jugadoresOrdenados.add(ailu);
-		jugadoresOrdenados.add(flor);
-		jugadoresOrdenados.add(rodri);
-		jugadoresOrdenados.add(cris);
-		Ronda ronda = new Ronda(equipo1, equipo2, jugadoresOrdenados);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(0), this.ailu);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(1), this.flor);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(2), this.rodri);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(3), this.cris);
 
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(0).obtenerNombre(),"Ailu");
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(1).obtenerNombre(),"Flor");
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(2).obtenerNombre(),"Rodri");
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(3).obtenerNombre(),"Cris");
+		this.ronda.ordenarTurnos(this.rodri);
 
-		ronda.ordenarTurnos(rodri);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(0), this.rodri);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(1), this.cris);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(2), this.ailu);
+		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().get(3), this.flor);
+	}
 
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(0).obtenerNombre(),"Rodri");
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(1).obtenerNombre(),"Cris");
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(2).obtenerNombre(),"Ailu");
-		assertEquals(ronda.obtenerJugadoresOrdenados().get(3).obtenerNombre(),"Flor");
+	@Test
+	public void setearEnvidoFuncionaCorrectamente(){
+		this.ronda.setearEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().getClass().getSimpleName(),"Envido");
+	}
 
+	@Test
+	public void setearEnvidoEnvidoFuncionaCorrectamente(){
+		this.ronda.setearEnvidoEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),4);
+	}
+
+	@Test
+	public void setearRealEnvidoFuncionaCorrectamente(){
+		this.ronda.setearRealEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),3);
+	}
+
+	@Test
+	public void setearEnvidoRealEnvidoFuncionaCorrectamente(){
+		this.ronda.setearEnvidoRealEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),5);
+	}
+
+	@Test
+	public void setearEnvidoEnvidoRealEnvidoFuncionaCorrectamente(){
+		this.ronda.setearEnvidoEnvidoRealEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),7);
+	}
+
+	@Test
+	public void setearFaltaEnvidoFuncionaCorrectamente(){
+		this.ronda.setearFaltaEnvido();;
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),15);
+	}
+
+	@Test
+	public void equipoSeVaAlMazoEntoncesRondaFinaliza(){
+		this.ronda.irse(equipo1);
+		//assertEquals(this.ronda.obtenerEquipo1(),null);
+		assertTrue(this.ronda.rondaFinalizada());
+	}
+
+	@Test
+	public void obtenerEquipoQueVaGanando(){
+		this.equipo1.sumarPuntos(5);
+		assertEquals(this.ronda.obtenerEquipoQueVaGanando(),equipo1);
+	}
+
+	@Test
+	public void obtenerPuntajeDeFaltaEnvido(){
+		this.equipo1.sumarPuntos(5);
+		assertEquals(this.ronda.obtenerFaltaEnvido(),10);
 	}
 
 
