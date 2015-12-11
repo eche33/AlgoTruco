@@ -2,6 +2,13 @@ package AlgoTrucoClases;
 
 import java.util.ArrayList;
 
+import AlgoTrucoTantos.Envido;
+import AlgoTrucoTantos.EnvidoEnvido;
+import AlgoTrucoTantos.EnvidoEnvidoRealEnvido;
+import AlgoTrucoTantos.EnvidoRealEnvido;
+import AlgoTrucoTantos.FaltaEnvido;
+import AlgoTrucoTantos.RealEnvido;
+
 public class Ronda {
 
 	private int numeroVuelta; // Porque si alguno quiere cantar el envido debe estar en la primera vuelta.
@@ -9,10 +16,10 @@ public class Ronda {
 	private Equipo equipo2;
 	private Mazo mazo;
 	private ArrayList<Jugador> jugadoresOrdenados; // Ordenados de acuerdo a quien comienza la primera vuelta.
-	private Mesa mesa;
 	private Cantos cantoActual;
-	private Tantos tantoActual;
+	private Tanto tantoActual;
 	private Flor florActual;
+	private int ganadores;
 
 
 	public Ronda(Equipo equipo1, Equipo equipo2){
@@ -22,10 +29,10 @@ public class Ronda {
 		this.equipo1.tieneQuiero();
 		this.equipo2.tieneQuiero();
 		this.ordenarPrimeraRonda(equipo1, equipo2);
-		this.mesa = new Mesa();
 		this.cantoActual = null;
 		this.tantoActual = null;
 		this.florActual = null;
+		this.ganadores = 0;
 	}
 
 
@@ -76,15 +83,21 @@ public class Ronda {
 
 		for(int i = 0; i<3 ; i++){
 			if(! this.rondaFinalizada()){ // Puede terminarse en cualquier momento de una vuelta.
-				Vuelta vuelta = new Vuelta(this);
-				vuelta.jugar();
+				Vuelta vuelta = this.crearNuevaVuelta(this);
+				ganadores += vuelta.jugar();
 				this.numeroVuelta += 1;
 				this.ordenarTurnos(vuelta.obtenerJugadorQueTiroCartaMasALta());
 			}
 		}
-//		this.equipo1.actualizarPuntos();				Esto métodos no serían necesarios.
-//		this.equipo2.actualizarPuntos();
+		this.sumarPuntos(equipo1);
+		this.sumarPuntos(equipo2);
 	}
+
+	public Vuelta crearNuevaVuelta(Ronda ronda) {
+		Vuelta nueva = new Vuelta(ronda);
+		return nueva;
+	}
+
 
 	public boolean rondaFinalizada(){
 		if (this.numeroVuelta > 3){
@@ -93,7 +106,9 @@ public class Ronda {
 		if ((this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
 			return true;
 		}
-		// Contemplar que se ganó antes de la tercera vuelta o alguno se fue al mazo.
+		if (numeroVuelta > 2 && ganadores != 0){
+			return true;
+		}
 		if ((this.equipo1==null) || (this.equipo2==null)){
 			return true;
 		}
@@ -102,10 +117,6 @@ public class Ronda {
 
 	public ArrayList<Jugador> obtenerJugadoresOrdenados(){
 		return (this.jugadoresOrdenados);
-	}
-
-	public Mesa obtenerMesa(){
-		return (this.mesa);
 	}
 
 	public void irse(Equipo equipo){
@@ -152,49 +163,34 @@ public class Ronda {
 
 	public void setearEnvido(){
 		if (this.tantoActual == null){
-			this.tantoActual = Tantos.ENVIDO;
-		}else{
-			if(this.tantoActual == Tantos.ENVIDO){
-				this.tantoActual = Tantos.ENVIDOENVIDO;
-			}
+			this.tantoActual = new Envido();
 		}
-
 	}
 
 	public boolean cantadoEnvidoEnvido(){
-		if (this.tantoActual == Tantos.ENVIDOENVIDO){
+		if (this.tantoActual.getClass().getSimpleName() == "EnvidoEnvido" ){
 			return true;
 		}
 		return false;
 	}
 
-	public Tantos obtenerTantoActual(){
+	public Tanto obtenerTantoActual(){
 		return (this.tantoActual);
 	}
 
 	public void setearRealEnvido(){
-		if (this.tantoActual==null){
-			this.tantoActual = Tantos.REALENVIDO;
-		}
-		else if(this.tantoActual==Tantos.ENVIDO){
-				this.tantoActual = Tantos.ENVIDOREALENVIDO;
-			}
-			 else if(this.tantoActual==Tantos.ENVIDOENVIDO){
-					this.tantoActual = Tantos.ENVIDOENVIDOREALENVIDO;
-				  }
+		this.tantoActual = new RealEnvido();
 	}
 
 	public void setearFaltaEnvido(){
-		if (!(this.tantoActual == Tantos.FALTAENVIDO)){
-			this.tantoActual = Tantos.FALTAENVIDO;
-		}
+		this.tantoActual = new FaltaEnvido(this.obtenerFaltaEnvido());
 	}
 
 	public int obtenerNumeroDeVuelta(){
 		return (this.numeroVuelta);
 	}
 
-	public void jugarTantos(){
+/*	public void jugarTantos(){
 		int envidoGanador = 0;
 		Equipo equipoGanador = null;
 		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
@@ -209,9 +205,9 @@ public class Ronda {
 			}
 		}
 		equipoGanador.sumarPuntosTanto(this);
-	}
+	}*/
 
-	private Equipo obtenerEquipoMano(){
+	public Equipo obtenerEquipoMano(){
 		Equipo equipoMano = null;
 		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
 			Jugador jugadorActual = this.jugadoresOrdenados.get(i);
@@ -264,8 +260,62 @@ public class Ronda {
 
 
 	public void setearContraFlorAlResto() {
-		this.florActual = Flor.CONTRAFLORALRESTO;
+		if(this.florActual == Flor.FLOR || this.florActual == Flor.CONTRAFLOR){
+			this.florActual = Flor.CONTRAFLORALRESTO;
+		}
+	}
+
+
+	public Equipo obtenerEquipoQueVaGanando() {
+		Equipo equipoGanador = null;
+		if(this.equipo1.obtenerPuntaje() > this.equipo2.obtenerPuntaje()){
+			equipoGanador = this.equipo1;
+		}else{
+			equipoGanador = this.equipo2;
+		}
+		return (equipoGanador);
+	}
+
+
+	public int obtenerFaltaEnvido() {
+		int faltaEnvido = 0;
+		if (this.obtenerEquipoQueVaGanando().obtenerPuntaje()<15){ // Esta en las malas.
+			faltaEnvido = 15 - this.obtenerEquipoQueVaGanando().obtenerPuntaje();
+		}
+		else {
+			faltaEnvido = 30 - this.obtenerEquipoQueVaGanando().obtenerPuntaje();
+		}
+		return faltaEnvido;
+	}
+
+
+	public void setearEnvidoEnvido() {
+		this.tantoActual = new EnvidoEnvido();
 
 	}
 
+
+	public void setearEnvidoRealEnvido() {
+		this.tantoActual = new EnvidoRealEnvido();
+
+	}
+
+
+	public void setearEnvidoEnvidoRealEnvido() {
+		this.tantoActual = new EnvidoEnvidoRealEnvido();
+
+	}
+
+
+	public void sumarPuntos(Equipo equipoAiluRodri) {
+		if(this.tantoActual!=null){
+			if(this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri)){
+				equipoAiluRodri.sumarPuntos(this.tantoActual.obtenerPuntos());
+			}
+		}
+		//Hay que hacer lo mismo con el envido y la flor
+		/*La idea seria que este metodo sume al final de la ronda todo lo que se gano el equipo que
+		 * le llega como parametro
+		 */
+	}
 }

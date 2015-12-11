@@ -45,210 +45,220 @@ public class Jugador {
 		return (numeroDeVuelta == 1);
 	}
 
-	public void tirarCarta(Carta carta, Ronda ronda){
-		ronda.obtenerMesa().tirarCarta(carta);
+	private void tirarCarta(Carta carta, Vuelta vuelta){
+		vuelta.obtenerMesa().tirarCarta(carta, this);
 		this.mano.borrarCarta(carta);
 		this.noTiroCarta = false;
 	}
 
-	public void jugar(Ronda ronda){
+	public void jugar(Vuelta vuelta){
 		int eleccion=0;
 
 		while (this.noTiroCarta){
 
 			switch(eleccion){
 			case 1: try{ //Hay que agregarle el funcionamiento del catch
-						this.cantarEnvido(ronda);
+						this.cantarEnvido(vuelta);
 						break;
 					} catch(NoSePuedeCantarEnvidoError error){};
 
-			case 2: this.cantarTruco(ronda);
+			case 2: this.cantarTruco(vuelta);
 					break;
-			case 3: this.irse(ronda);
+			case 3: this.irse(vuelta);
 					break;
-			case 4: this.tirarCarta(this.mano.obtenerCarta(0), ronda);
+			case 4: this.tirarPrimerCarta(vuelta);
 					break;
-			case 5: this.tirarCarta(this.mano.obtenerCarta(1), ronda);
+			case 5: this.tirarSegundaCarta(vuelta);
 					break;
-			case 6: this.tirarCarta(this.mano.obtenerCarta(2), ronda);
+			case 6: this.tirarTercerCarta(vuelta);
 					break;
 			case 7: try{
-						this.cantarFlor(ronda);
+						this.cantarFlor(vuelta);
 						break;
 					}catch(NoSePuedeCantarFlorError error){};
 			case 8: try{
-						this.cantarRealEnvido(ronda);
+						this.cantarRealEnvido(vuelta);
 						break;
 					}catch(NoSePuedeCantarRealEnvidoError error){}
 			case 9:try{
-						this.cantarFaltaEnvido(ronda);
+						this.cantarFaltaEnvido(vuelta);
 						break;
 					}catch(NoSePuedeCantarFaltaEnvidoError error){}
-			case 10: this.equipo.irse(ronda);
 			}
 			}
 		}
 
-	private void cantarFlor(Ronda unaRonda) throws NoSePuedeCantarFlorError{
+	public void tirarTercerCarta(Vuelta vuelta) {
+		this.tirarCarta(this.mano.obtenerCarta(2), vuelta);
 
-		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+	}
+
+
+	public void tirarSegundaCarta(Vuelta vuelta) {
+		this.tirarCarta(this.mano.obtenerCarta(1), vuelta);
+
+	}
+
+
+	public void tirarPrimerCarta(Vuelta vuelta) {
+		this.tirarCarta(this.mano.obtenerCarta(0), vuelta);
+
+	}
+
+
+	private void cantarFlor(Vuelta vuelta) throws NoSePuedeCantarFlorError{
+
+		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarFlorError();
 		}
 
-		if (unaRonda.obtenerEquipoRival(this.equipo).decidirFlor(unaRonda)){
-			unaRonda.setearFlor();
-			if(this.equipo.responderFlor(unaRonda)){
-				unaRonda.jugarFlor();
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).decidirFlor(vuelta)){
+			if(vuelta.obtenerRonda().obtenerFlorActual()==Flor.CONTRAFLORALRESTO){
+				vuelta.obtenerRonda().jugarFlor();
 			}else{
-				this.equipo.sumarPuntosFlor(unaRonda);
+				vuelta.obtenerRonda().setearFlor();
+				if(this.equipo.responderFlor(vuelta)){
+				vuelta.obtenerRonda().jugarFlor();
+				}else{
+					this.equipo.sumarPuntosFlor(vuelta.obtenerRonda());
 
+				}
 			}
-		}
-		else {
-			this.equipo.sumarPuntosFlor(unaRonda);
+		}else {
+			this.equipo.sumarPuntosFlor(vuelta.obtenerRonda());
 		}
 	}
 
-	private void cantarEnvido(Ronda unaRonda) throws NoSePuedeCantarEnvidoError{
+	private void cantarEnvido(Vuelta vuelta) throws NoSePuedeCantarEnvidoError{
 
-		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarEnvidoError();
 		}
 
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderEnvido(unaRonda)){
-			unaRonda.setearEnvido();
-			unaRonda.jugarTantos();
-		}
-		else {
-			this.equipo.sumarPuntosTanto(unaRonda);
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderEnvido(vuelta)){
+			vuelta.obtenerRonda().setearEnvido();
+		}else{
+			this.obtenerEquipo().sumarPuntos(1);
 		}
 	}
 
-	private void cantarFaltaEnvido(Ronda unaRonda) throws NoSePuedeCantarFaltaEnvidoError{
-		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+	private void cantarFaltaEnvido(Vuelta vuelta) throws NoSePuedeCantarFaltaEnvidoError{
+		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarFaltaEnvidoError();
 		}
 
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderFaltaEnvido(unaRonda)){
-			unaRonda.setearFaltaEnvido();
-			unaRonda.jugarTantos();
-		}
-		else {
-			this.equipo.sumarPuntosTanto(unaRonda);
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderFaltaEnvido(vuelta)){
+			vuelta.obtenerRonda().setearFaltaEnvido();
 		}
 	}
 
-	private void cantarRealEnvido(Ronda unaRonda) throws NoSePuedeCantarRealEnvidoError{
-		if(unaRonda.obtenerNumeroDeVuelta()!=1){
+	private void cantarRealEnvido(Vuelta vuelta) throws NoSePuedeCantarRealEnvidoError{
+		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarRealEnvidoError();
 		}
 
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderRealEnvido(unaRonda)){
-			unaRonda.setearRealEnvido();
-			unaRonda.jugarTantos();
-		}
-		else {
-			this.equipo.sumarPuntosTanto(unaRonda);
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderRealEnvido(vuelta)){
+			vuelta.obtenerRonda().setearRealEnvido();
 		}
 	}
 
 
-	public boolean responderEnvido(Ronda unaRonda){
+	public boolean responderEnvido(Vuelta vuelta){
 		int eleccion=0;
 
-		if (!unaRonda.cantadoEnvidoEnvido()){/**DESACTIVAR BOTON ENVIDO**/}
+		if (!vuelta.obtenerRonda().cantadoEnvidoEnvido()){/**DESACTIVAR BOTON ENVIDO**/}
 
 		switch (eleccion){
 		case 0: return true;
 		case 1: return false;
 		case 2: try{ //Codear el catch
-					unaRonda.setearEnvido();
-					this.cantarEnvido(unaRonda);
+					vuelta.obtenerRonda().setearEnvido();
+					this.cantarEnvido(vuelta);
 					return true;
 				} catch (NoSePuedeCantarEnvidoError error){}
 		case 3: try{
-					unaRonda.setearEnvido();
-					this.cantarRealEnvido(unaRonda);
+					vuelta.obtenerRonda().setearEnvido();
+					this.cantarRealEnvido(vuelta);
 					return true;
 				}catch (NoSePuedeCantarRealEnvidoError error){}
 		case 4: try{
-				unaRonda.setearEnvido();
-				this.cantarFaltaEnvido(unaRonda);
+				vuelta.obtenerRonda().setearEnvido();
+				this.cantarFaltaEnvido(vuelta);
 				return true;
 				}catch (NoSePuedeCantarFaltaEnvidoError error){}
 		}
 		return false;
 	}
 
-	private void cantarTruco(Ronda unaRonda){
+	private void cantarTruco(Vuelta vuelta){
 
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderTruco(unaRonda)){
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderTruco(vuelta)){
 			this.equipo.noTieneQuiero();
-			unaRonda.setearTruco();
+			vuelta.obtenerRonda().setearTruco();
 		}
 		else {
-			unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+			vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).irse(vuelta.obtenerRonda());
 		}
 	}
 
-	private void cantarRetruco(Ronda unaRonda){
+	private void cantarRetruco(Vuelta vuelta){
 		// Chequear el quiero, el estado del canto y manejar con excepciones.
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderRetruco(unaRonda)){
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderRetruco(vuelta)){
 			this.equipo.noTieneQuiero();
-			unaRonda.setearRetruco();
+			vuelta.obtenerRonda().setearRetruco();
 		}
 		else {
-			unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+			vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).irse(vuelta.obtenerRonda());
 		}
 	}
 
-	private void cantarValeCuatro(Ronda unaRonda){
+	private void cantarValeCuatro(Vuelta vuelta){
 
 		// Chequear el quiero, el estado del canto y manejar con excepciones.
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderValeCuatro(unaRonda)){
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderValeCuatro(vuelta)){
 			this.equipo.noTieneQuiero();
-			unaRonda.setearValeCuatro();
+			vuelta.obtenerRonda().setearValeCuatro();
 		}
 		else {
-			unaRonda.obtenerEquipoRival(this.equipo).irse(unaRonda);
+			vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).irse(vuelta.obtenerRonda());
 		}
 	}
 
-	public void irse(Ronda unaRonda){
-		this.equipo.irse(unaRonda);
+	public void irse(Vuelta vuelta){
+		this.equipo.irse(vuelta.obtenerRonda());
 	}
 
 	public void asignarEquipo (Equipo equipo){
 		this.equipo = equipo;
 	}
 
-	public boolean responderTruco(Ronda unaRonda){
+	public boolean responderTruco(Vuelta vuelta){
 		int eleccion=0;
 
 		switch (eleccion){
 		case 0: return true;
 		case 1: return false;
-		case 2: unaRonda.setearTruco();
-				this.cantarRetruco(unaRonda);
+		case 2: vuelta.obtenerRonda().setearTruco();
+				this.cantarRetruco(vuelta);
 				return true;
 		}
 		return false;
 	}
 
-	public boolean responderRetruco(Ronda unaRonda){
+	public boolean responderRetruco(Vuelta vuelta){
 		int eleccion=0;
 
 		switch (eleccion){
 		case 0: return true;
 		case 1: return false;
-		case 2: unaRonda.setearRetruco();
-				this.cantarValeCuatro(unaRonda);
+		case 2: vuelta.obtenerRonda().setearRetruco();
+				this.cantarValeCuatro(vuelta);
 				return true;
 		}
 		return false;
 	}
 
-	public boolean responderValeCuatro(Ronda unaRonda){
+	public boolean responderValeCuatro(Vuelta vuelta){
 		int eleccion=0;
 
 		switch (eleccion){
@@ -271,15 +281,15 @@ public class Jugador {
 	}
 
 
-	public boolean responderRealEnvido(Ronda unaRonda) {
+	public boolean responderRealEnvido(Vuelta vuelta) {
 		int eleccion=0;
 
 		switch (eleccion){
 		case 0: return true;//Quiero
 		case 1: return false;//No quiero
 		case 2: try{				//Falta envido
-				unaRonda.setearRealEnvido();
-				this.cantarFaltaEnvido(unaRonda);
+				vuelta.obtenerRonda().setearRealEnvido();
+				this.cantarFaltaEnvido(vuelta);
 				return true;
 				}catch (NoSePuedeCantarFaltaEnvidoError error){}
 		}
@@ -287,7 +297,7 @@ public class Jugador {
 	}
 
 
-	public boolean responderFaltaEnvido(Ronda unaRonda) {
+	public boolean responderFaltaEnvido(Vuelta vuelta) {
 		int eleccion=0;
 
 		switch (eleccion){
@@ -298,42 +308,42 @@ public class Jugador {
 	}
 
 
-	public boolean decidirFlor(Ronda unaRonda) {
+	public boolean decidirFlor(Vuelta vuelta) {
 		int eleccion = 0;
 
 		switch(eleccion){
 		case 0: return false;//No tiene flor
 		case 1: return true;//ContraFlor
-		case 2: this.cantarContraFlorAlResto(unaRonda);
+		case 2: this.cantarContraFlorAlResto(vuelta);
 				return true;
 		}
 		return false;
 	}
 
 
-	private void cantarContraFlorAlResto(Ronda unaRonda) {
-		if (unaRonda.obtenerEquipoRival(this.equipo).responderContraFlorAlResto(unaRonda)){
-			unaRonda.setearContraFlorAlResto();
+	private void cantarContraFlorAlResto(Vuelta vuelta) {
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderContraFlorAlResto(vuelta)){
+			vuelta.obtenerRonda().setearContraFlorAlResto();
 		}
 
 	}
 
 
-	public boolean responderFlor(Ronda unaRonda) {
+	public boolean responderFlor(Vuelta vuelta) {
 		int eleccion = 0;
 
 		switch(eleccion){
-		case 0: unaRonda.setearContraFlor();
+		case 0: vuelta.obtenerRonda().setearContraFlor();
 				return true; //Quiero
 		case 1: return false; //No quiero
-		case 2: this.cantarContraFlorAlResto(unaRonda);
+		case 2: this.cantarContraFlorAlResto(vuelta);
 				return true;
 		}
 		return false;
 	}
 
 
-	public boolean responderContraFlorAlResto(Ronda unaRonda) {
+	public boolean responderContraFlorAlResto(Vuelta vuelta) {
 		int eleccion = 0;
 
 		switch(eleccion){

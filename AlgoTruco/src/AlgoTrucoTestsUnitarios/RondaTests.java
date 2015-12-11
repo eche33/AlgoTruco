@@ -9,7 +9,6 @@ import org.junit.Test;
 import AlgoTrucoClases.Equipo;
 import AlgoTrucoClases.Jugador;
 import AlgoTrucoClases.Ronda;
-import AlgoTrucoClases.Tantos;
 
 public class RondaTests {
 
@@ -34,7 +33,6 @@ public class RondaTests {
 	public void testRondaSeCreaCorrectamente(){
 		Assert.assertTrue(this.ailu.esMano());
 		Assert.assertEquals(this.ronda.obtenerJugadoresOrdenados().size(),4);
-		Assert.assertEquals(this.ronda.obtenerMesa().obtenerCartasEnMesa().size(),0);
 	}
 
 	@Test
@@ -55,41 +53,37 @@ public class RondaTests {
 	@Test
 	public void setearEnvidoFuncionaCorrectamente(){
 		this.ronda.setearEnvido();
-		assertEquals(this.ronda.obtenerTantoActual(),Tantos.ENVIDO);
+		assertEquals(this.ronda.obtenerTantoActual().getClass().getSimpleName(),"Envido");
 	}
 
 	@Test
 	public void setearEnvidoEnvidoFuncionaCorrectamente(){
-		this.ronda.setearEnvido();
-		this.ronda.setearEnvido();
-		assertEquals(this.ronda.obtenerTantoActual(),Tantos.ENVIDOENVIDO);
+		this.ronda.setearEnvidoEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),4);
 	}
 
 	@Test
 	public void setearRealEnvidoFuncionaCorrectamente(){
 		this.ronda.setearRealEnvido();
-		assertEquals(this.ronda.obtenerTantoActual(),Tantos.REALENVIDO);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),3);
 	}
 
 	@Test
 	public void setearEnvidoRealEnvidoFuncionaCorrectamente(){
-		this.ronda.setearEnvido();
-		this.ronda.setearRealEnvido();
-		assertEquals(this.ronda.obtenerTantoActual(),Tantos.ENVIDOREALENVIDO);
+		this.ronda.setearEnvidoRealEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),5);
 	}
 
 	@Test
 	public void setearEnvidoEnvidoRealEnvidoFuncionaCorrectamente(){
-		this.ronda.setearEnvido();
-		this.ronda.setearEnvido();
-		this.ronda.setearRealEnvido();
-		assertEquals(this.ronda.obtenerTantoActual(),Tantos.ENVIDOENVIDOREALENVIDO);
+		this.ronda.setearEnvidoEnvidoRealEnvido();
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),7);
 	}
 
 	@Test
 	public void setearFaltaEnvidoFuncionaCorrectamente(){
 		this.ronda.setearFaltaEnvido();;
-		assertEquals(this.ronda.obtenerTantoActual(),Tantos.FALTAENVIDO);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),15);
 	}
 
 	@Test
@@ -98,5 +92,19 @@ public class RondaTests {
 		//assertEquals(this.ronda.obtenerEquipo1(),null);
 		assertTrue(this.ronda.rondaFinalizada());
 	}
+
+	@Test
+	public void obtenerEquipoQueVaGanando(){
+		this.equipo1.sumarPuntos(5);
+		assertEquals(this.ronda.obtenerEquipoQueVaGanando(),equipo1);
+	}
+
+	@Test
+	public void obtenerPuntajeDeFaltaEnvido(){
+		this.equipo1.sumarPuntos(5);
+		assertEquals(this.ronda.obtenerFaltaEnvido(),10);
+	}
+
+
 
 }

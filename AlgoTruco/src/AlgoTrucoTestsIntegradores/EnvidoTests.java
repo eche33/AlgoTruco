@@ -75,7 +75,7 @@ public class EnvidoTests {
 		Assert.assertEquals(mano.obtenerEnvido(),20);
 	}
 
-	@Test
+	/*@Test
 	public void testJugarTantos(){
 		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
 		this.rodri.asignarMano(manoRodri);
@@ -88,9 +88,9 @@ public class EnvidoTests {
 
 		Assert.assertEquals(0,equipoAilu.puntajeDeEquipo);
 		Assert.assertEquals(2,equipoRodri.puntajeDeEquipo);
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void testJugarTantosConEnvidosIguales(){
 		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
 		this.rodri.asignarMano(manoRodri);
@@ -105,9 +105,9 @@ public class EnvidoTests {
 		Assert.assertEquals(0,equipoRodri.puntajeDeEquipo);
 
 
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void testJugarTantosCon4Jugadores(){
 		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
 		this.rodri.asignarMano(manoRodri);
@@ -126,9 +126,9 @@ public class EnvidoTests {
 
 		Assert.assertEquals(0,equipoFlorCris.puntajeDeEquipo);
 		Assert.assertEquals(2,equipoAiluRodri.puntajeDeEquipo);
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void testJugarTantosCon4JugadoresTeniendoEnvidosIguales(){
 		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
 		this.rodri.asignarMano(manoRodri);
@@ -147,7 +147,7 @@ public class EnvidoTests {
 
 		Assert.assertEquals(0,equipoFlorCris.puntajeDeEquipo);
 		Assert.assertEquals(2,equipoAiluRodri.puntajeDeEquipo);
-	}
+	}*/
 
 
 }
