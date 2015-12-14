@@ -19,5 +19,6 @@ public void setUp() throws Exception{
 	@Test
 	public void realEnvidoSeCreaCorrectamente(){
 		assertEquals(this.realEnvido.obtenerPuntos(),3);
+		assertEquals(this.realEnvido.obtenerPuntosNoQuerido(),1);
 	}
 }

@@ -99,6 +99,21 @@ public class TantosTests {
 	}
 
 
+	@Test
+	public void  sumarPuntosConEnvidoNoQuerido(){
+		this.rondaEquiposDeADos.setearEnvido();
+		this.rondaEquiposDeADos.obtenerTantoActual().noSeQuiere(this.equipoAiluRodri);
+		this.rondaEquiposDeADos.sumarPuntos(equipoAiluRodri);
+		this.rondaEquiposDeADos.sumarPuntos(equipoFlorCris);
+
+		assertEquals(this.equipoAiluRodri.obtenerPuntaje(), 1);
+		assertEquals(this.equipoFlorCris.obtenerPuntaje(), 0);
+
+	}
+
+
+
+
 
 
 

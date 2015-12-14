@@ -22,5 +22,6 @@ public class EnvidoTests {
 	@Test
 	public void envidoSeCreaCorrectamente(){
 		assertEquals(this.envido.obtenerPuntos(),2);
+		assertEquals(this.envido.obtenerPuntosNoQuerido(),1);
 	}
 }
