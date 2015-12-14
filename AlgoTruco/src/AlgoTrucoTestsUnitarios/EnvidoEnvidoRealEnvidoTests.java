@@ -1,6 +1,6 @@
 package AlgoTrucoTestsUnitarios;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +19,8 @@ public class EnvidoEnvidoRealEnvidoTests {
 		@Test
 		public void realEnvidoSeCreaCorrectamente(){
 			assertEquals(this.envidoEnvidoRealEnvido.obtenerPuntos(),7);
+			assertEquals(this.envidoEnvidoRealEnvido.obtenerPuntosNoQuerido(),4);
+			assertTrue(this.envidoEnvidoRealEnvido.seQuiere);
 		}
 
 }

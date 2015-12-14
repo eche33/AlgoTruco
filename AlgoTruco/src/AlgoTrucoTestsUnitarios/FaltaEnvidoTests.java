@@ -17,8 +17,9 @@ public class FaltaEnvidoTests {
 	}
 
 		@Test
-		public void realEnvidoSeCreaCorrectamente(){
+		public void faltaEnvidoSeCreaCorrectamente(){
 			assertEquals(this.faltaEnvido.obtenerPuntos(),15);
+			assertEquals(this.faltaEnvido.obtenerPuntosNoQuerido(),1);
 		}
 
 
