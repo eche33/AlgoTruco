@@ -178,6 +178,10 @@ public class Equipo{
 		return(this.jugadores.get(0).responderEnvidoEnvidoRealEnvido(vuelta));
 	}
 
+	public boolean responderEnvidoRealEnvido(Vuelta vuelta) {
+		return(this.jugadores.get(0).responderEnvidoRealEnvido(vuelta));
+	}
+
 
 /** Igual que en otras clases, hay un método que sólo hicimos para probarse, como que no se usa en ninguna parte del
  *  código. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.
