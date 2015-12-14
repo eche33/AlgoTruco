@@ -8,6 +8,19 @@ public class Equipo{
 	public int puntajeDeEquipo;
 	public boolean quiero;
 
+	
+	public Equipo(){
+			this.jugadores = new ArrayList<Jugador>();
+			this.puntajeDeEquipo = 0;
+			this.quiero = true;
+		}
+	
+	public void agregarJugadorAEquipo(Jugador jugadorNuevo){
+		this.jugadores.add(jugadorNuevo);
+		jugadorNuevo.asignarEquipo(this);
+	}
+	
+
 	public Equipo(Jugador jugador1){
 	// Constructor de equipo de sólo un jugador.
 		jugador1.asignarEquipo(this);
