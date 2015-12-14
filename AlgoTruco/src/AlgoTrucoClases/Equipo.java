@@ -21,40 +21,6 @@ public class Equipo{
 	}
 	
 
-	public Equipo(Jugador jugador1){
-	// Constructor de equipo de sólo un jugador.
-		jugador1.asignarEquipo(this);
-		this.jugadores = new ArrayList<Jugador>();
-		this.jugadores.add(jugador1);
-		this.puntajeDeEquipo = 0;
-		this.quiero = true;
-	}
-
-	public Equipo(Jugador jugador1, Jugador jugador2){
-	// Constructor de equipo de dos jugadores.
-		jugador1.asignarEquipo(this);
-		jugador2.asignarEquipo(this);
-		this.jugadores = new ArrayList<Jugador>();
-		this.jugadores.add(jugador1);
-		this.jugadores.add(jugador2);
-		this.puntajeDeEquipo = 0;
-		this.quiero = true;
-	}
-
-	public Equipo(Jugador jugador1, Jugador jugador2, Jugador jugador3){
-	// Constructor de equipo de tres jugadores.
-		jugador1.asignarEquipo(this);
-		jugador2.asignarEquipo(this);
-		jugador3.asignarEquipo(this);
-		this.jugadores = new ArrayList<Jugador>();
-		this.jugadores.add(jugador1);
-		this.jugadores.add(jugador2);
-		this.jugadores.add(jugador3);
-		this.puntajeDeEquipo = 0;
-		this.quiero = true;
-	}
-
-
 	public int obtenerPuntaje(){
 		return (this.puntajeDeEquipo);
 	}
