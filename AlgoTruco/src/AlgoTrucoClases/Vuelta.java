@@ -54,5 +54,10 @@ public class Vuelta {
 	public Ronda obtenerRonda(){
 		return this.ronda;
 	}
+	
+	public Equipo obtenerEquipoRival(Equipo equipo){
+		return this.ronda.obtenerEquipoRival(equipo);
+	}
+
 
 }

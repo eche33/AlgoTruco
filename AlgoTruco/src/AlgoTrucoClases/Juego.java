@@ -2,12 +2,13 @@ package AlgoTrucoClases;
 
 import java.util.Scanner;
 
-public class Truco {
+public class Juego {
+
 
     private Partida partida;
     private int jugadoresPorEquipo;
     
-    public Truco(){}
+    public Juego(){}
     
     public void crearPartida(){
     	Equipo equipo1 = new Equipo();
@@ -34,3 +35,4 @@ public String obtenerNombreDeJugador(int equipo) {
 }
 
 }
+

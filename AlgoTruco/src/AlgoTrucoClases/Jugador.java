@@ -428,6 +428,31 @@ public class Jugador {
 		}
 		return false;
 	}
+	
+	private void cantarJuego(Vuelta vuelta){
+		if (!vuelta.obtenerEquipoRival(this.equipo).responderSubirJuego(vuelta)){
+			vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).irse(vuelta.obtenerRonda());
+		}
+	}
+	
+	public boolean responderSubirJuego(Vuelta vuelta){
+		int eleccion = 0;
+		
+		switch (eleccion){
+		case 0: vuelta.obtenerRonda().subirCanto();
+				this.equipo.tieneQuiero();
+				vuelta.obtenerEquipoRival(this.equipo).noTieneQuiero();
+				return true;
+		case 1: return false;
+		case 2: vuelta.obtenerRonda().subirCanto();
+				this.cantarJuego(vuelta);
+				return true;
+		}
+		return false;
+	}
+	
+
 }
+
 
 
