@@ -60,30 +60,35 @@ public class RondaTests {
 	public void setearEnvidoEnvidoFuncionaCorrectamente(){
 		this.ronda.setearEnvidoEnvido();
 		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),4);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntosNoQuerido(),2);
 	}
 
 	@Test
 	public void setearRealEnvidoFuncionaCorrectamente(){
 		this.ronda.setearRealEnvido();
 		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),3);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntosNoQuerido(),1);
 	}
 
 	@Test
 	public void setearEnvidoRealEnvidoFuncionaCorrectamente(){
 		this.ronda.setearEnvidoRealEnvido();
 		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),5);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntosNoQuerido(),2);
 	}
 
 	@Test
 	public void setearEnvidoEnvidoRealEnvidoFuncionaCorrectamente(){
 		this.ronda.setearEnvidoEnvidoRealEnvido();
 		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),7);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntosNoQuerido(),4);
 	}
 
 	@Test
 	public void setearFaltaEnvidoFuncionaCorrectamente(){
 		this.ronda.setearFaltaEnvido();;
 		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntos(),15);
+		assertEquals(this.ronda.obtenerTantoActual().obtenerPuntosNoQuerido(),1);
 	}
 
 	@Test
@@ -104,6 +109,7 @@ public class RondaTests {
 		this.equipo1.sumarPuntos(5);
 		assertEquals(this.ronda.obtenerFaltaEnvido(),10);
 	}
+
 
 
 

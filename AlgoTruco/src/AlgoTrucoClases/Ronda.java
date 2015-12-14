@@ -235,7 +235,7 @@ public class Ronda {
 	}
 
 
-	public void jugarFlor() {
+	/*public void jugarFlor() {
 		int florGanadora = 0;
 		Equipo equipoGanador = null;
 		for(int i=0; i<this.jugadoresOrdenados.size(); i++){
@@ -251,7 +251,7 @@ public class Ronda {
 		}
 		equipoGanador.sumarPuntosFlor(this);
 
-	}
+	}*/
 
 
 	public Flor obtenerFlorActual() {
@@ -308,7 +308,6 @@ public class Ronda {
 
 
 	public void sumarPuntos(Equipo equipoAiluRodri) {
-		if(this.tantoActual!=null){
 			if(this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri)){
 				equipoAiluRodri.sumarPuntos(this.tantoActual.obtenerPuntos());
 			}
@@ -318,4 +317,4 @@ public class Ronda {
 		 * le llega como parametro
 		 */
 	}
-}
+

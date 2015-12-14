@@ -16,8 +16,9 @@ public class EnvidoEnvidoTests {
 	}
 
 		@Test
-		public void realEnvidoSeCreaCorrectamente(){
+		public void envidoEnvidoSeCreaCorrectamente(){
 			assertEquals(this.envidoEnvido.obtenerPuntos(),4);
+			assertEquals(this.envidoEnvido.obtenerPuntosNoQuerido(),2);
 		}
 
 }

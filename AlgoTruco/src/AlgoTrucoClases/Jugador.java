@@ -138,7 +138,8 @@ public class Jugador {
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderEnvido(vuelta)){
 			vuelta.obtenerRonda().setearEnvido();
 		}else{
-			this.obtenerEquipo().sumarPuntos(1);
+			vuelta.obtenerRonda().setearEnvido();
+			vuelta.obtenerRonda().obtenerTantoActual().noSeQuiere(this.obtenerEquipo());
 		}
 	}
 
@@ -149,6 +150,9 @@ public class Jugador {
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderFaltaEnvido(vuelta)){
 			vuelta.obtenerRonda().setearFaltaEnvido();
+		}else{
+			vuelta.obtenerRonda().setearFaltaEnvido();
+			vuelta.obtenerRonda().obtenerTantoActual().noSeQuiere(this.obtenerEquipo());
 		}
 	}
 
@@ -159,6 +163,9 @@ public class Jugador {
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderRealEnvido(vuelta)){
 			vuelta.obtenerRonda().setearRealEnvido();
+		}else{
+			vuelta.obtenerRonda().setearRealEnvido();
+			vuelta.obtenerRonda().obtenerTantoActual().noSeQuiere(this.obtenerEquipo());
 		}
 	}
 
@@ -171,24 +178,28 @@ public class Jugador {
 		switch (eleccion){
 		case 0: return true;
 		case 1: return false;
-		case 2: try{ //Codear el catch
-					vuelta.obtenerRonda().setearEnvido();
-					this.cantarEnvido(vuelta);
-					return true;
-				} catch (NoSePuedeCantarEnvidoError error){}
-		case 3: try{
-					vuelta.obtenerRonda().setearEnvido();
-					this.cantarRealEnvido(vuelta);
-					return true;
-				}catch (NoSePuedeCantarRealEnvidoError error){}
+		case 2: this.cantarEnvidoEnvido(vuelta);
+				return true;
+		case 3: this.cantarEnvidoRealEnvido(vuelta);
+				return true;
 		case 4: try{
-				vuelta.obtenerRonda().setearEnvido();
 				this.cantarFaltaEnvido(vuelta);
 				return true;
 				}catch (NoSePuedeCantarFaltaEnvidoError error){}
 		}
 		return false;
 	}
+
+	private void cantarEnvidoEnvido(Vuelta vuelta) {
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderEnvidoEnvido(vuelta)){
+			vuelta.obtenerRonda().setearEnvidoEnvido();
+		}else{
+			vuelta.obtenerRonda().setearEnvidoEnvido();
+			vuelta.obtenerRonda().obtenerTantoActual().noSeQuiere(this.obtenerEquipo());
+		}
+
+	}
+
 
 	private void cantarTruco(Vuelta vuelta){
 
@@ -352,6 +363,46 @@ public class Jugador {
 		}
 		return false;
 	}
+
+
+	public boolean responderEnvidoEnvido(Vuelta vuelta) {
+		int eleccion = 0;
+		switch(eleccion){
+		case 0: return true;//Quiero
+		case 1: return false;//No quiero
+		case 2: this.cantarEnvidoEnvidoRealEnvido(vuelta);//Envido envido real envido
+		case 3: try{
+			this.cantarFaltaEnvido(vuelta);
+			return true;
+			}catch (NoSePuedeCantarFaltaEnvidoError error){}
+		}
+		return false;
 	}
+
+
+	private void cantarEnvidoEnvidoRealEnvido(Vuelta vuelta) {
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderEnvidoEnvidoRealEnvido(vuelta)){
+			vuelta.obtenerRonda().setearEnvidoEnvidoRealEnvido();
+		}else{
+			vuelta.obtenerRonda().setearEnvidoEnvidoRealEnvido();
+			vuelta.obtenerRonda().obtenerTantoActual().noSeQuiere(this.obtenerEquipo());
+		}
+
+	}
+
+
+	public boolean responderEnvidoEnvidoRealEnvido(Vuelta vuelta) {
+		int eleccion = 0;
+		switch(eleccion){
+		case 0: return true;//Quiero
+		case 1: return false;//No quiero
+		case 2: try{
+			this.cantarFaltaEnvido(vuelta);
+			return true;
+			}catch (NoSePuedeCantarFaltaEnvidoError error){}
+		}
+		return false;
+	}
+}
 
 
