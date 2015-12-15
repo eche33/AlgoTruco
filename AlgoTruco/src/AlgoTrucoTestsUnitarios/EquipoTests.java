@@ -14,7 +14,9 @@ public class EquipoTests {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.equipo = new Equipo(new Jugador("Rodri"), new Jugador("Flor"));
+		this.equipo = new Equipo();
+		this.equipo.agregarJugadorAEquipo(new Jugador("Rodri"));
+		this.equipo.agregarJugadorAEquipo(new Jugador("Flor"));
 	}
 
 	

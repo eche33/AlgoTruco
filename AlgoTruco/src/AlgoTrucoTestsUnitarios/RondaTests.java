@@ -23,8 +23,13 @@ public class RondaTests {
 
 	@Before
 	public void setUp() throws Exception {
-		this.equipo1 = new Equipo (this.ailu = new Jugador("Ailu"), this.rodri = new Jugador("Rodri"));
-		this.equipo2 = new Equipo (this.flor = new Jugador("Flor"), this.cris = new Jugador("Cris"));
+		this.equipo1 = new Equipo ();
+		this.equipo1.agregarJugadorAEquipo(this.ailu = new Jugador("Ailu"));
+		this.equipo1.agregarJugadorAEquipo(this.rodri = new Jugador("Rodri"));
+		this.equipo2 = new Equipo ();
+		this.equipo2.agregarJugadorAEquipo(this.flor = new Jugador("Flor"));
+		this.equipo2.agregarJugadorAEquipo(this.cris = new Jugador("Cris"));
+		
 		this.ronda = new Ronda(this.equipo1, this.equipo2);
 	}
 
@@ -94,7 +99,7 @@ public class RondaTests {
 	@Test
 	public void equipoSeVaAlMazoEntoncesRondaFinaliza(){
 		this.ronda.irse(equipo1);
-		//assertEquals(this.ronda.obtenerEquipo1(),null);
+		assertEquals(this.ronda.obtenerEquipo1(),null);
 		assertTrue(this.ronda.rondaFinalizada());
 	}
 

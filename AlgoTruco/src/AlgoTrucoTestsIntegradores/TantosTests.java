@@ -40,12 +40,21 @@ public class TantosTests {
 
 	@Before
 	public void setUp() throws Exception{
-		this.equipoAilu = new Equipo(ailu = new Jugador("Ailu"));
-		this.equipoRodri = new Equipo(rodri = new Jugador("Rodri"));
+		this.equipoAilu = new Equipo();
+		this.equipoAilu.agregarJugadorAEquipo(ailu = new Jugador("Ailu"));
+		this.equipoRodri = new Equipo();
+		this.equipoRodri.agregarJugadorAEquipo(rodri = new Jugador("Rodri"));
+		
 		this.ronda = new Ronda(equipoAilu, equipoRodri);
 
-		this.equipoAiluRodri = new Equipo(ailu = new Jugador("Ailu"), rodri = new Jugador("Rodri"));
-		this.equipoFlorCris = new Equipo(flor = new Jugador("Flor"), cris = new Jugador("Cris"));
+		this.equipoAiluRodri = new Equipo();
+		this.equipoAiluRodri.agregarJugadorAEquipo(ailu = new Jugador("Ailu"));
+		this.equipoAiluRodri.agregarJugadorAEquipo(rodri = new Jugador("Rodri"));
+		
+		this.equipoFlorCris = new Equipo();
+		this.equipoFlorCris.agregarJugadorAEquipo(flor = new Jugador("Flor"));
+		this.equipoFlorCris.agregarJugadorAEquipo(cris = new Jugador("Cris"));
+		
 		this.rondaEquiposDeADos = new Ronda(equipoAiluRodri,equipoFlorCris);
 
 		Mano manoRodri = new Mano(new Seis(Palos.ESPADA), new Rey(Palos.ESPADA), new SieteEspada());
@@ -91,6 +100,7 @@ public class TantosTests {
 
 	@Test
 	public void sumarPuntosDeEquipoSumaCorrectamenteSinHaberCantadoNada(){
+		
 		this.rondaEquiposDeADos.sumarPuntos(this.equipoAiluRodri);
 		this.rondaEquiposDeADos.sumarPuntos(this.equipoFlorCris);
 
