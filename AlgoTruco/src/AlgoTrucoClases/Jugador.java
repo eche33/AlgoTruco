@@ -98,10 +98,10 @@ public class Jugador {
 			vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).irse(vuelta.obtenerRonda());
 		}
 	}
-	
+
 	public boolean responderSubirJuego(Vuelta vuelta){
 		int eleccion = 0;
-		
+
 		switch (eleccion){
 		case 0: vuelta.obtenerRonda().subirCanto();
 				this.equipo.tieneQuiero();
@@ -114,7 +114,7 @@ public class Jugador {
 		}
 		return false;
 	}
-	
+
 	public void tirarTercerCarta(Vuelta vuelta) {
 		this.tirarCarta(this.mano.obtenerCarta(2), vuelta);
 	}
@@ -133,20 +133,8 @@ public class Jugador {
 			throw new NoSePuedeCantarFlorError();
 		}
 
-		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).decidirFlor(vuelta)){
-			if(vuelta.obtenerRonda().obtenerFlorActual()==Flor.CONTRAFLORALRESTO){
-				vuelta.obtenerRonda().jugarFlor();
-			}else{
-				vuelta.obtenerRonda().setearFlor();
-				if(this.equipo.responderFlor(vuelta)){
-				vuelta.obtenerRonda().jugarFlor();
-				}else{
-					this.equipo.sumarPuntosFlor(vuelta.obtenerRonda());
-
-				}
-			}
-		}else {
-			this.equipo.sumarPuntosFlor(vuelta.obtenerRonda());
+		if (!vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).decidirFlor(vuelta)){
+			vuelta.obtenerRonda().setearFlor(this.obtenerEquipo());
 		}
 	}
 
@@ -282,20 +270,33 @@ public class Jugador {
 
 		switch(eleccion){
 		case 0: return false;//No tiene flor
-		case 1: return true;//ContraFlor
+		case 1: this.cantarContraFlor(vuelta);
+				return true;
 		case 2: this.cantarContraFlorAlResto(vuelta);
 				return true;
 		}
 		return false;
 	}
 
+	private void cantarContraFlor(Vuelta vuelta) {
+		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderContraFlor(vuelta)){
+			vuelta.obtenerRonda().setearContraFlor();
+		}else{
+			vuelta.obtenerRonda().setearFlorNoquerida(this.obtenerEquipo());
+		}
+
+	}
+
+
 	private void cantarContraFlorAlResto(Vuelta vuelta) {
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderContraFlorAlResto(vuelta)){
 			vuelta.obtenerRonda().setearContraFlorAlResto();
+		}else{
+			vuelta.obtenerRonda().setearFlorNoquerida(this.obtenerEquipo());
 		}
 	}
 
-	public boolean responderFlor(Vuelta vuelta) {
+	/*public boolean responderFlor(Vuelta vuelta) {
 		int eleccion = 0;
 
 		switch(eleccion){
@@ -306,7 +307,7 @@ public class Jugador {
 				return true;
 		}
 		return false;
-	}
+	}*/
 
 	public boolean responderContraFlorAlResto(Vuelta vuelta) {
 		int eleccion = 0;
@@ -367,10 +368,22 @@ public class Jugador {
 		}
 		return false;
 	}
-	
-	
+
+
+	public boolean responderContraFlor(Vuelta vuelta) {
+		int eleccion = 0;
+		switch (eleccion){
+		case 0: return true;//Quiero
+		case 1: return false;//NoQuiero
+		case 2: this.cantarContraFlorAlResto(vuelta);
+				return true;
+		}
+		return false;
+	}
+
+
 /** Métodos no usados:
- * 
+ *
  * 	private void cantarTruco(Vuelta vuelta){
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderTruco(vuelta)){
@@ -406,8 +419,8 @@ public class Jugador {
 			vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).irse(vuelta.obtenerRonda());
 		}
 	}
- * 
- * 
+ *
+ *
  * 	public boolean responderTruco(Vuelta vuelta){
 		int eleccion=0;
 
@@ -445,7 +458,7 @@ public class Jugador {
 		}
 		return false;
 	}
- *	
+ *
  */
 }
 

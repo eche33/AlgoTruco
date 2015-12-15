@@ -1,5 +1,7 @@
 package AlgoTrucoTestsUnitarios;
 
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,8 +28,8 @@ public class ManoTests {
 	private Mano manoFlor;
 	private Mano manoEnvido;
 	private Mano manoEnvidoFigura;
-	
-	
+
+
 	@Before
 	public void setUp() throws Exception {
 		this.manoTruco = new Mano(new AnchoEspada(), new AnchoBasto(), new SieteOro());
@@ -36,7 +38,7 @@ public class ManoTests {
 		this.manoEnvidoFigura = new Mano(new Rey(Palos.ESPADA), new SieteEspada(), new AnchoFalso(Palos.ORO));
 	}
 
-	
+
 	@Test
 	public void testCreaUnaManoYChequeaCuantasCartasTiene() {
 		Assert.assertEquals(3,this.manoTruco.cantidadDeCartas());
@@ -73,12 +75,12 @@ public class ManoTests {
 	public void obtenerEnvidoEntreTodasDistintas(){
 		Assert.assertEquals(7, this.manoTruco.obtenerEnvido());
 	}
-	
+
 	@Test
 	public void obtenerEnvidoMayorManoConFlor(){
 		Assert.assertEquals(27, this.manoFlor.obtenerEnvido());
 	}
-	
+
 	@Test
 	public void testManoTieneFlor(){
 		Assert.assertTrue(this.manoFlor.tieneFlor());
@@ -96,6 +98,11 @@ public class ManoTests {
 	}
 
 	@Test
+	public void sinFlor(){
+		assertEquals(this.manoEnvido.obtenerFlor(),0);
+	}
+
+	@Test
 	public void testCalcularFlorCorrectamenteConTodasFiguras(){
 		Mano mano = new Mano(new Rey(Palos.ESPADA), new Caballo(Palos.ESPADA), new Sota(Palos.ESPADA));
 		Assert.assertEquals(mano.obtenerFlor(),20);
@@ -107,10 +114,10 @@ public class ManoTests {
 		Assert.assertEquals(mano.obtenerFlor(),38);
 	}
 
-	
+
 /** Tests que prueba cosas que no se usan en el modelo:
- * 
- * 
+ *
+ *
  * 	@Test
 	public void testSonTodasDeDistintoPalo(){
 		Assert.assertTrue(this.manoTruco.sonTodasDeDistintoPalo());
@@ -120,13 +127,13 @@ public class ManoTests {
 	public void testNoSonTodasDeDistintoPalo(){
 		Assert.assertFalse(this.manoTruco.sonTodasDeDistintoPalo());
 	}
- * 	
- * 
- * 
+ *
+ *
+ *
  *  Estas otras pruebas eran sobre calcularEnvidoEntreDosNumeros(), pero creo que convendría hacer ese método privado,
  *  por lo que no podrían hacerse estos tests:
- *  
- *  
+ *
+ *
  *  @Test
 	public void calcularEnvidoEntreDosFiguras(){
 		Mano mano = new Mano(new Caballo(Palos.ESPADA), new Sota(Palos.ESPADA), new Rey(Palos.ESPADA));
@@ -152,19 +159,19 @@ public class ManoTests {
 		assertEquals(27,mano.calcularEnvidoEntre(1,3));
 	}
  *
- *	
+ *
 	@Test
 	public void calcularEnvidoEntreDosDistintas(){
 		Assert.assertEquals(1, manoTruco.calcularEnvidoEntre(1,2));
 		Assert.assertEquals(7, manoTruco.calcularEnvidoEntre(1,3));
 		Assert.assertEquals(7, manoTruco.calcularEnvidoEntre(2,3));
 	}
- * 
- * 
- * 
+ *
+ *
+ *
  *  Estos que van acá abajo son viejos y ni tienen métodos que los pasen. Quizás ni sirvan.
- *  
- *  
+ *
+ *
  *  @Test
 	public void testObtenerValorCartaMasAlta(){
 		ArrayList<Carta> cartas = new ArrayList<Carta>();
@@ -202,7 +209,7 @@ public class ManoTests {
 
 		assertEquals(mano.obtenerValorCartaMasAlta(),0);
 	}
- *  
+ *
  */
 }
 
