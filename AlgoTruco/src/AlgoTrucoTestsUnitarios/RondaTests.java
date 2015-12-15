@@ -100,7 +100,7 @@ public class RondaTests {
 	public void equipoSeVaAlMazoEntoncesRondaFinaliza(){
 		this.ronda.irse(equipo1);
 		assertEquals(this.ronda.obtenerEquipo1(),null);
-		assertTrue(this.ronda.rondaFinalizada());
+		assertTrue( this.ronda.rondaFinalizada() );
 	}
 
 	@Test

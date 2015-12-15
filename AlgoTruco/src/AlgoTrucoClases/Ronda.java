@@ -104,15 +104,18 @@ public class Ronda {
 		if (this.numeroVuelta > 3){
 			return true;
 		}
+		
+		if ((this.equipo1==null) || (this.equipo2==null)){
+			return true;
+		}
+		
 		if ((this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
 			return true;
 		}
 		if (numeroVuelta > 2 && ganadores != 0){
 			return true;
 		}
-		if ((this.equipo1==null) || (this.equipo2==null)){
-			return true;
-		}
+		
 		return false;
 	}
 
@@ -281,10 +284,10 @@ public class Ronda {
 	}
 
 	public void sumarPuntos(Equipo equipoAiluRodri) {
-			if(this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri)){
+			if( this.tantoActual!=null && this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri) ){
 				equipoAiluRodri.sumarPuntos(this.tantoActual.obtenerPuntos());
 			}
-		}
+	}
 		//Hay que hacer lo mismo con el envido y la flor
 		/*La idea seria que este metodo sume al final de la ronda todo lo que se gano el equipo que
 		 * le llega como parametro
