@@ -29,7 +29,7 @@ public class RondaTests {
 		this.equipo2 = new Equipo ();
 		this.equipo2.agregarJugadorAEquipo(this.flor = new Jugador("Flor"));
 		this.equipo2.agregarJugadorAEquipo(this.cris = new Jugador("Cris"));
-		
+
 		this.ronda = new Ronda(this.equipo1, this.equipo2);
 	}
 
@@ -145,6 +145,32 @@ public class RondaTests {
 	public void faltaEnvidoCantadoFuncionaCorrectamente(){
 		this.ronda.setearFaltaEnvido();
 		assertTrue(this.ronda.faltaEnvidoCantado());
+	}
+
+	@Test
+	public void setearFlorFuncionaCorrectamente(){
+		this.ronda.setearFlor(this.equipo1);
+		assertEquals(this.ronda.obtenerFlorActual().getClass().getSimpleName(),"Flor");
+	}
+
+	@Test
+	public void setearFlorNoQueridaFuncionaCorrectamente(){
+		this.ronda.setearFlorNoquerida(this.equipo1);
+		assertEquals(this.ronda.obtenerFlorActual().getClass().getSimpleName(),"FlorNoQuerida");
+	}
+
+	@Test
+	public void setearContraFlorCorrectamente(){
+		this.ronda.setearFlor(equipo1);
+		this.ronda.setearContraFlor();
+		assertEquals(this.ronda.obtenerFlorActual().getClass().getSimpleName(),"ContraFlor");
+	}
+
+	@Test
+	public void setearContraFlorAlRestoCorrectamente(){
+		this.ronda.setearFlor(equipo1);
+		this.ronda.setearContraFlorAlResto();
+		assertEquals(this.ronda.obtenerFlorActual().getClass().getSimpleName(),"ContraFlorAlResto");
 	}
 
 

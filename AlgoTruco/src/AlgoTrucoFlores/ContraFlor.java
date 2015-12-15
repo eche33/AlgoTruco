@@ -14,19 +14,19 @@ public class ContraFlor extends Flores{
 	@Override
 	public Equipo obtenerEquipoGanador(Ronda ronda) {
 		int florGanadora = 0;
-		this.equipoGanador = null;
+		Equipo equipoGanador = null;
 		for(int i=0; i<ronda.obtenerJugadoresOrdenados().size(); i++){
 			Jugador jugadorActual = ronda.obtenerJugadoresOrdenados().get(i);
 			if(jugadorActual.obtenerFlor()>florGanadora){
-				florGanadora = jugadorActual.obtenerEnvido();
-				this.equipoGanador = jugadorActual.obtenerEquipo();
+				florGanadora = jugadorActual.obtenerFlor();
+				equipoGanador = jugadorActual.obtenerEquipo();
 			}else{
 				if(jugadorActual.obtenerFlor()==florGanadora){
-					this.equipoGanador = ronda.obtenerEquipoMano();
+					equipoGanador = ronda.obtenerEquipoMano();
 				}
 			}
 		}
-		return (this.equipoGanador);
+		return (equipoGanador);
 	}
 
 

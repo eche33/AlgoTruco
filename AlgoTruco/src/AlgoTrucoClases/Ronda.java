@@ -291,8 +291,11 @@ public class Ronda {
 			if( this.tantoActual!=null && this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri) ){
 				equipoAiluRodri.sumarPuntos(this.tantoActual.obtenerPuntos());
 			}
+			if(this.florActual!=null && this.florActual.obtenerEquipoGanador(this).equals(equipoAiluRodri)){
+				equipoAiluRodri.sumarPuntos(this.florActual.obtenerPuntos());
+			}
 	}
-		//Hay que hacer lo mismo con el envido y la flor
+		//Hay que hacer lo mismo con el truco
 		/*La idea seria que este metodo sume al final de la ronda todo lo que se gano el equipo que
 		 * le llega como parametro
 		 */

@@ -18,7 +18,7 @@ public class ContraFlorAlResto extends Flores {
 		for(int i=0; i<ronda.obtenerJugadoresOrdenados().size(); i++){
 			Jugador jugadorActual = ronda.obtenerJugadoresOrdenados().get(i);
 			if(jugadorActual.obtenerFlor()>florGanadora){
-				florGanadora = jugadorActual.obtenerEnvido();
+				florGanadora = jugadorActual.obtenerFlor();
 				this.equipoGanador = jugadorActual.obtenerEquipo();
 			}else{
 				if(jugadorActual.obtenerFlor()==florGanadora){

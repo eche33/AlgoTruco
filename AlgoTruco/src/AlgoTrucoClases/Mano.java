@@ -6,7 +6,7 @@ public class Mano {
 
 	private ArrayList<Carta> cartas;
 
-	
+
 	public Mano(Carta carta, Carta carta2, Carta carta3){
 		cartas = new ArrayList<Carta>();
 		cartas.add(carta);
@@ -14,7 +14,7 @@ public class Mano {
 		cartas.add(carta3);
 	}
 
-	
+
 	public int cantidadDeCartas(){
 		return (this.cartas.size());
 	}
@@ -47,7 +47,7 @@ public class Mano {
 
 		if (primerCarta.obtenerPalo() == segundaCarta.obtenerPalo()){
 			envido = 20;
-			
+
 			if (!primerCarta.esUnaFigura()){
 				envido = envido + primerCarta.obtenerNumero();
 			}
@@ -81,7 +81,7 @@ public class Mano {
 		int envido12 = this.calcularEnvidoEntre(1, 2);
 		int envido13 = this.calcularEnvidoEntre(1, 3);
 		int envido23 = this.calcularEnvidoEntre(2, 3);
-		
+
 		if(envido12 > envido13){
 			if(envido12 > envido23){
 				envido = envido12;
@@ -101,11 +101,11 @@ public class Mano {
 
 	public boolean tieneFlor(){
 		boolean tieneFlor = false;
-		
+
 		Carta primerCarta = this.cartas.get(0);
 		Carta segundaCarta = this.cartas.get(1);
 		Carta tercerCarta = this.cartas.get(2);
-		
+
 		if(primerCarta.obtenerPalo()==segundaCarta.obtenerPalo() && primerCarta.obtenerPalo()==tercerCarta.obtenerPalo() && segundaCarta.obtenerPalo()==tercerCarta.obtenerPalo()){
 			tieneFlor =true;
 		}
@@ -114,13 +114,13 @@ public class Mano {
 
 	public int obtenerFlor(){
 		int flor = 0;
-		
+
 		if(this.tieneFlor()){
 			flor = 20;
 			Carta primerCarta = this.cartas.get(0);
 			Carta segundaCarta = this.cartas.get(1);
 			Carta tercerCarta = this.cartas.get(2);
-			
+
 			if(!primerCarta.esUnaFigura()){
 				flor = flor + primerCarta.obtenerNumero();
 			}
@@ -141,10 +141,10 @@ public class Mano {
 	public Carta obtenerCarta(int i) {
 		return this.cartas.get(i);
 	}
-	
-	
+
+
 /** Otro método que no se usa en ningún otro lado mas que en los tests:
- * 
+ *
  * 	public boolean sonTodasDeDistintoPalo(){
 		boolean sonDeDistintoPalo = false;
 
@@ -159,10 +159,10 @@ public class Mano {
 		}
 		return sonDeDistintoPalo;
 	}
- * 	
+ *
  */
-	
-	
+
+
 }
 
 
