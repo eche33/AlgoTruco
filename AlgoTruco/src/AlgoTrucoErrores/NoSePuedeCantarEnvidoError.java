@@ -1,4 +1,4 @@
-package AlgoTrucoClases;
+package AlgoTrucoErrores;
 
 public class NoSePuedeCantarEnvidoError extends Exception {
 

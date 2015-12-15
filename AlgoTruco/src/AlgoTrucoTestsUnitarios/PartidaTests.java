@@ -18,9 +18,12 @@ public class PartidaTests {
 	
 	@Before
 	public void setup(){
-		this.equipoPrueba1 = new Equipo(new Jugador("Jugador 1"));
-		this.equipoPrueba2 = new Equipo(new Jugador("Jugador 2"));
-		this.equipoPrueba3 = new Equipo(new Jugador("Jugador 3"));
+		this.equipoPrueba1 = new Equipo();
+		this.equipoPrueba1.agregarJugadorAEquipo(new Jugador("Jugador 1"));
+		this.equipoPrueba2 = new Equipo();
+		this.equipoPrueba2.agregarJugadorAEquipo(new Jugador("Jugador 2"));
+		this.equipoPrueba3 = new Equipo();
+		this.equipoPrueba3.agregarJugadorAEquipo(new Jugador("Jugador 3"));
 		
 		this.partidaDePrueba1 = new Partida(this.equipoPrueba1, this.equipoPrueba2);
 		this.partidaDePrueba2 = new Partida(this.equipoPrueba1, this.equipoPrueba3);

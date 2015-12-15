@@ -25,8 +25,12 @@ public class JugadorTests {
 		jugador = new Jugador("Rodrigo");
 		this.mano = new Mano(new AnchoEspada(), new AnchoBasto(), new SieteEspada());
 
-		Equipo equipo1 = new Equipo(new Jugador("Ailu"), new Jugador("Rodri"));
-		Equipo equipo2 = new Equipo(new Jugador("Flor"), new Jugador("Cris"));
+		Equipo equipo1 = new Equipo();
+		equipo1.agregarJugadorAEquipo(new Jugador("Ailu"));
+		equipo1.agregarJugadorAEquipo(new Jugador("Rodri"));
+		Equipo equipo2 = new Equipo();
+		equipo2.agregarJugadorAEquipo(new Jugador("Flor"));
+		equipo2.agregarJugadorAEquipo(new Jugador("Cris"));
 		this.ronda = new Ronda(equipo1, equipo2);
 	}
 
