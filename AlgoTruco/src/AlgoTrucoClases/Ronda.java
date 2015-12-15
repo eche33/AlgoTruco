@@ -19,7 +19,7 @@ public class Ronda {
 	private ArrayList<Jugador> jugadoresOrdenados; // Ordenados de acuerdo a quien comienza la primera vuelta.
 	private Canto cantoActual;
 	private Tanto tantoActual;
-	private Flor florActual;
+	private Flores florActual;
 	private int ganadores;
 
 
@@ -104,18 +104,18 @@ public class Ronda {
 		if (this.numeroVuelta > 3){
 			return true;
 		}
-		
+
 		if ((this.equipo1==null) || (this.equipo2==null)){
 			return true;
 		}
-		
+
 		if ((this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
 			return true;
 		}
 		if (numeroVuelta > 2 && ganadores != 0){
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -308,10 +308,10 @@ public class Ronda {
 	public Canto obtenerCanto() {
 		return this.cantoActual;
 	}
-	
+
 /** Métodos no usados:
- * 
- * 
+ *
+ *
  * 	public void setearTruco(){
 		if (this.cantoActual == null){
 			this.cantoActual = Cantos.TRUCO;
@@ -331,8 +331,8 @@ public class Ronda {
 			this.cantoActual = Cantos.VALECUATRO;
 		}
 	}
- * 	
- * 
+ *
+ *
  * 	public void jugarFlor() {
 		int florGanadora = 0;
 		Equipo equipoGanador = null;
@@ -370,6 +370,6 @@ public class Ronda {
 	}
  *
  */
-	
+
 }
 
