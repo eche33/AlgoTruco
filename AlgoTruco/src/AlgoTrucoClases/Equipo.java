@@ -14,7 +14,7 @@ public class Equipo{
 		this.puntajeDeEquipo = 0;
 		this.quiero = true;
 	}
-	
+
 	public void agregarJugadorAEquipo(Jugador jugadorNuevo){
 		this.jugadores.add(jugadorNuevo);
 		jugadorNuevo.asignarEquipo(this);
@@ -73,9 +73,7 @@ public class Equipo{
 		return (this.jugadores.get(0).decidirFlor(vuelta));
 	}
 
-	public boolean responderFlor(Vuelta vuelta) {
-		return (this.jugadores.get(0).responderFlor(vuelta));
-	}
+
 
 	public boolean responderContraFlorAlResto(Vuelta vuelta) {
 		return(this.jugadores.get(0).responderContraFlorAlResto(vuelta));
@@ -96,7 +94,11 @@ public class Equipo{
 	public boolean responderSubirJuego(Vuelta vuelta){
 		return (this.jugadores.get(0).responderSubirJuego(vuelta));
 	}
-	
+
+	public boolean responderContraFlor(Vuelta vuelta) {
+		return (this.jugadores.get(0).responderContraFlor(vuelta));
+	}
+
 
 /** Igual que en otras clases, hay un método que sólo hicimos para probarse, como que no se usa en ninguna parte del
  *  código. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.

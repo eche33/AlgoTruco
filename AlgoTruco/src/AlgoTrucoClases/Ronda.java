@@ -3,6 +3,10 @@ package AlgoTrucoClases;
 import java.util.ArrayList;
 
 import AlgoTrucoCantos.TrucoNoCantado;
+import AlgoTrucoFlores.ContraFlor;
+import AlgoTrucoFlores.ContraFlorAlResto;
+import AlgoTrucoFlores.Flor;
+import AlgoTrucoFlores.FlorNoQuerida;
 import AlgoTrucoTantos.Envido;
 import AlgoTrucoTantos.EnvidoEnvido;
 import AlgoTrucoTantos.EnvidoEnvidoRealEnvido;
@@ -201,25 +205,25 @@ public class Ronda {
 		return equipoMano;
 	}
 
-	public void setearFlor() {
+	public void setearFlor(Equipo equipo) {
 		if (this.florActual == null){
-			florActual = Flor.FLOR;
+			florActual = new Flor(equipo);
 		}
 	}
 
 	public void setearContraFlor() {
-		if(this.florActual == Flor.FLOR){
-			florActual = Flor.CONTRAFLOR;
+		if(this.florActual.getClass().getSimpleName().equals("Flor")){
+			florActual = new ContraFlor();
 		}
 	}
 
-	public Flor obtenerFlorActual() {
+	public Flores obtenerFlorActual() {
 		return (this.florActual);
 	}
 
 	public void setearContraFlorAlResto() {
-		if(this.florActual == Flor.FLOR || this.florActual == Flor.CONTRAFLOR){
-			this.florActual = Flor.CONTRAFLORALRESTO;
+		if(this.florActual.getClass().getSimpleName().equals("Flor") || this.florActual.getClass().getSimpleName().equals("ContraFlor")){
+			this.florActual = new ContraFlorAlResto(this.obtenerFaltaEnvido());
 		}
 	}
 
@@ -307,6 +311,12 @@ public class Ronda {
 
 	public Canto obtenerCanto() {
 		return this.cantoActual;
+	}
+
+
+	public void setearFlorNoquerida(Equipo equipo) {
+		this.florActual = new FlorNoQuerida(equipo);
+
 	}
 
 /** Métodos no usados:
