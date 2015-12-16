@@ -85,7 +85,7 @@ public class FloresTests {
 
 	@Test
 	public void equipoSumaContraFlorCorrectamente() {
-		//this.ronda.setearFlor(equipoRodri);
+		this.ronda.setearFlor(equipoRodri);
 		this.ronda.setearContraFlor();
 		this.ronda.sumarPuntos(equipoRodri);
 		this.ronda.sumarPuntos(equipoAilu);
