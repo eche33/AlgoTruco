@@ -138,7 +138,7 @@ public class Jugador {
 		}
 	}
 
-	private void cantarEnvido(Vuelta vuelta) throws NoSePuedeCantarEnvidoError{
+	public void cantarEnvido(Vuelta vuelta) throws NoSePuedeCantarEnvidoError{
 
 		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
 			throw new NoSePuedeCantarEnvidoError();
@@ -244,7 +244,7 @@ public class Jugador {
 		int eleccion=0;
 
 		switch (eleccion){
-		case 0: return true;//Quiero
+		case 0: this.quieroEnvido();;//Quiero
 		case 1: return false;//No quiero
 		case 2: try{				//Falta envido
 				vuelta.obtenerRonda().setearRealEnvido();
@@ -379,6 +379,12 @@ public class Jugador {
 				return true;
 		}
 		return false;
+	}
+
+
+	public boolean quieroEnvido() {
+		return true;
+
 	}
 
 

@@ -116,10 +116,10 @@ public class MesaTest {
 		Carta seis= new Seis(Palos.ESPADA);
 		Carta sota = new Sota(Palos.ESPADA);
 		Carta cuatro = new Cuatro(Palos.BASTO);
-		Carta ancho = new AnchoBasto();
+		Carta rey = new Rey(Palos.BASTO);
 
 		mesa.tirarCarta(cuatro, flor);
-		mesa.tirarCarta(ancho, ailu);
+		mesa.tirarCarta(rey, ailu);
 		mesa.tirarCarta(sota, cris);
 		mesa.tirarCarta(seis, rodri);
 

@@ -212,7 +212,7 @@ public class Ronda {
 	}
 
 	public void setearContraFlor() {
-		if(this.florActual.getClass().getSimpleName().equals("Flor")){
+		if(this.florActual.getClass().getSimpleName() != "ContraFlorAlResto" || this.florActual.getClass().getSimpleName() != "FlorNoQuerida"){
 			florActual = new ContraFlor();
 		}
 	}
@@ -222,9 +222,7 @@ public class Ronda {
 	}
 
 	public void setearContraFlorAlResto() {
-		if(this.florActual.getClass().getSimpleName().equals("Flor") || this.florActual.getClass().getSimpleName().equals("ContraFlor")){
 			this.florActual = new ContraFlorAlResto(this.obtenerFaltaEnvido());
-		}
 	}
 
 	public Equipo obtenerEquipoQueVaGanando() {
