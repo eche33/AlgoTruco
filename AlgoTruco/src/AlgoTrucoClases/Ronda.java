@@ -3,6 +3,10 @@ package AlgoTrucoClases;
 import java.util.ArrayList;
 
 import AlgoTrucoCantos.TrucoNoCantado;
+import AlgoTrucoFlores.ContraFlor;
+import AlgoTrucoFlores.ContraFlorAlResto;
+import AlgoTrucoFlores.Flor;
+import AlgoTrucoFlores.FlorNoQuerida;
 import AlgoTrucoTantos.Envido;
 import AlgoTrucoTantos.EnvidoEnvido;
 import AlgoTrucoTantos.EnvidoEnvidoRealEnvido;
@@ -19,7 +23,7 @@ public class Ronda {
 	private ArrayList<Jugador> jugadoresOrdenados; // Ordenados de acuerdo a quien comienza la primera vuelta.
 	private Canto cantoActual;
 	private Tanto tantoActual;
-	private Flor florActual;
+	private Flores florActual;
 	private int ganadores;
 
 
@@ -104,18 +108,18 @@ public class Ronda {
 		if (this.numeroVuelta > 3){
 			return true;
 		}
-		
+
 		if ((this.equipo1==null) || (this.equipo2==null)){
 			return true;
 		}
-		
+
 		if ((this.equipo1.ganoPartida()) || (this.equipo2.ganoPartida())){
 			return true;
 		}
 		if (numeroVuelta > 2 && ganadores != 0){
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -201,26 +205,24 @@ public class Ronda {
 		return equipoMano;
 	}
 
-	public void setearFlor() {
+	public void setearFlor(Equipo equipo) {
 		if (this.florActual == null){
-			florActual = Flor.FLOR;
+			florActual = new Flor(equipo);
 		}
 	}
 
 	public void setearContraFlor() {
-		if(this.florActual == Flor.FLOR){
-			florActual = Flor.CONTRAFLOR;
+		if(this.florActual.getClass().getSimpleName() != "ContraFlorAlResto" || this.florActual.getClass().getSimpleName() != "FlorNoQuerida"){
+			florActual = new ContraFlor();
 		}
 	}
 
-	public Flor obtenerFlorActual() {
+	public Flores obtenerFlorActual() {
 		return (this.florActual);
 	}
 
 	public void setearContraFlorAlResto() {
-		if(this.florActual == Flor.FLOR || this.florActual == Flor.CONTRAFLOR){
-			this.florActual = Flor.CONTRAFLORALRESTO;
-		}
+			this.florActual = new ContraFlorAlResto(this.obtenerFaltaEnvido());
 	}
 
 	public Equipo obtenerEquipoQueVaGanando() {
@@ -287,8 +289,11 @@ public class Ronda {
 			if( this.tantoActual!=null && this.tantoActual.obtenerEquipoGanador(this).equals(equipoAiluRodri) ){
 				equipoAiluRodri.sumarPuntos(this.tantoActual.obtenerPuntos());
 			}
+			if(this.florActual!=null && this.florActual.obtenerEquipoGanador(this).equals(equipoAiluRodri)){
+				equipoAiluRodri.sumarPuntos(this.florActual.obtenerPuntos());
+			}
 	}
-		//Hay que hacer lo mismo con el envido y la flor
+		//Hay que hacer lo mismo con el truco
 		/*La idea seria que este metodo sume al final de la ronda todo lo que se gano el equipo que
 		 * le llega como parametro
 		 */
@@ -308,10 +313,16 @@ public class Ronda {
 	public Canto obtenerCanto() {
 		return this.cantoActual;
 	}
-	
+
+
+	public void setearFlorNoquerida(Equipo equipo) {
+		this.florActual = new FlorNoQuerida(equipo);
+
+	}
+
 /** Métodos no usados:
- * 
- * 
+ *
+ *
  * 	public void setearTruco(){
 		if (this.cantoActual == null){
 			this.cantoActual = Cantos.TRUCO;
@@ -331,8 +342,8 @@ public class Ronda {
 			this.cantoActual = Cantos.VALECUATRO;
 		}
 	}
- * 	
- * 
+ *
+ *
  * 	public void jugarFlor() {
 		int florGanadora = 0;
 		Equipo equipoGanador = null;
@@ -370,6 +381,6 @@ public class Ronda {
 	}
  *
  */
-	
+
 }
 

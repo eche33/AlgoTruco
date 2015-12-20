@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="232.0" prefWidth="468.0" styleClass="background" stylesheets="@fondoMadera.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.SelectorModo1vs1Controlador">
+   <children>
+      <Button layoutX="22.0" layoutY="100.0" mnemonicParsing="false" onAction="#seleccionar1vs1" prefHeight="83.0" prefWidth="206.0" styleClass="background" stylesheets="@botonesVerde.css" text="1 VS 1" />
+      <Button layoutX="241.0" layoutY="100.0" mnemonicParsing="false" onAction="#seleccionar1vsPC" prefHeight="83.0" prefWidth="206.0" styleClass="background" stylesheets="@botonesVerde.css" text="1 VS PC" />
+      <Text fill="WHITE" layoutX="66.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ELIGE QUE MODO DE JUEGO DESEA JUGAR">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+   </children>
+</AnchorPane>

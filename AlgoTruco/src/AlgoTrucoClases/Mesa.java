@@ -24,9 +24,9 @@ public class Mesa {
 	public Jugador obtenerJugadorQueTiroCartaMasAlta(){
 		boolean parda = true;
 		Jugador jugador = null;
-		
+
 		if ( !this.cartasTiradas.isEmpty() ){
-			
+
 			Carta cartaAlta = this.cartasTiradas.get(0);
 			int posicion = 0;
 			for (int i=0; i<this.cartasTiradas.size(); i++){
@@ -43,7 +43,7 @@ public class Mesa {
 			jugador = jugadores.get(posicion);
 			if (parda)
 				jugador = null;
-		}	
+		}
 		return jugador;
 	}
 
