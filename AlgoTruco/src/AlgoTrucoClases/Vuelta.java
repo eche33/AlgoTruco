@@ -19,14 +19,14 @@ public class Vuelta {
 		return (this.mesa);
 	}
 
-	public void iniciar(){
+	/*public void iniciar(){
 
 		for(int i = 1; i<this.ronda.obtenerJugadoresOrdenados().size(); i++){
 			if(vueltaEnCurso){
 				this.ronda.obtenerJugadoresOrdenados().get(i).jugar(this);
 			}
 		}
-	}
+	}*/
 
 	public Jugador obtenerJugadorQueTiroCartaMasALta(){
 		return (this.mesa.obtenerJugadorQueTiroCartaMasAlta());
@@ -54,7 +54,7 @@ public class Vuelta {
 	public Ronda obtenerRonda(){
 		return this.ronda;
 	}
-	
+
 	public Equipo obtenerEquipoRival(Equipo equipo){
 		return this.ronda.obtenerEquipoRival(equipo);
 	}

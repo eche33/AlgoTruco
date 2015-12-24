@@ -29,7 +29,7 @@ public abstract class Carta{
 
 	public int jugarContra(Carta unaCarta){
 	// Método para jugar contra otras cartas. Devuelve 1 si gana, -1 si pierde y 0 si parda.
-	// ACLARACIÓN: La mejor prioridad es  (ancho de espada), la peor es 14 (todos los cuatro).
+	// ACLARACIÓN: La mejor prioridad es 1 (ancho de espada), la peor es 14 (todos los cuatro).
 		if (this.prioridad < unaCarta.obtenerPrioridad()){
 			return 1;
 		}

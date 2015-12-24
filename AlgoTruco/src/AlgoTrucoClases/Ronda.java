@@ -293,10 +293,7 @@ public class Ronda {
 				equipoAiluRodri.sumarPuntos(this.florActual.obtenerPuntos());
 			}
 	}
-		//Hay que hacer lo mismo con el truco
-		/*La idea seria que este metodo sume al final de la ronda todo lo que se gano el equipo que
-		 * le llega como parametro
-		 */
+
 
 	public boolean faltaEnvidoCantado() {
 		return ((this.tantoActual.getClass().getSimpleName().equals("FaltaEnvido")));
