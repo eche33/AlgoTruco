@@ -2,7 +2,9 @@ package Vista;
 
 import java.io.IOException;
 
-import AlgoTrucoClases.Partida;
+import AlgoTrucoClases.Juego;
+import AlgoTrucoClases.Jugador;
+import AlgoTrucoClases.Vuelta;
 import application.Main;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -18,7 +20,7 @@ public class MainApp extends Application {
     /**
      *
      */
-    public static Partida partida;
+    public static Juego juego;
     public static Stage primaryStage;
     public static String pantallaInicial = "PantallaInicial";
     public static String pantallaInicialFile = "PantallaInicial.fxml";
@@ -30,6 +32,10 @@ public class MainApp extends Application {
     public static String pantalla2vs2File = "Pantalla2vs2.fxml";
     public static String pantalla3vs3 = "pantalla3vs3";
     public static String pantalla3vs3File = "Pantalla3vs3.fxml";
+    public static Boolean conFlor = true;
+	public static Jugador jugando;
+	public static Vuelta vuelta;
+    
     
 
     
@@ -61,7 +67,7 @@ public class MainApp extends Application {
     }
 
     @FXML
-    public void showConOSinFlorSelector() {
+    public void showConOSinFlorSelector() {  
 
         try {
             
@@ -85,14 +91,10 @@ public class MainApp extends Application {
            
             dialogStage.showAndWait();
 
-            if ((controller.conFlor())){
-                //MainApp.algotruco.Conflor();
+            if ((! controller.conFlor())){
+               conFlor = false;
             }
             
-            else if(! controller.conFlor()){
-                //MainApp.algotruco.Sinflor();
-                
-            }
                 
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,4 +106,33 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+	public static void cartelAlerta(String mensaje) {
+		try {
+	
+            
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("cartelAlerta.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // CREO EL DIALOG STAGE
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("FLOR");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(MainApp.primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            
+            AlertasControlador controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setearMensaje(mensaje);
+            
+            dialogStage.showAndWait();
+		
+		} catch (IOException e) {
+        e.printStackTrace();
+        
+		}
+	}
 }

@@ -4,6 +4,7 @@ import AlgoTrucoErrores.NoSePuedeCantarEnvidoError;
 import AlgoTrucoErrores.NoSePuedeCantarFaltaEnvidoError;
 import AlgoTrucoErrores.NoSePuedeCantarFlorError;
 import AlgoTrucoErrores.NoSePuedeCantarRealEnvidoError;
+import Vista.MainApp;
 
 public class Jugador {
 
@@ -57,11 +58,16 @@ public class Jugador {
 	}
 
 	public void jugar(Vuelta vuelta){
-		int eleccion=0;
+		
+		MainApp.jugando = (this);
+		MainApp.vuelta = vuelta;
+		
+		int eleccion = 0;
 
 		while (this.noTiroCarta){
 
 			switch(eleccion){
+			
 			case 1: try{ //Hay que agregarle el funcionamiento del catch
 						this.cantarEnvido(vuelta);
 						break;
@@ -127,7 +133,7 @@ public class Jugador {
 		this.tirarCarta(this.mano.obtenerCarta(0), vuelta);
 	}
 
-	private void cantarFlor(Vuelta vuelta) throws NoSePuedeCantarFlorError{
+	public void cantarFlor(Vuelta vuelta) throws NoSePuedeCantarFlorError{
 
 		if((vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1) || (!this.noTiroCarta)){
 			throw new NoSePuedeCantarFlorError();
@@ -383,6 +389,9 @@ public class Jugador {
 	}
 
 
+<<<<<<< HEAD
+/** Mï¿½todos no usados:
+=======
 	public boolean quieroEnvido() {
 		return true;
 
@@ -396,6 +405,7 @@ public class Jugador {
 
 
 /** Métodos no usados:
+>>>>>>> origin/master
  *
  * 	private void cantarTruco(Vuelta vuelta){
 

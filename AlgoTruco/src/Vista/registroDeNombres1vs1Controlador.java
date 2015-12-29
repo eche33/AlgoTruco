@@ -1,6 +1,8 @@
 package Vista;
 
 import AlgoTrucoClases.Equipo;
+import AlgoTrucoClases.Juego;
+import AlgoTrucoClases.Jugador;
 import AlgoTrucoClases.Partida;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,11 +11,11 @@ import javafx.stage.Stage;
 public class registroDeNombres1vs1Controlador {
 	
 	private Stage dialogStage;
-
 	
 	private String nombreJ1;
 	
 	private String nombreJ2;
+	
 	@FXML
 	TextField nombreJugador1;
 	@FXML
@@ -21,10 +23,8 @@ public class registroDeNombres1vs1Controlador {
 
 
 	private Equipo equipo1;
+	
 	private Equipo equipo2;
-
-
-
 
 
     @FXML
@@ -38,29 +38,31 @@ public class registroDeNombres1vs1Controlador {
 	private void registrarNombres() {
 		nombreJ1 = nombreJugador1.getText();
 		nombreJ2 = nombreJugador2.getText();
-		System.out.println(nombreJ1);
-		System.out.println(nombreJ2);
+		
 		dialogStage.close();
 	}
 	
 
 
+	
 	public void crearEquipos(){
-//		crearJugador(nombreJ1);
-//		.
-//		.
-//		.
+		Jugador jugador1 = new Jugador(nombreJ1);
+		Jugador jugador2 = new Jugador(nombreJ2);
 		
-//		crearEquipos();
+		equipo1 = new Equipo();
+		equipo2 = new Equipo();
 		
+		equipo1.agregarJugadorAEquipo(jugador1);
+		equipo2.agregarJugadorAEquipo(jugador2);		
 		
 	}
 
 
 	public void crearPartida1vs1() {
 		crearEquipos();
-	
-		MainApp.partida = new Partida(equipo1, equipo2);
+		MainApp.juego = new Juego();
+		this.crearEquipos();
+		MainApp.juego.crearPartida(equipo1, equipo2);
 		
 	}
 
