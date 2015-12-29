@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
@@ -38,18 +39,107 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </GridPane>
-      <Label fx:id="nombre1" alignment="CENTER" layoutX="30.0" layoutY="6.0" prefHeight="26.0" prefWidth="94.0" text="NOMBRE1" textFill="#38ff3f" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="6.0">
+      <Label fx:id="nombre1" alignment="CENTER" layoutX="30.0" layoutY="6.0" prefHeight="26.0" prefWidth="94.0" text="Jugador 1" textFill="#38ff3f" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="6.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="nombre2" alignment="CENTER" layoutX="130.0" layoutY="6.0" prefHeight="26.0" prefWidth="94.0" text="NOMBRE2" textFill="#38ff3f" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="6.0">
+      <Label fx:id="nombre2" alignment="CENTER" layoutX="130.0" layoutY="6.0" prefHeight="26.0" prefWidth="94.0" text="Jugador 2" textFill="#38ff3f" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="6.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <Button layoutX="31.0" layoutY="246.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" styleClass="background" stylesheets="@botonesVerde.css" text="ENVIDO" AnchorPane.leftAnchor="31.0" />
       <Button layoutX="31.0" layoutY="303.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" styleClass="background" stylesheets="@botonesVerde.css" text="TRUCO" AnchorPane.leftAnchor="31.0" />
-      <Button layoutX="30.0" layoutY="365.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" styleClass="background" stylesheets="@botonesVerde.css" text="FLOR" AnchorPane.leftAnchor="31.0" />
+      <Button fx:id="botonFlor" layoutX="30.0" layoutY="365.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="127.0" styleClass="background" stylesheets="@botonesVerde.css" text="FLOR" AnchorPane.leftAnchor="31.0" />
       <Button layoutX="654.0" layoutY="19.0" mnemonicParsing="false" onAction="#volverAPantallaInicial" text="INICIO" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="19.0" />
+      <BorderPane layoutX="429.0" layoutY="132.0" prefHeight="528.0" prefWidth="433.0" AnchorPane.bottomAnchor="141.0" AnchorPane.leftAnchor="429.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="132.0">
+         <bottom>
+            <GridPane alignment="CENTER" prefHeight="112.0" prefWidth="443.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="carta0J2" onMouseClicked="#jugador2TiraPrimerCarta" prefHeight="147.0" prefWidth="237.0" text="Label">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="carta1J2" onMouseClicked="#jugador2TiraSegundaCarta" prefHeight="152.0" prefWidth="235.0" text="Label" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="carta2J2" onMouseClicked="#jugador2TiraTercerCarta" prefHeight="217.0" prefWidth="188.0" text="Label" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </bottom>
+         <top>
+            <GridPane prefHeight="104.0" prefWidth="449.0" BorderPane.alignment="BOTTOM_CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="carta0J1" onMouseClicked="#jugador1TiraPrimerCarta" prefHeight="103.0" prefWidth="153.0" text="Label">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="carta1J1" onMouseClicked="#jugador1TiraSegundaCarta" prefHeight="124.0" prefWidth="193.0" text="Label" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="carta2J1" onMouseClicked="#jugador1TiraTercerCarta" prefHeight="166.0" prefWidth="205.0" text="Label" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </top>
+         <center>
+            <GridPane cacheHint="SCALE" prefHeight="287.0" prefWidth="433.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="146.0" minHeight="10.0" prefHeight="146.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="98.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="158.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Label fx:id="cartaJ1" prefHeight="182.0" prefWidth="214.0" text="Label" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cartaJ2" prefHeight="193.0" prefWidth="200.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
    </children></AnchorPane>

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 public class PantallaInicialController implements Initializable, ControlledScreen {
 
     ScreensController myController;
+    Boolean conFlor;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -198,5 +199,13 @@ public class PantallaInicialController implements Initializable, ControlledScree
     	myController.setScreen(MainApp.pantalla3vs3);
     	ingresoDeNombres3vs3();
     	
+    }
+    
+    public void conFlor(){
+    	conFlor = true;
+    }
+
+    public void sinFlor(){
+    	conFlor = false;
     }
 }
