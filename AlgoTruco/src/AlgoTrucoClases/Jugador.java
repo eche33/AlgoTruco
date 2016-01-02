@@ -103,12 +103,12 @@ public class Jugador {
 		int eleccion = 0;
 
 		switch (eleccion){
-		case 0: vuelta.obtenerRonda().subirCanto();
+		case 0: vuelta.obtenerRonda().subirCanto();//Quiero
 				this.equipo.tieneQuiero();
 				vuelta.obtenerEquipoRival(this.equipo).noTieneQuiero();
 				return true;
-		case 1: return false;
-		case 2: vuelta.obtenerRonda().subirCanto();
+		case 1: return false;//No quiero
+		case 2: vuelta.obtenerRonda().subirCanto();//Subir canto
 				this.cantarJuego(vuelta);
 				return true;
 		}
@@ -129,7 +129,7 @@ public class Jugador {
 
 	private void cantarFlor(Vuelta vuelta) throws NoSePuedeCantarFlorError{
 
-		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
+		if((vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1) || (!this.noTiroCarta)){
 			throw new NoSePuedeCantarFlorError();
 		}
 
@@ -140,7 +140,7 @@ public class Jugador {
 
 	public void cantarEnvido(Vuelta vuelta) throws NoSePuedeCantarEnvidoError{
 
-		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
+		if((vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1) || (!this.noTiroCarta)){
 			throw new NoSePuedeCantarEnvidoError();
 		}
 
@@ -153,7 +153,7 @@ public class Jugador {
 	}
 
 	private void cantarFaltaEnvido(Vuelta vuelta) throws NoSePuedeCantarFaltaEnvidoError{
-		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
+		if((vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1) || (!this.noTiroCarta)){
 			throw new NoSePuedeCantarFaltaEnvidoError();
 		}
 
@@ -166,7 +166,7 @@ public class Jugador {
 	}
 
 	private void cantarRealEnvido(Vuelta vuelta) throws NoSePuedeCantarRealEnvidoError{
-		if(vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1){
+		if((vuelta.obtenerRonda().obtenerNumeroDeVuelta()!=1) || (!this.noTiroCarta)){
 			throw new NoSePuedeCantarRealEnvidoError();
 		}
 
@@ -180,7 +180,8 @@ public class Jugador {
 
 
 	public boolean responderEnvido(Vuelta vuelta){
-		int eleccion=0;
+		//int eleccion = this.obtenerDecisionEnvido();
+		int eleccion = 0;
 
 		if (!vuelta.obtenerRonda().cantadoEnvidoEnvido()){/**DESACTIVAR BOTON ENVIDO**/}
 
@@ -384,6 +385,12 @@ public class Jugador {
 
 	public boolean quieroEnvido() {
 		return true;
+
+	}
+
+
+	public boolean noQuiero() {
+		return false;
 
 	}
 
