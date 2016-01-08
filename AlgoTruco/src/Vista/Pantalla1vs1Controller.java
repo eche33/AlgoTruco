@@ -93,11 +93,6 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
     public void setScreenParent(ScreensController screenParent){
         myController = screenParent;
     }
-
-
-    	
-    	 
-    
     
     @FXML
     private void jugador1TiraPrimerCarta(){

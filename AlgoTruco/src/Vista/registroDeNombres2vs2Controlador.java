@@ -69,7 +69,7 @@ public class registroDeNombres2vs2Controlador {
 	public void crearPartida2vs2() {
 		crearEquipos();
 	
-		MainApp.partida = new Partida(equipo1, equipo2);
+//		MainApp.partida = new Partida(equipo1, equipo2);
 		
 	}
     

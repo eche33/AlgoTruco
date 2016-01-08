@@ -75,7 +75,7 @@ public class registroDeNombres3vs3Controlador {
 	public void crearPartida3vs3() {
 		crearEquipos();
 	
-		MainApp.partida = new Partida(equipo1, equipo2);
+//		MainApp.partida = new Partida(equipo1, equipo2);
 		
 	}
     

@@ -50,7 +50,7 @@ public class registroDeNombre1vsPCControlador {
 
 	public void crearPartida1vsPC() {
 		crearEquipos();
-		MainApp.juego = new Partida(equipo1, equipo2);
+//		MainApp.juego = new Partida(equipo1, equipo2);
 		
 	}
 

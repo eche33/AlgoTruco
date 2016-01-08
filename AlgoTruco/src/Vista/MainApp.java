@@ -117,7 +117,7 @@ public class MainApp extends Application {
 
             // CREO EL DIALOG STAGE
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("FLOR");
+            dialogStage.setTitle("ALERTA");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(MainApp.primaryStage);
             Scene scene = new Scene(page);
