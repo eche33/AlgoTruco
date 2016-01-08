@@ -38,11 +38,12 @@ public class Ronda {
 		this.tantoActual = null;
 		this.florActual = null;
 		this.ganadores = 0;
+		this.mazo = new Mazo();
 	}
 
 
 	private void ordenarPrimeraRonda(Equipo equipo1, Equipo equipo2){
-	// Con este método no hay que pasarle los jugadores ordenados, los ordena solos.
+	// Con este mï¿½todo no hay que pasarle los jugadores ordenados, los ordena solos.
 		jugadoresOrdenados = new ArrayList<Jugador>();
 		for (int i = 0; i < equipo1.obtenerCantidadDeJugadores(); i++){
 			this.jugadoresOrdenados.add(equipo1.obtenerJugador(i));
@@ -317,7 +318,7 @@ public class Ronda {
 
 	}
 
-/** Métodos no usados:
+/** Mï¿½todos no usados:
  *
  *
  * 	public void setearTruco(){

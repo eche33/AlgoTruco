@@ -3,6 +3,7 @@ package AlgoTrucoClases;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import AlgoTrucoCartas.AnchoBasto;
 import AlgoTrucoCartas.AnchoEspada;
@@ -55,17 +56,27 @@ public class Mazo {
 	public void mezclarMazo(){
 		Collections.shuffle(this.mazo);
 	}
+	
+	public int cantidadDeCartas(){
+		return this.mazo.size();
+	}
 		
+	public Carta sacarCarta(){
+		int maximo = this.cantidadDeCartas();
+		int index = (int) Math.floor(Math.random()*(maximo - 1)); //devuelve un valor random entre 0 y la cantidad de cartas que quedan en el mazo
+		Carta carta = this.mazo.get(index);
+		this.mazo.remove(index); 
+		return carta;
+	}
+	
 	public ArrayList<Mano> repartirVariasManos(int manosDeseadas){
 		ArrayList<Mano> manosPedidas = new ArrayList<Mano>();
-		int indice = 0;
-		int manosRepartidas = 0;
-		
-		while (manosRepartidas < manosDeseadas){
-			manosPedidas.add(new Mano(this.mazo.get(indice),this.mazo.get(indice+1),this.mazo.get(indice+2)));
-			indice += 3;
-			manosRepartidas++;
+		for (int i=0; i<manosDeseadas; i++){
+			
+			manosPedidas.add(new Mano(this.sacarCarta(),this.sacarCarta(),this.sacarCarta()));
+			
 		}
 		return manosPedidas;	
 	}
+	
 }

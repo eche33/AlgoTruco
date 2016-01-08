@@ -17,7 +17,7 @@ public class Juego {
     }
 
 	public Equipo obtenerEquipo(int i) {
-		return partida.obterEquipo(i);
+		return partida.obtenerEquipo(i);
 	}
 
 }

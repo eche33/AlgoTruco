@@ -251,7 +251,7 @@ public class Jugador {
 		int eleccion=0;
 
 		switch (eleccion){
-		case 0: this.quieroEnvido();;//Quiero
+		case 0: this.quieroEnvido();//Quiero
 		case 1: return false;//No quiero
 		case 2: try{				//Falta envido
 				vuelta.obtenerRonda().setearRealEnvido();
@@ -261,6 +261,12 @@ public class Jugador {
 		}
 		return false;
 	}
+
+	private void quieroEnvido() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	public boolean responderFaltaEnvido(Vuelta vuelta) {
 		int eleccion=0;
@@ -389,7 +395,7 @@ public class Jugador {
 	}
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 /** Mï¿½todos no usados:
 =======
 	public boolean quieroEnvido() {
@@ -404,7 +410,7 @@ public class Jugador {
 	}
 
 
-/** Métodos no usados:
+/** Mï¿½todos no usados:
 >>>>>>> origin/master
  *
  * 	private void cantarTruco(Vuelta vuelta){

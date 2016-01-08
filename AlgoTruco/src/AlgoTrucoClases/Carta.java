@@ -28,8 +28,8 @@ public abstract class Carta{
 	}
 
 	public int jugarContra(Carta unaCarta){
-	// Método para jugar contra otras cartas. Devuelve 1 si gana, -1 si pierde y 0 si parda.
-	// ACLARACIÓN: La mejor prioridad es 1 (ancho de espada), la peor es 14 (todos los cuatro).
+	// Mï¿½todo para jugar contra otras cartas. Devuelve 1 si gana, -1 si pierde y 0 si parda.
+	// ACLARACIï¿½N: La mejor prioridad es 1 (ancho de espada), la peor es 14 (todos los cuatro).
 		if (this.prioridad < unaCarta.obtenerPrioridad()){
 			return 1;
 		}
@@ -39,7 +39,11 @@ public abstract class Carta{
 		else return 0;
 	}
 
-/** ESTE MÉTODO NO SE USA EN NINGÚN LADO, POR ESO LO APARTE.
+	public String nombre() {
+		return this.obtenerNumero() + " " + this.obtenerPalo();
+	}
+
+/** ESTE Mï¿½TODO NO SE USA EN NINGï¿½N LADO, POR ESO LO APARTE.
  *
  * 	public boolean esPalo(String palo){
 		return (this.obtenerPalo() == palo);

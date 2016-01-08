@@ -24,10 +24,10 @@ public class Partida {
 	}
 
 	private void cambiarMano(){
-	// Quizás convenga pasar como parámetro la lista de turnos, para facilitar el cambio de turnos. El problema es que eso
-	// tornaría horrible los códigos de las pruebas por no usar la partida y tener que hacer las listas de turnos. De esta
-	// manera, si arma los turnos Ronda, con pasarle sólo los 2 equipos ya está.
-	/* EL CÓDIGO ACÁ ABAJO FUNCIONA, PERO PUEDEN DARSE CUENTA DE QUE ES HORRIBLE. */
+	// Quizï¿½s convenga pasar como parï¿½metro la lista de turnos, para facilitar el cambio de turnos. El problema es que eso
+	// tornarï¿½a horrible los cï¿½digos de las pruebas por no usar la partida y tener que hacer las listas de turnos. De esta
+	// manera, si arma los turnos Ronda, con pasarle sï¿½lo los 2 equipos ya estï¿½.
+	/* EL Cï¿½DIGO ACï¿½ ABAJO FUNCIONA, PERO PUEDEN DARSE CUENTA DE QUE ES HORRIBLE. */
 		ArrayList<Jugador> jugadoresOrdenados = new ArrayList<Jugador>();
 		for (int i = 0; i < this.equipo1.obtenerCantidadDeJugadores(); i++){
 			jugadoresOrdenados.add(this.equipo1.obtenerJugador(i));
@@ -45,6 +45,15 @@ public class Partida {
 
 	public boolean hayGanador(){
 		return((this.equipo1.ganoPartida())||(this.equipo2.ganoPartida()));
+	}
+
+
+	public Equipo obtenerEquipo(int i) {
+		if (i == 1){
+			return this.equipo1;
+		}
+		return this.equipo2;
+		
 	}
 
 }
