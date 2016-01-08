@@ -20,80 +20,44 @@ import javafx.scene.image.ImageView;
 
 
 
-public class Pantalla1vs1Controller implements Initializable , ControlledScreen {
+public class Pantalla1vs1Controller implements  ControlledScreen {
 
     ScreensController myController;
 
-    private Jugador jugador1;
-    private Jugador jugador2;
+    private Jugador jugador1,jugador2;
     
-    private Equipo equipo1;
-    private Equipo equipo2;
+    private Equipo equipo1, equipo2;
     
-    private Mano manoJ1;
-    private Mano manoJ2;
+    private Mano manoJ1, manoJ2;
     
     @FXML
-    Button carta0J1;
+    Label nombreJ1,nombreJ2;
     
     @FXML
-    Button carta1J1;
+    Button carta0J1,carta1J1,carta2J1,carta0J2, carta1J2,carta2J2;
     
     @FXML
-    Button carta2J1;
-    
-    @FXML
-    Button carta0J2;
-    
-    @FXML
-    Button carta1J2;
-    
-    @FXML
-    Button carta2J2;
-    
-    @FXML
-    Label cartaJ1;
-    
-    @FXML
-    Label cartaJ2;
+    Label cartaJ1,cartaJ2;
     
 
     @FXML
-    Button botonTruco;
+    Button botonTruco,botonVale4,botonRetruco;
     
     @FXML
-    Button botonVale4;
+    Button botonFlor, botonContraFlor,botonContraFlorAlResto;
     
     @FXML
-    Button botonRetruco;
-    
-    @FXML
-    Button botonFlor;
-    
-    @FXML
-    Button botonContraFlor;
-    
-    @FXML
-    Button botonContraFlorAlResto;
-    
-    @FXML
-    Button botonEnvido;
-   
-
-    @FXML
-    Button botonRealEnvido;
-    
-
-    @FXML
-    Button botonEnvidoEnvido;
+    Button botonEnvido,botonRealEnvido,botonEnvidoEnvido;
     
 
     @FXML
     Button botonIrse;
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void initialize() {
       
+    	
+    	
     	if (! MainApp.conFlor){
     		botonFlor.setVisible(false);
     	}
@@ -102,14 +66,17 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
     	cartaJ2.setText(" ");
     	
     	
-    	equipo1 = MainApp.juego.obtenerEquipo(1);
-    	equipo2 = MainApp.juego.obtenerEquipo(2);
+    	this.equipo1 = MainApp.juego.obtenerEquipo(1);
+    	this.equipo2 = MainApp.juego.obtenerEquipo(2);
     	
-    	jugador1 = equipo1.obtenerJugador(0);
-    	jugador2 = equipo2.obtenerJugador(0);
+    	this.jugador1 = equipo1.obtenerJugador(0);
+    	this.jugador2 = equipo2.obtenerJugador(0);
     	
-    	manoJ1 = jugador1.obtenerMano();
-    	manoJ2 = jugador2.obtenerMano();
+    	this.nombreJ1.setText(this.jugador1.obtenerNombre());
+    	this.nombreJ2.setText(this.jugador2.obtenerNombre());
+    	
+    	this.manoJ1 = jugador1.obtenerMano();
+    	this.manoJ2 = jugador2.obtenerMano();
     	
     	
     	carta0J1.setText(manoJ1.obtenerCarta(0).nombre());
@@ -185,6 +152,7 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
 			MainApp.jugando.cantarEnvido(MainApp.vuelta);
 			this.botonEnvido.setVisible(false);
 			this.botonEnvidoEnvido.setVisible(true);
+//			MainApp.respuestaJugadorContrario();
 			
 		} catch (NoSePuedeCantarEnvidoError e) {
 			MainApp.cartelAlerta("NO SE PUEDE CANTAR ENVIDO");
