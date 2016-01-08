@@ -30,26 +30,26 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
     private Equipo equipo1;
     private Equipo equipo2;
     
-    Mano manoJ1;
-    Mano manoJ2;
+    private Mano manoJ1;
+    private Mano manoJ2;
     
     @FXML
-    Label carta0J1;
+    Button carta0J1;
     
     @FXML
-    Label carta1J1;
+    Button carta1J1;
     
     @FXML
-    Label carta2J1;
+    Button carta2J1;
     
     @FXML
-    Label carta0J2;
+    Button carta0J2;
     
     @FXML
-    Label carta1J2;
+    Button carta1J2;
     
     @FXML
-    Label carta2J2;
+    Button carta2J2;
     
     @FXML
     Label cartaJ1;
@@ -57,9 +57,40 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
     @FXML
     Label cartaJ2;
     
+
+    @FXML
+    Button botonTruco;
+    
+    @FXML
+    Button botonVale4;
+    
+    @FXML
+    Button botonRetruco;
+    
     @FXML
     Button botonFlor;
+    
+    @FXML
+    Button botonContraFlor;
+    
+    @FXML
+    Button botonContraFlorAlResto;
+    
+    @FXML
+    Button botonEnvido;
    
+
+    @FXML
+    Button botonRealEnvido;
+    
+
+    @FXML
+    Button botonEnvidoEnvido;
+    
+
+    @FXML
+    Button botonIrse;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
@@ -120,6 +151,7 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
         	jugador1.tirarTercerCarta(MainApp.vuelta);
     	}
     }
+   
     @FXML
     private void jugador2TiraPrimerCarta(){
     	if (MainApp.jugando.obtenerNombre() ==  jugador2.obtenerNombre()){
@@ -151,21 +183,34 @@ public class Pantalla1vs1Controller implements Initializable , ControlledScreen 
     private void cantarEnvido(){
     	try {
 			MainApp.jugando.cantarEnvido(MainApp.vuelta);
+			this.botonEnvido.setVisible(false);
+			this.botonEnvidoEnvido.setVisible(true);
+			
 		} catch (NoSePuedeCantarEnvidoError e) {
 			MainApp.cartelAlerta("NO SE PUEDE CANTAR ENVIDO");
 		}
     }
     
     @FXML
-    private void cantarFlor1(){
-    	botonFlor.setText("CONTRA FLOR");
+    private void cantarFlor(){
 		try {
 			MainApp.jugando.cantarFlor(MainApp.vuelta);
+			this.botonFlor.setVisible(false);
+			this.botonContraFlor.setVisible(true);
+			this.botonContraFlorAlResto.setVisible(true);
 		} catch (NoSePuedeCantarFlorError e) {
 			MainApp.cartelAlerta("NO SE PUEDE CANTAR FLOR");
 		}
 
     }
+    
+    @FXML
+    private void cantarContraFlor(){
+			MainApp.jugando.cantarContraFlor(MainApp.vuelta);			
+			this.botonContraFlor.setVisible(false);
+			this.botonContraFlorAlResto.setVisible(false);		
+    }
+    
     @FXML
     private void volverAPantallaInicial(ActionEvent event){
     	

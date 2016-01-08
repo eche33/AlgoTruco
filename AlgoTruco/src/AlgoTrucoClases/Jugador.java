@@ -291,7 +291,7 @@ public class Jugador {
 		return false;
 	}
 
-	private void cantarContraFlor(Vuelta vuelta) {
+	public void cantarContraFlor(Vuelta vuelta) {
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderContraFlor(vuelta)){
 			vuelta.obtenerRonda().setearContraFlor();
 		}else{
