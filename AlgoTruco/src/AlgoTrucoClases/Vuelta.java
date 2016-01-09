@@ -7,6 +7,7 @@ public class Vuelta {
 	private boolean vueltaEnCurso;
 	private Ronda ronda;
 	private Mesa mesa;
+	private Jugador jugadorActual;
 
 	public Vuelta(Ronda ronda){
 		this.ronda = ronda;
@@ -40,7 +41,8 @@ public class Vuelta {
 
 		Iterator<Jugador> iteradorDeJugadores = this.ronda.obtenerJugadoresOrdenados().iterator();
 		while ((iteradorDeJugadores.hasNext())&&(this.estaEnCurso())){
-			iteradorDeJugadores.next().jugar(this);
+			this.jugadorActual = iteradorDeJugadores.next();
+			this.jugadorActual.jugar(this);
 		}
 		if (this.obtenerJugadorQueTiroCartaMasALta().obtenerEquipo().equals(this.ronda.obtenerEquipo1())){
 			return 1;
@@ -57,6 +59,11 @@ public class Vuelta {
 
 	public Equipo obtenerEquipoRival(Equipo equipo){
 		return this.ronda.obtenerEquipoRival(equipo);
+	}
+
+
+	public Jugador obtenerJugadorActual() {
+		return this.jugadorActual;
 	}
 
 

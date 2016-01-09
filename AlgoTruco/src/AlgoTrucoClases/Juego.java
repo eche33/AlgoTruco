@@ -20,5 +20,9 @@ public class Juego {
 		return partida.obtenerEquipo(i);
 	}
 
+	public Jugador obtenerJugadorActual() {
+		return this.partida.obtenerJugadorActual();
+	}
+
 }
 

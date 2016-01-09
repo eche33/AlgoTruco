@@ -98,10 +98,16 @@ public class Pantalla1vs1Controller implements  ControlledScreen {
     		cartaJ1.setText(carta0J1.getText());
         	carta0J1.setText(" ");    	
         	jugador1.tirarPrimerCarta(MainApp.vuelta);
+        	this.actualizarJugadorJugando();
     	}
     }
     
-    @FXML
+    private void actualizarJugadorJugando() {
+		MainApp.jugando = MainApp.juego.obtenerJugadorActual();
+		
+	}
+
+	@FXML
     private void jugador1TiraSegundaCarta(){
     	if (MainApp.jugando.obtenerNombre() ==  jugador1.obtenerNombre()){
     		cartaJ1.setText(carta1J1.getText());

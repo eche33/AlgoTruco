@@ -13,6 +13,7 @@ public class Jugador {
 	private Mano mano;
 	private Equipo equipo;
 	private boolean noTiroCarta;
+	private Vuelta vuelta;
 
 
 	public Jugador(String nombreDeJugador){
@@ -59,8 +60,8 @@ public class Jugador {
 
 	public void jugar(Vuelta vuelta){
 		
-		MainApp.jugando = (this);
-		MainApp.vuelta = vuelta;
+	
+		this.vuelta = vuelta;
 		
 		int eleccion = 0;
 

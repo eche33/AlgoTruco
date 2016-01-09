@@ -25,7 +25,7 @@ public class Ronda {
 	private Tanto tantoActual;
 	private Flores florActual;
 	private int ganadores;
-
+	private Vuelta vueltaActual;
 
 	public Ronda(Equipo equipo1, Equipo equipo2){
 		this.numeroVuelta = 1;
@@ -89,10 +89,10 @@ public class Ronda {
 
 		for(int i = 0; i<3 ; i++){
 			if(! this.rondaFinalizada()){ // Puede terminarse en cualquier momento de una vuelta.
-				Vuelta vuelta = this.crearNuevaVuelta(this);
-				ganadores += vuelta.jugar();
+				this.vueltaActual = this.crearNuevaVuelta(this);
+				ganadores += this.vueltaActual.jugar();
 				this.numeroVuelta += 1;
-				this.ordenarTurnos(vuelta.obtenerJugadorQueTiroCartaMasALta());
+				this.ordenarTurnos(this.vueltaActual.obtenerJugadorQueTiroCartaMasALta());
 			}
 		}
 		this.sumarPuntos(equipo1);
@@ -316,6 +316,11 @@ public class Ronda {
 	public void setearFlorNoquerida(Equipo equipo) {
 		this.florActual = new FlorNoQuerida(equipo);
 
+	}
+
+
+	public Jugador obtenerJugadorActual() {
+		return this.vueltaActual.obtenerJugadorActual();
 	}
 
 /** M�todos no usados:

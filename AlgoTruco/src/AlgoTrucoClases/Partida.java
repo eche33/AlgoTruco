@@ -7,6 +7,7 @@ public class Partida {
 	private static Partida partida = null;
 	protected Equipo equipo1;
 	protected Equipo equipo2;
+	private Ronda rondaActual;
 
 	
 	public Partida(Equipo equipo1, Equipo equipo2){
@@ -17,7 +18,7 @@ public class Partida {
 	
 	public void iniciarPartida(){
 		while( ! this.hayGanador()){
-			Ronda rondaActual = new Ronda(this.equipo1,this.equipo2);
+			this.rondaActual = new Ronda(this.equipo1,this.equipo2);
 			rondaActual.iniciar();
 			this.cambiarMano();
 		}
@@ -54,6 +55,11 @@ public class Partida {
 		}
 		return this.equipo2;
 		
+	}
+
+
+	public Jugador obtenerJugadorActual() {
+		return this.rondaActual.obtenerJugadorActual();
 	}
 
 }
