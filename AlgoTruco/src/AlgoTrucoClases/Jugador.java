@@ -153,6 +153,7 @@ public class Jugador {
 
 		if (vuelta.obtenerRonda().obtenerEquipoRival(this.equipo).responderEnvido(vuelta)){
 			vuelta.obtenerRonda().setearEnvido();
+			
 		}else{
 			vuelta.obtenerRonda().setearEnvido();
 			vuelta.obtenerRonda().obtenerTantoActual().noSeQuiere(this.obtenerEquipo());
