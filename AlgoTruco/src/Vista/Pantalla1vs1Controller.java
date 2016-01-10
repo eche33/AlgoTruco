@@ -94,22 +94,22 @@ public class Pantalla1vs1Controller implements  ControlledScreen {
     
     @FXML
     private void jugador1TiraPrimerCarta(){
-    	if (MainApp.jugando.obtenerNombre() ==  jugador1.obtenerNombre()){
+    	if (MainApp.jugando.esEquipo(1)){
     		cartaJ1.setText(carta0J1.getText());
         	carta0J1.setText(" ");    	
         	jugador1.tirarPrimerCarta(MainApp.vuelta);
-        	this.actualizarJugadorJugando();
+        	this.actualizarEquipoJugando();
     	}
     }
     
-    private void actualizarJugadorJugando() {
-		MainApp.jugando = MainApp.juego.obtenerJugadorActual();
+    private void actualizarEquipoJugando() {
+		MainApp.jugando = MainApp.juego.obtenerEquipoJugando();
 		
 	}
 
 	@FXML
     private void jugador1TiraSegundaCarta(){
-    	if (MainApp.jugando.obtenerNombre() ==  jugador1.obtenerNombre()){
+    	if (MainApp.jugando.esEquipo(1)){
     		cartaJ1.setText(carta1J1.getText());
         	carta1J1.setText(" ");    	
         	jugador1.tirarSegundaCarta(MainApp.vuelta);
@@ -118,7 +118,7 @@ public class Pantalla1vs1Controller implements  ControlledScreen {
     
     @FXML
     private void jugador1TiraTercerCarta(){
-    	if (MainApp.jugando.obtenerNombre() ==  jugador1.obtenerNombre()){
+    	if (MainApp.jugando.esEquipo(1)){
     		cartaJ1.setText(carta2J1.getText());
         	carta2J1.setText(" ");    	
         	jugador1.tirarTercerCarta(MainApp.vuelta);
@@ -127,7 +127,7 @@ public class Pantalla1vs1Controller implements  ControlledScreen {
    
     @FXML
     private void jugador2TiraPrimerCarta(){
-    	if (MainApp.jugando.obtenerNombre() ==  jugador2.obtenerNombre()){
+    	if (MainApp.jugando.esEquipo(2)){
     		cartaJ2.setText(carta0J2.getText());
         	carta0J2.setText(" ");    	
         	jugador2.tirarPrimerCarta(MainApp.vuelta);
@@ -136,7 +136,7 @@ public class Pantalla1vs1Controller implements  ControlledScreen {
     
     @FXML
     private void jugador2TiraSegundaCarta(){
-    	if (MainApp.jugando.obtenerNombre() ==  jugador2.obtenerNombre()){
+    	if (MainApp.jugando.esEquipo(2)){
     		cartaJ2.setText(carta1J2.getText());
         	carta1J2.setText(" ");    	
         	jugador2.tirarSegundaCarta(MainApp.vuelta);
@@ -145,7 +145,7 @@ public class Pantalla1vs1Controller implements  ControlledScreen {
     
     @FXML
     private void jugador2TiraTercerCarta(){
-    	if (MainApp.jugando.obtenerNombre() ==  jugador2.obtenerNombre()){
+    	if (MainApp.jugando.esEquipo(2)){
     		cartaJ2.setText(carta2J2.getText());
         	carta2J2.setText(" ");    	
         	jugador2.tirarTercerCarta(MainApp.vuelta);

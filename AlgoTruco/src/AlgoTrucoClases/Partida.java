@@ -62,4 +62,12 @@ public class Partida {
 		return this.rondaActual.obtenerJugadorActual();
 	}
 
+
+
+
+	public Equipo obtenerEquipoJugando() {
+		
+		return this.rondaActual.obtenerEquipoJugando();
+	}
+
 }

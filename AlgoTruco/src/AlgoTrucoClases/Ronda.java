@@ -323,6 +323,10 @@ public class Ronda {
 		return this.vueltaActual.obtenerJugadorActual();
 	}
 
+	public Equipo obtenerEquipoJugando() {		
+		return this.vueltaActual.obtenerEquipoJugando();
+	}
+
 /** M�todos no usados:
  *
  *

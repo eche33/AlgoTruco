@@ -49,8 +49,8 @@ public class registroDeNombres1vs1Controlador {
 		Jugador jugador1 = new Jugador(nombreJ1);
 		Jugador jugador2 = new Jugador(nombreJ2);
 		
-		equipo1 = new Equipo();
-		equipo2 = new Equipo();
+		equipo1 = new Equipo(1);
+		equipo2 = new Equipo(2);
 		
 		equipo1.agregarJugadorAEquipo(jugador1);
 		equipo2.agregarJugadorAEquipo(jugador2);		

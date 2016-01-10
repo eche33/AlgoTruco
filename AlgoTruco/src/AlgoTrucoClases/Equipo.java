@@ -7,12 +7,16 @@ public class Equipo{
 	private ArrayList<Jugador> jugadores;
 	public int puntajeDeEquipo;
 	public boolean quiero;
-
-	public Equipo(){
-	// Constructor de equipo de sólo un jugador.
+	private int num;
+	private boolean jugando;
+	
+	public Equipo(int num){
+	// Constructor de equipo de sï¿½lo un jugador.
 		this.jugadores = new ArrayList<Jugador>();
 		this.puntajeDeEquipo = 0;
 		this.quiero = true;
+		this.jugando = false;
+		this.num = num;
 	}
 
 	public void agregarJugadorAEquipo(Jugador jugadorNuevo){
@@ -20,7 +24,14 @@ public class Equipo{
 		jugadorNuevo.asignarEquipo(this);
 	}
 
-
+	public void jugando(){
+		this.jugando = true;
+	}
+	
+	public void noJugando(){
+		this.jugando = false;
+	}
+		
 	public int obtenerPuntaje(){
 		return (this.puntajeDeEquipo);
 	}
@@ -99,18 +110,23 @@ public class Equipo{
 		return (this.jugadores.get(0).responderContraFlor(vuelta));
 	}
 
+	public boolean esEquipo(int i) {
+		
+		return (this.num == i);
+	}
 
-/** Igual que en otras clases, hay un método que sólo hicimos para probarse, como que no se usa en ninguna parte del
- *  código. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.
+
+/** Igual que en otras clases, hay un mï¿½todo que sï¿½lo hicimos para probarse, como que no se usa en ninguna parte del
+ *  cï¿½digo. Lo dejo comentado (tanto como su prueba), para tenerlo archivado.
  *
  *  public int obtenerCantidadDeJugadores(){
 		return (this.jugadores.size());
 	}
  *
  *
- *  Este otro método de acá abajo habíamos hablado de usarlo pero pensado en un principio para sumar todos los puntos al
- *  final de la ronda. Como ahora sumamos los puntos del envido ni bien lo jugamos y quedan sólo los del truco para
- *  después, creo que queda al pedo. Por las dudas lo dejo acá:
+ *  Este otro mï¿½todo de acï¿½ abajo habï¿½amos hablado de usarlo pero pensado en un principio para sumar todos los puntos al
+ *  final de la ronda. Como ahora sumamos los puntos del envido ni bien lo jugamos y quedan sï¿½lo los del truco para
+ *  despuï¿½s, creo que queda al pedo. Por las dudas lo dejo acï¿½:
  *
  *  public void actualizarPuntos(){
 		this.puntajeDeEquipo += this.puntosDeRonda;

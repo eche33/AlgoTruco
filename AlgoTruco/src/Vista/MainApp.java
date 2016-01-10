@@ -2,6 +2,7 @@ package Vista;
 
 import java.io.IOException;
 
+import AlgoTrucoClases.Equipo;
 import AlgoTrucoClases.Juego;
 import AlgoTrucoClases.Jugador;
 import AlgoTrucoClases.Vuelta;
@@ -33,7 +34,7 @@ public class MainApp extends Application {
     public static String pantalla3vs3 = "pantalla3vs3";
     public static String pantalla3vs3File = "Pantalla3vs3.fxml";
     public static Boolean conFlor = true;
-	public static Jugador jugando;
+	public static Equipo jugando;
 	public static Vuelta vuelta;
     
     

@@ -67,4 +67,10 @@ public class Vuelta {
 	}
 
 
+	public Equipo obtenerEquipoJugando() {
+		
+		return this.jugadorActual.obtenerEquipo();
+	}
+
+
 }
